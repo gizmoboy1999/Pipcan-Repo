@@ -116,9 +116,9 @@ due to the lack of people being bothered to give me feedback. people wishing to 
             <import addon="xbmc.addon" version="12.0.0"/>
         </requires>
         <extension point="xbmc.addon.repository" name="Pipcan Repo">
-            <info compressed="false">https://raw.githubusercontent.com/pipcan3/Pipcan-Repo/_repo/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/pipcan3/Pipcan-Repo/_repo/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/pipcan3/Pipcan-Repo/_repo/</datadir>
+            <info compressed="false">https://raw.githubusercontent.com/pipcan3/Pipcan-Repo/master/_repo/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/pipcan3/Pipcan-Repo/master/_repo/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/pipcan3/Pipcan-Repo/master/_repo/</datadir>
             <hashes>false</hashes>
         </extension>
         <extension point="xbmc.addon.metadata">
