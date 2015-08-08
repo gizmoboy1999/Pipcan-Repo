@@ -1,0 +1,11 @@
+<settings>
+<category label="Settings">
+     <setting id="usern" type="text" label="Website" default=""/>
+     <setting id="passw" type="text" label="Website" default=""/>
+     <setting id="website" type="text" label="Website" default=""/>
+     <setting id="port" type="text" label="Port" default="80"/>
+	 <setting id="type" type="select" label="Type" values="m3u8|ts|" default="ts"/>
+</category>
+
+
+</settings>
