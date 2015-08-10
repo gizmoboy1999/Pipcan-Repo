@@ -1,47 +1,42 @@
 import xbmcgui,xbmcplugin
-# CREATED BY PIPCAN
-# WEB:PIPCAN.INFO 
-# SKYPE:PIPCAN2015
+# CREATED BY C0mmand 
+# GitWeb: https://github.com/C0mmand
 
-# STREAM 1 NAME
+# BT Sports UK
 name1='  stream1  '
 # STREAM 1 URL
-link1='http://astvstream3.tulix.tv/gtvtv/gtvtv/playlist.m3u8'
+link1='http://maxiptv.dyndns.org:8000/live/7Kbk8XRf61/JSYw2Hu8Rf/32.ts'
 
-# STREAM 2 NAME
+# BT Sports 2 UK
 name2='  stream2  '
 # STREAM 2 URL
-link2='http://astvstream3.tulix.tv/gtvtv/gtvtv/playlist.m3u8'
+link2='http://maxiptv.dyndns.org:8000/live/7Kbk8XRf61/JSYw2Hu8Rf/33.ts'
 
-# STREAM 3 NAME
+# TSN 1 USA
 name3='  stream3  '
 # STREAM 3 URL
-link3='http://astvstream3.tulix.tv/gtvtv/gtvtv/playlist.m3u8'
+link3='http://iptvspeedy4you.ddns.net:8000/live/volkii24@outlook.de/wZu5jOzfNo/556.ts'
 
-# STREAM 4 NAME
+# One By 4K
 name4='  stream4  '
 # STREAM 4 URL
-link4='http://astvstream3.tulix.tv/gtvtv/gtvtv/playlist.m3u8'
+link4='http://rtmp.one.by:1400/'
 
-# STREAM 5 NAME
+# NTV+ Futbol HD
 name5='  stream5  '
 # STREAM 5 URL
-link5='http://astvstream3.tulix.tv/gtvtv/gtvtv/playlist.m3u8'
+link5='http://78.30.254.27:8989/udp/239.0.0.169:4000'
 
-# STREAM 6 NAME
+# NBC Sports Network 1080P
 name6='  stream6  '
 # STREAM 6 URL
-link6='http://astvstream3.tulix.tv/gtvtv/gtvtv/playlist.m3u8'
+link6='http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/4296k/prog.m3u8|X-Forwarded-For=209.239.112.104'
 
-# STREAM 7 NAME
+# Sky Sports Plus  IT
 name7='  stream7  '
 # STREAM 7 URL
-link7='http://astvstream3.tulix.tv/gtvtv/gtvtv/playlist.m3u8'
+link7='http://visionhd.dyndns.tv:8000/live/cam2oS6h7n/G8AH9N9wcP/24.ts'
 
-# STREAM 8 NAME
-name8='  stream8  '
-# STREAM 8 URL
-link8='http://astvstream3.tulix.tv/gtvtv/gtvtv/playlist.m3u8'
 
 
 

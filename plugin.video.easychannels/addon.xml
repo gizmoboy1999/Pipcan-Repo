@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.easychannels" name="EasyChannels" version="1.6" provider-name="pipcan">
+<addon id="plugin.video.easychannels" name="iWantTV" version="1.6" provider-name="pipcan-C0mmand">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
   </requires>
@@ -9,8 +9,7 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
-    <summary>Donate</summary>
-    <description>a</description>
-	<description>aa.</description>
+    <summary>Watch Free TV</summary>
+    <description>Just enjoy back on your counch and watch iWantTV....</description>
   </extension>
 </addon>
