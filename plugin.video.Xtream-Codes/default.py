@@ -14,7 +14,7 @@ type=xbmcplugin.getSetting(int(sys.argv[1]), 'type')
 active=xbmcplugin.getSetting(int(sys.argv[1]), 'active')
 source=xbmcplugin.getSetting(int(sys.argv[1]), 'source')
 # V-- This Is For Web Login Successful Hide The Login Button 
-source2 = 
+source2 = ('http://infadroid.tk/epg/guia.xml')
 '''                          V----The Addon Name----V'''
 ADDON = xbmcaddon.Addon(id='plugin.video.Xtream-Codes')
 '''        V----The Addon Name----V'''
