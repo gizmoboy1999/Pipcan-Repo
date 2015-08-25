@@ -22,6 +22,7 @@ def CATEGORIES():
        myname = ADDON.getSetting(id='myname')
        addDir2('NAME','url',4,'icon')
        addDir2('CHANGE NAME','url',5,'icon')
+       addDir('REGEX EXAMPLE','http://forum.kodi.tv/forumdisplay.php?fid=26',6,'icon')
 #################################################################################################################################
 #################################################################################################################################
 #################################################################################################################################	
@@ -106,13 +107,13 @@ def REGEX(url):
 #                        V----- This Meens It Will Read The Url In The Link Item That Was Pressed
         link = OPEN_URL(url)
 #                          V---- REGEX  CODE GOES HERE
-        match=re.compile('  ').findall(link)
+        match=re.compile('<a href=".+?" class=".+?" id=".+?">(.+?)</a></strong>').findall(link)
 #              V---- For Every (.+?) In You REGEX You Must Give It A Name so if you have 2 and its  name and url put name,url
-        for channelid in match:
+        for name in match:
 #                   V -- if you want the name to appper here you could remove to ' ' and just put name or you could put %s in the middle
 #                        then after the ' put %(name) so sould look like '%s'%(name)
 #                           V ----- this is the mode set it to the def() you wana run see bottom 
-            addDir(' ',' ',1,'','')
+            addDir(name,'',1,'a')
 
 
 			
@@ -237,12 +238,19 @@ elif mode==5:
 #        V ---- Then The Name Of A def name() you have made
         CHANGENAME()
 #             ^------- and witch bit you want to keep so you want it to remember the name in addDir so put name    
-
-
-
+elif mode==6:
+#        V ---- Then The Name Of A def name() you have made
+        REGEX(url)
+#             ^------- and witch bit you want to keep so you want it to remember the name in addDir so put name    
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 
 #################################################################################################################################
 #################################################################################################################################
 #################################################################################################################################
+
+
+
+
+
+
