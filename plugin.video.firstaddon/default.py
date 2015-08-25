@@ -1,28 +1,60 @@
 import urllib,urllib2,sys,re,xbmcplugin,xbmcgui,xbmcaddon,datetime,os
-ADDON = xbmcaddon.Addon(id='plugin.video.password')
+ADDON = xbmcaddon.Addon(id='plugin.video.firstaddon')
 AddonID = 'plugin.video.firstaddon'
 Addon = xbmcaddon.Addon(AddonID)
 addonDir = Addon.getAddonInfo('path').decode("utf-8")
-#################################################################################################################################
-##############################                                ###################################################################
-##############################      The First LIST ITEMS      ###################################################################
 
 
+# SHOWING A VALUE THAT IS IN THE SETTINGS
+
+def SHOWNAME(url):
+#   Get The Settings V -------     V--------- With The ID myname So What Ever Is Entered In That Is Stored In The settings
+#   To Have The Below Value Available To All Defined Values just copy the code line bellow and put it to line 6 and remove the blank spaces 
+    myname = ADDON.getSetting(id='myname')
+#    ^---- name Of Action It Can Be Anything
+# Now The Below Code Can Be Written In Two Ways Like 
+# 1) showText(myname,'YOUR MESSAGE HERE') OR This is if you want to display the value of username in header and nothing else
+# 2) showText('%s'%(myname),'YOUR MESSAGE HERE') This is so you can enter a value ether side of %s the value %s Will Be Replaced With
+# The Value myname By Default Its No Name  
+    showText('%s'%(myname),'YOUR MESSAGE HERE')
+# Same Can Be Applied Below If You Want To Add WELCOME The The Users Name Were You See The Text 'NAME' change it to 'WELCOME %s'%(myname)
 def CATEGORIES():
-        addDir2('NAME','url',4,'icon')
+       myname = ADDON.getSetting(id='myname')
+       addDir2('NAME','url',4,'icon')
+       addDir2('CHANGE NAME','url',5,'icon')
 #################################################################################################################################
 #################################################################################################################################
-#################################################################################################################################
+#################################################################################################################################	
 
-
-
-
-
-
-
-
-
-
+	
+def CHANGENAME():
+    dialog = xbmcgui.Dialog()
+#   Shoe Dialog        V-- The Header                         V--- The Type Of Input
+    d = dialog.input('Enter secret code', type=xbmcgui.INPUT_ALPHANUM)
+#   V -- If The Value Of d is Equal To '' So Empty 
+    if d == '':
+# The Return 
+        return True
+# But If d Has Anything But Empty Set The Settings myname To Entered value
+    else:
+         ADDON.setSetting(id='myname', value=d)
+#        Set Settings myname --^           ^------- To The Value Entered In d 
+def showText(heading, text):
+    id = 10147
+    xbmc.executebuiltin('ActivateWindow(%d)' % id)
+    xbmc.sleep(100)
+    win = xbmcgui.Window(id)
+    retry = 50
+    while (retry > 0):
+        try:
+            xbmc.sleep(10)
+            retry -= 1
+            win.getControl(1).setLabel(heading)
+            win.getControl(5).setText(text)
+            xbmcplugin.getSetting(int(sys.argv[1]), 'myname')
+            return
+        except:
+            pass
 
 
 
@@ -39,7 +71,7 @@ def OPEN_URL(url):
         return link
 		
 		
-		
+	
 		
 		
 		
@@ -178,6 +210,14 @@ if mode==None or url==None or len(url)<1:
 elif mode==1:
 #        V ---- Then The Name Of A def name() you have made
         INDEX(url)
+#             ^------- and witch bit you want to keep so you want it to remember the name in addDir so put name    
+elif mode==4:
+#        V ---- Then The Name Of A def name() you have made
+        SHOWNAME(url)
+#             ^------- and witch bit you want to keep so you want it to remember the name in addDir so put name    
+elif mode==5:
+#        V ---- Then The Name Of A def name() you have made
+        CHANGENAME()
 #             ^------- and witch bit you want to keep so you want it to remember the name in addDir so put name    
 
 
