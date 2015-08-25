@@ -38,7 +38,16 @@ def CHANGENAME():
 # But If d Has Anything But Empty Set The Settings myname To Entered value
     else:
          ADDON.setSetting(id='myname', value=d)
-#        Set Settings myname --^           ^------- To The Value Entered In d 
+#       Set Settings myname --^           ^------- To The Value Entered In d 
+
+
+#################################################################################################################################
+#################################################################################################################################
+
+
+
+
+
 def showText(heading, text):
     id = 10147
     xbmc.executebuiltin('ActivateWindow(%d)' % id)
@@ -105,6 +114,7 @@ def REGEX(url):
 #                           V ----- this is the mode set it to the def() you wana run see bottom 
             addDir(' ',' ',1,'','')
 
+
 			
 #################################################################################################################################
 #################################################################################################################################
@@ -112,11 +122,16 @@ def REGEX(url):
 
 
 
-
-
-
-
-
+#        NOW LETS READ A PAGE OK SO WE GET USED TO IT WE WILL READ ONE THIN SO WE WILL MAKE IT THE NAME SO TO GET STARTED
+#        GO TO THE PAGE YOU WANT TO READ IM GOING TO READ THE KODI FORM http://forum.kodi.tv/forumdisplay.php?fid=26
+#        NOW RIGHT CLICK AND GO VIEW SOURCE FIND THE TXT MINE IS 
+#        <a href="showthread.php?tid=142284" class=" subject_old" id="tid_142284">[RELEASE] xbmcswift2 - plugin framework</a></strong>
+#        I HAVE CHOOES JUST ENOUGH CODE SO IT WILL ONLY READ THE BIT I WANT AND NOT EVERY THING NOW WE CAN START BY CHANGING
+#        THE <a href="showthread.php?tid=142284" TO <a href=".+?" THE .+? MEAN IGNORE THIS DATA ALSO DO THE SAME FOR 
+#        id="tid_142284"> TO id=".+?"> NOW WE WANT THE TXT AFTER SO TO READ TEXT PUT (.+?) SO THE CODE SHOUD READ
+#        <a href=".+?" class=" subject_old" id=".+?">(.+?)</a></strong> NOW PUT THAT IN WERE IT SAYS REGEXCODE BELOW THAT
+#         BIT SAYS GIVE IT A NAME SO CHANGE channelid TO name NOW AFTER THAT LOOK AT THE addDir NOW THE FIRST ITEM IS THE
+#        NAME SO if you want the name to appper here you could remove to ' ' and just put name or you could put %s in the middle
 
 
 
@@ -144,7 +159,7 @@ def get_params():
                                 param[splitparams[0]]=splitparams[1]
                                 
         return param
-
+# Bellow Are To List Items V----------This One Is To Open It As A Folder
 def addDir(name,url,mode,iconimage):
         u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
         ok=True
@@ -152,6 +167,9 @@ def addDir(name,url,mode,iconimage):
         liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
+
+#    V----- and this one is to not open as a folder this is good becouse if you open a video file  with addDir
+#   you will get stuck in a continus loop 
 def addDir2(name,url,mode,iconimage):
         u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
         ok=True
