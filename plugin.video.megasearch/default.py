@@ -23,6 +23,10 @@ def CATEGORIES():
             addDir('Canflix','http://cdn.alpha.canflix.net',8,'ww')
             addDir('Tehmovies','http://dl.tehmovies.com/',8,'ww')
             addDir('Yukinoshita','http://yukinoshita.eu/ddl/',12,'ww')
+            addDir('Seed Cows','http://seed.cows.io/',8,'ww')
+            addDir('Hastidownload','http://dl.hastidownload.net/ali/film/',8,'ww')
+            addDir('Animakai.tv','http://www.animakai.tv/animes/1/',13,'ww')
+            addDir('Kino Kong','http://kinokong.net',18,'ww')
 def UPDATE():
     if ADDON.getSetting(id='password') == '4':
         ADDON.setSetting(id='password', value='0')
@@ -86,6 +90,57 @@ def canflix(url):
         match=re.compile('<td data-sort-value="(.+?)"><i class="fa fa-(.+?) fa-fw"></i>&nbsp;<a href="(.+?)">.+?\n.+?value=".+?">(.+?)<').findall(link)
         for name,type,url,size in match:
             addDir2('%s - %s'%(name,size),'%s'%url,4,'%s'%(type))
+def kinokong(url):
+        link = OPEN_URL(url)
+        match=re.compile('<a href="/films/(.+?)/">.+?<b>(.+?)</b>').findall(link)
+        match2=re.compile('<a href="/serial/(.+?)/">.+?<b>(.+?)</b>').findall(link)
+        match3=re.compile('<a href="/anime/(.+?)/">.+?<b>(.+?)</b>').findall(link)
+        addDir('[COLOR yellow][B]-------------- FILMS --------------[/B][/COLOR]','',19,'')
+        for name,count in match:
+            addDir('%s [COLOR red]%s[/COLOR]'%(name,count),'%s/films/%s/'%(url,name),19,'%s'%(count))
+        addDir('[COLOR yellow][B]-------------- SERIALS --------------[/B][/COLOR]','',19,'')
+        for name,count in match2:
+            addDir('%s [COLOR red]%s[/COLOR]'%(name,count),'%s/serial/%s/'%(url,name),19,'%s'%(count))
+        addDir('[COLOR yellow][B]-------------- ANIME --------------[/B][/COLOR]','',19,'')
+        for name,count in match3:
+            addDir('%s [COLOR red]%s[/COLOR]'%(name,count),'%s/anime/%s/'%(url,name),19,'%s'%(count))
+def kinokong2(url):
+        link = OPEN_URL(url)
+        match=re.compile('<a href="(.+?)" class="main-sliders-play"><svg viewBox=".+?"><polygon points=".+?"></polygon></svg></a>\n.+</span>\n.+<img src="(.+?)" alt="(.+?)"').findall(link)
+        for url,image,name in match:
+            addDir(name,'%s'%url,20,image)
+def kinokong3(url):
+        link = OPEN_URL(url)
+        match=re.compile('file:"(.+?)",').findall(link)
+        match2=re.compile('file:".+?,(.+?)"').findall(link)
+        match3=re.compile('file:"(.+?)"').findall(link)
+        for url in match:
+            addDir2('%s'%(url),'%s'%url,9,'')
+        for url in match2:
+            addDir2('%s'%(url),'%s'%url,9,'')
+        for url in match3:
+            addDir2('%s'%(url),'%s'%url,9,'')
+def animakai(url):
+        link = OPEN_URL(url)
+        match=re.compile('<div class="sl_image"><a href="(.+?)" alt="(.+?)" title=".+?"><img src="(.+?)"').findall(link)
+        match2=re.compile('</a></div><div class="pgTitle"><a href="http://www.animakai.tv/animes/(.+?)/"').findall(link)
+        for url,name,image in match:
+            addDir('%s'%(name),'%s'%url,14,'%s'%(image))
+        for name in match2:
+            addDir('Go To Page %s'%(name),'http://www.animakai.tv/animes/%s/'%name,13,'')
+def animakai2(url):
+        link = OPEN_URL(url)
+        match=re.compile('<span>.+?</span></div><a href="(.+?)"  alt="(.+?)" title=".+?" ><img src="(.+?)"').findall(link)
+        for url,name,image in match:
+            addDir('%s - '%(name),url,15,image)
+def animakai3(url):
+        link = OPEN_URL(url)
+        match2=re.compile('<video src="(.+?)"').findall(link)
+        match1=re.compile('"http://player.mais.uol.com.br/embed_v2.swf\?tv=2&mediaId=(.+?)"').findall(link)
+        for url in match2:
+            addDir2('PlaY Google Video','%s'%(url),9,'')
+        for url in match1:
+            addDir2('PlaY Google Video','http://videohd1.mais.uol.com.br/%s.mp4?r=http://www.animakai.tv/episodio/'%(url),9,'')
 def canflix(url):
         link = OPEN_URL(url)
         match=re.compile('<td data-sort-value="(.+?)"><i class="fa fa-(.+?) fa-fw"></i>&nbsp;<a href="(.+?)">.+?\n.+?value=".+?">(.+?)<').findall(link)
@@ -279,6 +334,21 @@ elif mode==9:
         PLAYVIDEO2(url,name)
 elif mode==12:
         canflix(url)
+
+
+elif mode==13:
+        animakai(url)
+elif mode==14:
+        animakai2(url)
+elif mode==15:
+        animakai3(url)
+elif mode==18:
+        kinokong(url)
+elif mode==19:
+        kinokong2(url)
+
+elif mode==20:
+        kinokong3(url)
 
 
 
