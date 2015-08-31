@@ -102,8 +102,14 @@ all i have done is removed the '' and put name this tells kodi like the other ex
 other cool exanples you can use to play with the text these are
 
 CHANGE THE COLOR ----> [COLOR yellow]TXT HERE[/COLOR] SO IN YOUR CODE ----> addDir('[COLOR yellow]%s[/COLOR]'%(name),'',10,'')
-BOLD TEXT -----> [COLOR yellow]TXT HERE[/COLOR]
+BOLD TEXT -----> [B]TXT HERE[/B]   SO IN YOUR CODE ----> addDir('[B]%s[/B]'%(name),'',10,'')
 
-NOW PUT THAT IN WERE IT SAYS REGEXCODE BELOW THAT
-BIT SAYS GIVE IT A NAME SO CHANGE channelid TO name NOW AFTER THAT LOOK AT THE addDir NOW THE FIRST ITEM IS THE
-NAME SO if you want the name to appper here you could remove to ' ' and just put name or you could put %s in the middle
+Common errors can be a result of spaces or indentations python requires 4 spaces from the left so yo may see examples like
+
+if name == name:
+    addDir('%s'%(name),'',,'')
+^------ 4 SPACES
+
+The other common error is having 2 of (.+?) in your regex and not defining them both so if you have 2 
+
+
