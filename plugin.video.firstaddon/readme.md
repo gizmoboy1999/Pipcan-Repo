@@ -120,7 +120,7 @@ to
 
 class="(.+?)"
 
-just put brackets around .+?
+just put brackets around .+? 
 
 now like befor we give it a name il give this newold now look at where its position is in your regxex the first (.+?) is or new old so we want to change 
 
@@ -130,7 +130,7 @@ TO
 
 for newold,name in match:
 
-now we ant it to show up in the name of or addDir so change
+this tells kodi that the first (.+?) is the newold and the second (.+?) Is The name now we want it to show up in the name of or addDir so change
 
 addDir('%s'%(name),'',10,'')
 
@@ -146,25 +146,32 @@ let me break it down for you
           |        |
           >------->^
 
+Now The Complete Code Should Look Like 
+
 def REGEX(url):
         link = OPEN_URL(url)
         match=re.compile('<a href="showthread.php?tid=.+?" class="(.+?)" id="tid_.+?">(.+?)</a></strong>').findall(link)
-        for name in match:
-            addDir('%s'%(name),'',10,'')
+        for newold,name in match:
+            addDir('%s %s'%(newold,name),'',10,'')
 
 
-for name in match:
-    ^-------- The Name You Have Given To (.+?)
-    
-You want to add another to the other (.+?)
 
-for url,name in match:
 
-this tells kodi that the first (.+?) is the url and the second (.+?) Is The Name
+Common errors can be a result of spaces or indentations python requires 4 spaces between lines here is an example
 
-Common errors can be a result of spaces or indentations python requires 4 spaces from the left so yo may see examples like
+def REGEX(url):
+<--8--->link = OPEN_URL(url)
+<--8--->match=re.compile('<a href="showthread.php?tid=.+?" class="(.+?)" id="tid_.+?">(.+?)</a></strong>').findall(link)
+<--8--->for newold,name in match:
+<--12------>addDir('%s %s'%(newold,name),'',10,'')
 
-if name == name:
-    addDir('%s'%(name),'',,'')
-^------ 4 SPACES
+the  next error can be due having 2 (.+?) and not giving the names in
+
+for newold,name in match:
+
+the next error is having the names 
+
+for newold,name in match:
+
+and not putting them in your addDir('','',10,'')
 
