@@ -104,12 +104,67 @@ other cool exanples you can use to play with the text these are
 CHANGE THE COLOR ----> [COLOR yellow]TXT HERE[/COLOR] SO IN YOUR CODE ----> addDir('[COLOR yellow]%s[/COLOR]'%(name),'',10,'')
 BOLD TEXT -----> [B]TXT HERE[/B]   SO IN YOUR CODE ----> addDir('[B]%s[/B]'%(name),'',10,'')
 
+Now the code should look like
+
+def REGEX(url):
+        link = OPEN_URL(url)
+        match=re.compile('<a href="showthread.php?tid=.+?" class=".+?" id="tid_.+?">(.+?)</a></strong>').findall(link)
+        for name in match:
+            addDir('%s'%(name),'',10,'')
+
+if you want to read 2 items from the code lets say you want to know if its a new or old item so if you go back to the first time you copyed the code you will see that after class=" it says subject_new or will be subject_old to do this just change 
+
+class=".+?"
+
+to
+
+class="(.+?)"
+
+just put brackets around .+?
+
+now like befor we give it a name il give this newold now look at where its position is in your regxex the first (.+?) is or new old so we want to change 
+
+for name in match:
+
+TO
+
+for newold,name in match:
+
+now we ant it to show up in the name of or addDir so change
+
+addDir('%s'%(name),'',10,'')
+
+TO
+
+ addDir('%s %s'%(newold,name),'',10,'')
+
+let me break it down for you
+
+ addDir('%s %s'%(newold,name),'',10,'')
+          ^  |     ^     ^
+          |  |_____|_____|
+          |        |
+          >------->^
+
+def REGEX(url):
+        link = OPEN_URL(url)
+        match=re.compile('<a href="showthread.php?tid=.+?" class="(.+?)" id="tid_.+?">(.+?)</a></strong>').findall(link)
+        for name in match:
+            addDir('%s'%(name),'',10,'')
+
+
+for name in match:
+    ^-------- The Name You Have Given To (.+?)
+    
+You want to add another to the other (.+?)
+
+for url,name in match:
+
+this tells kodi that the first (.+?) is the url and the second (.+?) Is The Name
+
 Common errors can be a result of spaces or indentations python requires 4 spaces from the left so yo may see examples like
 
 if name == name:
     addDir('%s'%(name),'',,'')
 ^------ 4 SPACES
-
-The other common error is having 2 of (.+?) in your regex and not defining them both so if you have 2 
-
 
