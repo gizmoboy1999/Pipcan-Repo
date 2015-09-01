@@ -9,6 +9,7 @@ HOME       =  xbmc.translatePath('special://home/addons/%s/channels.txt'%(AddonI
 SPORTSA =  ('http://cdn.phoenix.intergi.com/21772/videos/')
 SPORTSB = ('/video-sd.mp4?hosting_id=21772')
 date= datetime.datetime.today().strftime('%Y%m%d%H%M')
+date5= datetime.datetime.today().strftime('%Y-%m-%d')
 date3= datetime.datetime.today().strftime('%Y%m')
 date4= datetime.datetime.today().strftime('%d')
 date2= datetime.datetime.today().strftime('%Y-%m-%d')
@@ -16,19 +17,24 @@ dateshort= datetime.datetime.today().strftime('%Y')
 time= datetime.datetime.today().strftime('%H%M')
 time2= datetime.datetime.today().strftime('%H:%M')
 def CATEGORIES():
+        xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
         addDir('SKY','http://epgservices.sky.com/tvlistings-proxy/TVListingsProxy/init.json',4,'')
         addDir('FILMON','http://thaisatellite.tv/ftv/guide_filmon.xmltv',13,'')
-        addDir('Catch Up Sports [I]Football[/I]','http://www.fullmatchesandshows.com',10,'http://i1.wp.com/www.fullmatchesandshows.com/wp-content/uploads/2015/01/Premier-League-World.png?resize=700%2C500')
+        addDir('Catch Up Sports','http://www.fullmatchesandshows.com',10,'http://i1.wp.com/www.fullmatchesandshows.com/wp-content/uploads/2015/01/Premier-League-World.png?resize=700%2C500')
+        addDir('Catch Up Movies','http://tv.pubfilmhd.com',80,'http://i1.wp.com/www.fullmatchesandshows.com/wp-content/uploads/2015/01/Premier-League-World.png?resize=700%2C500')
         addDir('GERMANY','http://m.tvtv.de/api/v1/channel_groups.json',15,'')
         addDir('FRANCE','http://www.skysiertv.com/stv/index2.php',18,'')
         addDir('VIRGIN','http://www.tvguide.co.uk/mobile/?systemid=25',20,'')
         addDir('SKY2','http://www.tvguide.co.uk/mobile/?systemid=5',20,'')
-        addDir('BT','http://www.tvguide.co.uk/mobile/?systemid=22',20,'')
+        addDir('BT','http://www.tvguide.co.uk/mobile/?systemid=22',20,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
+        addDir('Radio Times','http://www.radiotimes.com/rt-service/schedule/get?startdate=30-08-2015%2016:00:00&hours=3&totalWidthUnits=858&channels=94,105,26,132,248,197,2685,11820,288,2050,1061,180,2212,45,47,11741,185,1859,1961,40,11680,1461,5076,1201,922,292,158,1959,2056,11314,1994,2179,11740,2586,2178,2177,1963,1882,11595,5097,11771,134,2189,2008,2062,11708,2603,5074,11816,2134,2195,2139,11450,2185,249,2210,260,5093,258,2204,257,2206,2208,2168,253,160,271,2476,2059,2058,300,262,264,265,2200,11693,2700,2174,123,1876,11150,11791,11568,2142,2175,2176,11774,256,48,49,147,213,182,1601,10008,2668,801,2165,156,482,483,1981',60,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
+        addDir('BT TEST','https://voila.metabroadcast.com/1.0/schedules/?annotations=broadcasts,locations,description&apiKey=public:64a03c33f9a64c2b80b6f58cd218e5c8&from=now&count=10&id=hkwh',50,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
         addDir('NETHERLANDS','https://www.ziggo.tv/tv-gids',21,'')
         addDir('ITALY','http://www.tvtoday.de/programm/standard/',22,'')
         addDir('IPTV','http://i-ptv.blogspot.co.uk',29,'')
         addDir('RUSSIA','https://tv.mail.ru/go-mobile/',31,'')
         addDir('POLAND','http://tv.wp.pl/kanaly-lista.html',31,'')
+        addDir('INDIA [COLOR yellow]Requested[/COLOR]','http://tv.burrp.com/channels.html',40,'')
 def Fixture(url):
         addDir('[B]See Fixtures Week 1[/B]','1',25,'%s/CTH_1.png'%(addonDir))
         addDir('[B]See Fixtures Week 2[/B]','2',25,'%s/CTH_1.png'%(addonDir))
@@ -41,8 +47,19 @@ def Fixture(url):
         addDir('[B]See Fixtures Week 9[/B]','9',25,'%s/CTH_1.png'%(addonDir))
         addDir('[B]See Fixtures Week 10[/B]','10',25,'%s/CTH_1.png'%(addonDir))
         addDir('[B]See Fixtures Week 11[/B]','11',25,'%s/CTH_1.png'%(addonDir))
+def two_e(str):
+  count = 0
+  for ch in str:  ## this loops over each char in the string
+    if ch == 'e':
+      count = count + 1
+
+  if count == 100:
+    return True
+  else:
+    return False
+  ## this last if/else can be written simply as "return (count == 2)"
 def FOOTBALLCATS(url):
-        addDir('[COLOR yellow]Table[/COLOR]','%s/matches'%(url),23,'http://i0.wp.com/www.fullmatchesandshows.com/wp-content/uploads/2015/08/VIDEO-Dynamo-Dresden-vs-Bayern-Munich-Highlights.png?resize=700%2C500')
+        addDir('League Table','http://www.msn.com/en-gb/sport/football/premier-league/table',32,'')
         addDir('[COLOR yellow]Fixtures[/COLOR]','3',24,'http://i0.wp.com/www.fullmatchesandshows.com/wp-content/uploads/2015/08/VIDEO-Dynamo-Dresden-vs-Bayern-Munich-Highlights.png?resize=700%2C500')
         addDir('[COLOR yellow]View League Tables[/COLOR]','%s/matches'%(url),11,'http://i0.wp.com/www.fullmatchesandshows.com/wp-content/uploads/2015/08/VIDEO-Dynamo-Dresden-vs-Bayern-Munich-Highlights.png?resize=700%2C500')
         addDir('[COLOR yellow]Up And Comming Matches[/COLOR]','%s/matches'%(url),11,'http://i0.wp.com/www.fullmatchesandshows.com/wp-content/uploads/2015/08/VIDEO-Dynamo-Dresden-vs-Bayern-Munich-Highlights.png?resize=700%2C500')
@@ -66,22 +83,53 @@ def NL(url):
         match=re.compile('"name":"(.+?)",.+?image":"(.+?)".+?description":"(.+?)"').findall(link)
         for name,icon,de in match:
             addDir('[COLOR yellow]%s[/COLOR] - %s'%(name,de),'',19,'https://static.ziggo-apps.nl/images/channels/%s'%(icon))
+def BTTEST(url):
+        link = OPEN_URL(url)
+        match=re.compile('{"id":".+?","type":"(.+?)","title":"(.+?)","description":"(.+?)","image":"(.+?)","specialization":".+?","broadcasts":\[{"transmission_time":"%sT(.+?)","transmission_end_time":".+?"'%(date2)).findall(link)
+        match2=re.compile('{"channel":{"title":"(.+?)","image":"(.+?)"').findall(link)
+        for name,image in match2:
+            addDir('CHANNEL [%s]'%name,'',50,'%s'%image)
+            addDir('--------------------------------------','',50,'')
+        for type,name,description,image,start in match:
+            addDir5('[COLOR yellow]%s[/COLOR] - %s [%s]'%(start.replace('%sT'%(date2),'').replace('Z',''),name,type),'%s'%(id),19,'%s'%(image),'',description)
 def GERMANY2(url):
         link = OPEN_URL(url)
         match=re.compile('<span class="zc-st-c"><a class="zc-st-a" href="(.+?)">(.+?)</a></span>').findall(link)
         for url,name in match:
             addDir('[COLOR yellow]%s[/COLOR] - '%(name),'%s'%(url),19,'https://static.ziggo-apps.nl/images/channels/%s')
+def Radiotime(url):
+        addDir5('[COLOR yellow]Press I For Mor Info[/COLOR]','',61,'','','')
+        link = OPEN_URL(url)
+        match=re.compile('{"DisplayName":"(.+?)",".+?"Image":"(.+?)","Description":"(.+?)",".+?","StartTime":".+?","FilmStarRating".+?"Title":"(.+?)"').findall(link)
+        for channel,image,description,name in match:
+            addDir5('%s - [Now: %s]'%(channel,name),'',61,image,'',description)
+def Radiotime2(name):
+        link = OPEN_URL(url)
+        match=re.compile('"DisplayName":"(.+?)"').findall(link)
+        for name in match:
+            addDir('%s - '%(name),'',61,'')
 def ITALY(url):
         link = OPEN_URL(url)
         match=re.compile('href=".+?">(.+?)</a>').findall(link)
         for name in match:
             addDir('%s'%(name),'%s'%(url),19,'%s'%(name))
+def TB2(url):
+        link = OPEN_URL(url)
+        match=re.compile('<tr class="rowlink" data-link=".+?"><td class="index hide1 rankvalue">(.+?)</td><td class="teamlogo"><img alt="(.+?)" height="30" src="(.+?)" width="30" /></td><td class="teamname"><a href=".+?">.+?</a></td><td class="teamtla"><a href="(.+?)">(.+?)</a></td><td>(.+?)</td><td>(.+?)</td><td>(.+?)</td><td>(.+?)</td><td class="hide12">(.+?)</td><td class="hide12">(.+?)</td><td class="hide12">(.+?)</td><td class="points">(.+?)</td>').findall(link)
+        for rank,name,logo,url,shortname,played,win,draw,lose,GF,GA,GD,PTS in match:
+            addDir('%s%s%s%s%s%s%s%s%s%s%s%s%s'%(rank,name,logo,url,shortname,played,win,draw,lose,GF,GA,GD,PTS),url,19,logo)
 def TABLE():
         url = 'http://m.premierleague.com/en-gb/league-table.html'
         link = OPEN_URL(url)
         match=re.compile('/en-gb/clubs/club-profile.html/(.+?)"').findall(link)
         for name in match:
                 addDir('[COLOR white]%s [/COLOR]'%(name),'','','')
+def TB(url):
+        addDir('[R]       [TEAM]                         [P]    [W]    [D]    [L]    [GF]    [GA]   [GD]   [PTS]','',5,'')
+        link = OPEN_URL(url)
+        match=re.compile('data-link=".+?football/(.+?)/.+?"><td class="index.+?">(.+?)</td><td class="teamlogo"><img alt=".+?" src="\/(.+?)"').findall(link)
+        for name,rank,image in match:
+                addDir('[COLOR white][B]%s)[/B][/COLOR] %s '%(rank,name),name,5,'http:/%s'%image)
 def FIXTURES(url):
         num = url
         url = 'http://m.premierleague.com/pa-services/api/football/mobile/competition/fandr/api/gameweek/%s.json'%(num)
@@ -147,6 +195,17 @@ def ALLCHANNELS(url):
         match=re.compile('{"channelno":"(.+?)","epggenre":".+?","title":"(.+?)","channeltype":".+?","channelid":"(.+?)","genre":".+?"}').findall(link)
         for channelno,title,channelid in match:
             addDir3('[COLOR yellow]%s[/COLOR] - %s'%(channelno,title),'%s%s/now/nnl/4'%(whatson,channelid),6,'%s%s.png'%(clogo,channelid),'%s'%(channelno))
+def INDIA(url):
+        xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
+        link = OPEN_URL(url)
+        match=re.compile('href="(.+?)" title="(.+?)">\n.+?<img src="(.+?)"').findall(link)
+        for url,title,image in match:
+            addDir(title,url,41,image)
+def INDIA2(url):
+        link = OPEN_URL(url)
+        match=re.compile('(\d\d:\d\d)<sup class="ap">(.+?)</sup>\n.+?</b>\n.+?</td>\n.+?<td class="resultThumb">\n.+?\n.+?<a href="(.+?)" title="(.+?)">\n.+?\n.+?<img src="(.+?)"/>').findall(link)
+        for time3,time4,url,name,image in match:
+            addDir('[COLOR yellow]%s%s[/COLOR]  - %s   '%(time3,time4,name),url,41,image)
 def FILMON(url):
         xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
         link = OPEN_URL(url)
@@ -196,6 +255,31 @@ def GENRESELECT(url,iconimage):
         match=re.compile('{"channelno":"(.+?)","epggenre":".+?","title":"(.+?)","channeltype":".+?","channelid":"(.+?)","genre":"%s"}'%(iconimage)).findall(link)
         for channelno,title,channelid,genre in match:
             addDir('[COLOR yellow]%s[/COLOR] - %s  %s'%(channelno,title,genre),'%s%s/now/nnl/4'%(whatson,channelid),6,'%s%s.png'%(clogo,channelid))
+def MOVIES(url):
+        link = OPEN_URL(url)
+        match=re.compile("<li><a href='/search/label/.+?' title='.+?'><span>(.+?)</span></a></li>").findall(link)
+        for name in match:
+            addDir('%s'%(name),'http://tv.pubfilmhd.com/feeds/posts/default/-/%s?alt=json-in-script&callback=numberOfPosts'%(name),81,'')
+def MOVIES2(url):
+        link = OPEN_URL(url)
+        match=re.compile('"rel":"alternate","type":"text/html","href":"(.+?)","title":"(.+?)"').findall(link)
+        for url,name in match:
+            addDir('%s'%(name),'%s'%(url.replace('\/','/')),82,'')
+def MOVIES3(url):
+        link = OPEN_URL(url)
+        match=re.compile('<iframe allowfullscreen="" frameborder="1" width="950" height="520" src="(.+?)" frameborder="0" style="background-color: black;">').findall(link)
+        for url in match:
+            addDir('Play','%s'%(url),83,'')
+def MOVIES4(url):
+        link = OPEN_URL(url)
+        match=re.compile('<iframe allowfullscreen="" frameborder="1" width="950" height="520" src="(.+?)" frameborder="0" style="background-color: black;">').findall(link)
+        for url in match:
+            addDir('Play','%s'%(url),84,'')
+def MOVIES5(url):
+        link = OPEN_URL(url)
+        match=re.compile('file: "(.+?)", label: "(.+?)"').findall(link)
+        for url,name in match:
+            addDir(name,'%s'%(url),84,'')
 def GENRES(url):
         xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
         link = OPEN_URL(url)
@@ -289,6 +373,7 @@ def GetPlayerCore():
     return True 
 			
 def RESOLVE(url): 
+    import urlresolver
     from urlresolver import common
     dp = xbmcgui.DialogProgress()
     dp.create('Featching Your Video','Opening %s Ready'%(name))
@@ -506,5 +591,27 @@ elif mode==30:
           PLAYVIDEO2(url,name)
 elif mode==31:
           RUSSIA(url)
+elif mode==32:
+          TB(url)
+elif mode==40:
+          INDIA(url)
+elif mode==41:
+          INDIA2(url)
+elif mode==50:
+          BTTEST(url)
+elif mode==60:
+          Radiotime(url)
+elif mode==61:
+          Radiotime2(name)
+elif mode==80:
+          MOVIES(url)
+elif mode==81:
+          MOVIES2(url)
+elif mode==82:
+          MOVIES3(url)
+elif mode==83:
+          MOVIES4(url)
+elif mode==84:
+          MOVIES5(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

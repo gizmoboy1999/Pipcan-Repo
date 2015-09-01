@@ -123,7 +123,7 @@ due to the lack of people being bothered to give me feedback. people wishing to 
 </extension>
 </addon>
 
-<addon id="plugin.video.megasearch" name="Mega Search" version="1.0.6" provider-name="Pipcan">
+<addon id="plugin.video.megasearch" name="Mega Search" version="1.0.11" provider-name="Pipcan">
   <requires>
     <import addon="xbmc.python" version="2.7.9"/>
 	<import addon="script.module.urlresolver"  version="2.1.2"/>
@@ -136,6 +136,45 @@ due to the lack of people being bothered to give me feedback. people wishing to 
     <summary lang="en"></summary>
     <description lang="en"></description>
 	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.msn" name="Bing Video" version="1.0.8" provider-name="Pipcan">
+  <requires>
+    <import addon="xbmc.python" version="2.7.9"/>
+	<import addon="script.module.urlresolver"  version="2.1.2"/>
+	<import addon="script.module.addon.common" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.musicvideos"
+    name="MUSIC  VIDEOS"
+    version="1.0"
+    provider-name="Pipcan">
+  <requires>
+<import addon="xbmc.python" version="2.1.0"/>
+<import addon="script.module.simplejson" version="3.3.0"/>
+<import addon="script.module.urlresolver"  version="2.1.2"/>
+<import addon="script.module.addon.common" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="es"></summary>
+    <description lang="es"></description>
+    <summary lang="en"></summary>
+    <description lang="en"></description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -179,8 +218,8 @@ due to the lack of people being bothered to give me feedback. people wishing to 
 </addon>
 
 <addon id="plugin.video.SGUIDE"
-    name="Sky Guide"
-    version="1.0"
+    name="Ultimate TV Guide"
+    version="1.1"
     provider-name="Pipcan">
   <requires>
 <import addon="xbmc.python" version="2.1.0"/>
