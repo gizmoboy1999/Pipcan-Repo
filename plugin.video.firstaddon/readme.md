@@ -153,9 +153,54 @@ def REGEX(url):
         match=re.compile('<a href="showthread.php?tid=.+?" class="(.+?)" id="tid_.+?">(.+?)</a></strong>').findall(link)
         for newold,name in match:
             addDir('%s %s'%(newold,name),'',10,'')
+########################################################### UPDATE ###########################################################################
+########################################################### UPDATE ###########################################################################
+Now To Scrape Two Items You must add another
+match=re.compile('<a href="showthread.php?tid=.+?" class="(.+?)" id="tid_.+?">(.+?)</a></strong>').findall(link)
 
+under the first one and change match for match2
+also you need to add a second
+                            V---------- CHANGED TO match2
+        for newold,name in match2:
+            addDir('%s %s'%(newold,name),'',10,'')
 
+and insert this bellow your 
 
+addDir('%s %s'%(newold,name),'',10,'')
+
+and inline with
+        
+for newold,name in match:
+
+so the complete code is
+
+def REGEX(url):
+        link = OPEN_URL(url)
+        match=re.compile('<a href="showthread.php?tid=.+?" class="(.+?)" id="tid_.+?">(.+?)</a></strong>').findall(link)
+        match2=re.compile('<a href="showthread.php?tid=.+?" class="(.+?)" id="tid_.+?">(.+?)</a></strong>').findall(link)
+        for newold,name in match:
+            addDir('%s %s'%(newold,name),'',10,'')
+        for newold,name in match2:
+            addDir('%s %s'%(newold,name),'',10,'')
+			
+to add just a directorty handy is you want to add a search button just add
+
+addDir('name','url',10,'icon')
+at the top like
+
+def REGEX(url):
+        addDir('name','url',10,'icon')
+        link = OPEN_URL(url)
+        match=re.compile('<a href="showthread.php?tid=.+?" class="(.+?)" id="tid_.+?">(.+?)</a></strong>').findall(link)
+        match2=re.compile('<a href="showthread.php?tid=.+?" class="(.+?)" id="tid_.+?">(.+?)</a></strong>').findall(link)
+        for newold,name in match:
+            addDir('%s %s'%(newold,name),'',10,'')
+        for newold,name in match2:
+            addDir('%s %s'%(newold,name),'',10,'')
+			
+
+########################################################### UPDATE ###########################################################################
+########################################################### UPDATE ###########################################################################
 
 Common errors can be a result of spaces or indentations python requires 4 spaces between lines here is an example
 
