@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import urllib,urllib2,sys,re,xbmcplugin,xbmcgui,xbmcaddon,datetime,os
+import urllib,urllib2,sys,re,xbmcplugin,xbmcgui,xbmcaddon,datetime,base64
 username=xbmcplugin.getSetting(int(sys.argv[1]), 'username')
 password=xbmcplugin.getSetting(int(sys.argv[1]), 'password')
 ADDON = xbmcaddon.Addon(id='plugin.video.megasearch')
@@ -46,6 +46,8 @@ def CATEGORIES():
             addDir('[COLOR yellow]IPTV [/COLOR]VLC','http://www.vlchistory.eu.pn',701,'')
             addDir('[COLOR yellow]IPTV [/COLOR]langamepp','http://langamepp.com/playlist/pipcan/Snooker85',504,'')
             addDir('[COLOR yellow]IPTV [/COLOR]http://www.iptvlinks.com/','http://www.iptvlinks.com/feeds/posts/summary?alt=json-in-script&callback=pageNavi&max-results=200',2000,'')
+            addDir('[COLOR yellow]MUSIC [/COLOR]ARTISTS','http://e-mp3bul.com/albumler/2/yabanci-mp3-indir.html',5000,'')
+            addDir('[COLOR yellow]MUSIC [/COLOR]ALBUMS','http://e-mp3bul.com/album/142/2015.html',5000,'')
 
 def UPDATE():
     if ADDON.getSetting(id='password') == '4':
@@ -116,6 +118,19 @@ def freetuxtv(url):
         match=re.compile('src="(.+?)" alt="" /> <i>(.+?)</i>.+<a href="(.+?)">(.+?)<').findall(link)
         for flag,name,url,count in match:
             addDir('%s - %s'%(name,count),'http://database.freetuxtv.net%s'%url,301,'http://database.freetuxtv.net%s'%(flag))
+def MP3(url):
+        link = OPEN_URL(url)
+        match=re.compile('<img src="(.+?)"/>(.+?)</a></li> <li><a href="(.+?)"').findall(link)
+        match2=re.compile('id="player2" src="(.+?)"').findall(link)
+        match3=re.compile('<li><a href="(.+?)" data-ajax="false" title="(.+?)">').findall(link)
+        for image,name,url in match:
+            addDir('%s'%(name.replace('<span class="ui-li-count">',' [COLOR yellow]').replace('</span>','[/COLOR]')),'%s'%url,5000,'%s'%(image))
+        for url in match2:
+            addDir2('PLAY','%s'%url,9,'')
+            addDir2('DOWNLOAD','%s'%url,9,'')
+            addDir2('ADD TO PLAYLIST','%s'%url,9,'')
+        for url,name in match3:
+            addDir(name,'%s'%url,5000,'')
 def VLC(url):
         link = OPEN_URL(url)
         match=re.compile('<h5><span style=" color:#06C">(.+?)</span>').findall(link)
@@ -597,6 +612,8 @@ elif mode==2000:
 
 elif mode==2001:
         IPTVLINKS2(url)
+elif mode==5000:
+        MP3(url)
 
 
 
