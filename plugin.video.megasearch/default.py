@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import urllib,urllib2,sys,re,xbmcplugin,xbmcgui,xbmcaddon,datetime,os
 password=xbmcplugin.getSetting(int(sys.argv[1]), 'password')
 ADDON = xbmcaddon.Addon(id='plugin.video.megasearch')
@@ -7,9 +8,13 @@ Addon = xbmcaddon.Addon(AddonID)
 BASE='http://letwatch.us/'
 # Edit line below
 addonDir = Addon.getAddonInfo('path').decode("utf-8")
-
+bingurl = 'http://prod.video.msn.com/tenant/amp/entityid/BBm64mw?blobrefkey=103&$blob=1'
+bingimage='http://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAbGK17.img'
+bingimage='browse/mostwatchedtoday?ocid=spartandhp'
 def CATEGORIES():
             searchStr = ''
+            addDir('Search PASTEBIN','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&sort=date&q=',503,'')
+            addDir('Search Bing Videos','http://www.msn.com/en-us/video/browse/mostwatchedtoday',37,'')
             addDir('Search letwatch.us','http://letwatch.us/?op=search&k=',3,'')
             addDir('Search Vodlocker','http://vodlocker.com/?op=search&k=',5,'')
             addDir('Search cloudy.ec','http://www.cloudy.ec/search?search=',6,'http://thumbs.cloudy.ec//thumbs/62b3a545e36115ff7a45f452073cecb1-%s.jpg'%(password))
@@ -19,6 +24,7 @@ def CATEGORIES():
             addDir('Filmgozar','http://dl.filmgozar.com/',8,'ww')
             addDir('LOADS OF FILMS','http://46.105.122.150/',8,'ww')
             addDir('Moviefarsi','http://dl5.moviefarsi.org/',8,'ww')
+            addDir('Free Upload .IR ','http://dl8.freeupload.ir/',8,'ww')
             addDir('NFilm','http://dl.nfilm.org/DL/',8,'ww')
             addDir('Canflix','http://cdn.alpha.canflix.net',8,'ww')
             addDir('Tehmovies','http://dl.tehmovies.com/',8,'ww')
@@ -27,6 +33,13 @@ def CATEGORIES():
             addDir('Hastidownload','http://dl.hastidownload.net/ali/film/',8,'ww')
             addDir('Animakai.tv','http://www.animakai.tv/animes/1/',13,'ww')
             addDir('Kino Kong','http://kinokong.net',18,'ww')
+            addDir('TV Online Streams','http://tvonlinestreams.com',100,'ww')
+            addDir('IPTV Filmover','http://iptv.filmover.com',200,'ww')
+            addDir('FreeTux TV','http://database.freetuxtv.net',300,'ww')
+            addDir('I-PTV BLOGSPOT','http://i-ptv.blogspot.co.uk',401,'')
+            addDir('I-PTV BLOGSPOT RUSSIA','http://i-ptv.blogspot.co.uk/p/russia-big.html',401,'')
+            addDir('Pastebin m3u','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&q=m3u&sort=date',501,'http://pastebin.com/i/fb2.jpg')
+            addDir('Pastebin M3U8','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&q=m3u8&sort=date',501,'http://pastebin.com/i/fb2.jpg')
 def UPDATE():
     if ADDON.getSetting(id='password') == '4':
         ADDON.setSetting(id='password', value='0')
@@ -63,6 +76,7 @@ def openSettings():
     ADDON.openSettings()
 def OPEN_URL(url):
         req = urllib2.Request(url)
+        req.add_header('User-Agent' , "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36")
         response = urllib2.urlopen(req)
         link=response.read()
         response.close()
@@ -90,6 +104,28 @@ def canflix(url):
         match=re.compile('<td data-sort-value="(.+?)"><i class="fa fa-(.+?) fa-fw"></i>&nbsp;<a href="(.+?)">.+?\n.+?value=".+?">(.+?)<').findall(link)
         for name,type,url,size in match:
             addDir2('%s - %s'%(name,size),'%s'%url,4,'%s'%(type))
+def freetuxtv(url):
+        link = OPEN_URL(url)
+        match=re.compile('src="(.+?)" alt="" /> <i>(.+?)</i>.+<a href="(.+?)">(.+?)<').findall(link)
+        for flag,name,url,count in match:
+            addDir('%s - %s'%(name,count),'http://database.freetuxtv.net%s'%url,301,'http://database.freetuxtv.net%s'%(flag))
+def freetuxtv2(url):
+        link = OPEN_URL(url)
+        match=re.compile('<td>(.+?)<br />=&gt; <a href="(.+?)">').findall(link)
+        match2=re.compile('<li class="next"><a href=".+?Language%5D=(.+?)&.+?WebStream_page=(.+?)">').findall(link)
+        for name,url in match:
+            addDir2('%s'%(name),'%s'%url,9,'')
+        for lang,url in match2:
+            addDir('NEXT','http://database.freetuxtv.net/webStream/index?WebStreamSearchForm[Type]=1&WebStreamSearchForm[Language]=%s&WebStreamSearchForm[Status]=2&WebStream_page=%s'%(lang,url),301,'')
+        urllib2.quote(url.encode("utf8"))
+def BLOGSPOT(url):
+        link = OPEN_URL(url)
+        match=re.compile('#EXTINF:.+?,(.+?)\n(.+?)\n').findall(link)
+        match2=re.compile('<a href="https://sites.google.com/site/iptvblogspot/config/pagetemplates/m3u/(.+?)"> Download (.+?)</a>').findall(link)
+        for url,name in match2:
+            addDir('[COLOR yellow]%s[/COLOR]'%name,'https://sites.google.com/site/iptvblogspot/config/pagetemplates/m3u/%s'%url,401,'')
+        for name,url in match:
+            addDir2(name,url,9,'')
 def kinokong(url):
         link = OPEN_URL(url)
         match=re.compile('<a href="/films/(.+?)/">.+?<b>(.+?)</b>').findall(link)
@@ -133,6 +169,84 @@ def animakai2(url):
         match=re.compile('<span>.+?</span></div><a href="(.+?)"  alt="(.+?)" title=".+?" ><img src="(.+?)"').findall(link)
         for url,name,image in match:
             addDir('%s - '%(name),url,15,image)
+def PASTEBIN3(url):
+        searchStr = ''
+        keyboard = xbmc.Keyboard(searchStr, 'Search')
+        keyboard.doModal()
+        searchStr=keyboard.getText()
+        link = OPEN_URL('%s%s'%(url,searchStr))
+        match=re.compile('titleNoFormatting":"(.+?)","unescapedUrl":"(.+?)"').findall(link)
+        for name,url in match:
+            addDir('%s'%(name),url,502,'')
+def PASTEBIN(url):
+        addDir('[COLOR yellow]SEARCH[/COLOR]','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&sort=date&q=',503,'')
+        link = OPEN_URL(url)
+        match=re.compile('titleNoFormatting":"(.+?)","unescapedUrl":"(.+?)"').findall(link)
+        for name,url in match:
+            addDir('%s'%(name),url,502,'')
+def PASTEBIN2(url):
+        link = OPEN_URL(url)
+        match=re.compile('#EXTINF:.+?,(.+?)</div></li>\n<li class=".+?"><div class=".+?">(.+?)<').findall(link)
+        match2=re.compile('#EXTINF:.+?,(.+?) (.+?)\B#EXTINF').findall(link)
+        for name,url in match:
+            addDir2(name,url,9,'')
+        for name,url in match2:
+            addDir2(name,url,9,'')
+def tvonlinestreams(url):
+        addDir('SEARCH','http://www.tvonlinestreams.com/?s=',102,'')
+        link = OPEN_URL(url)
+        match=re.compile('<h2 class="entry-title"><a href="(.+?)" title=".+?" rel="bookmark">(.+?)</a></h2>').findall(link)
+        match2=re.compile('href="(.+?)" class="page" title="(.+?)">').findall(link)
+        for url,name in match:
+            addDir(name,url,101,'')
+        for url,name in match2:
+            addDir('GO TO PAGE %s '%name,url,100,'')
+def tvonlinestreams2(url):
+        link = OPEN_URL(url)
+        match=re.compile('#EXTINF:.+?,(.+?)<br />\n(.+?)<br />').findall(link)
+        for name,url in match:
+            addDir2('%s'%(name.replace(':','[COLOR yellow] - [/COLOR]')),url.replace(' ',''),9,'')
+def filmover(url):
+        addDir('SEARCH','http://iptv.filmover.com/?s=',203,'')
+        link = OPEN_URL(url)
+        match=re.compile('<h2 class="post-title entry-title"><a href="(.+?)" rel="bookmark">(.+?)</a></h2>').findall(link)
+        match2=re.compile('<a class="next page-numbers" href="http://iptv.filmover.com/page/(.+?)/">').findall(link)
+        for url,name in match:
+            addDir('%s'%(name.replace(':','[COLOR yellow] - [/COLOR]')),url.replace(' ',''),201,'')
+        for name in match2:
+            addDir('[COLOR yellow]GO TO PAGE[/COLOR] %s'%(name),'http://iptv.filmover.com/page/%s'%(name),200,'')
+def filmover2(url):
+        link = OPEN_URL(url)
+        match=re.compile('#EXTINF:.+?,(.+?)<br />\n(.+?)<').findall(link)
+        match3=re.compile('<br />#EXTINF:.+?,(.+?)<br />(.+?)<br />').findall(link)
+        for name,url in match:
+            addDir2('%s'%(name.replace(':','[COLOR yellow] - [/COLOR]')),url.replace(' ',''),9,'')
+        for name,url in match3:
+            addDir2('%s'%(name.replace(':','[COLOR yellow] - [/COLOR]')),url.replace(' ',''),9,'')
+def tvonlinestreams3(url):
+        searchStr = ''
+        keyboard = xbmc.Keyboard(searchStr, 'Search')
+        keyboard.doModal()
+        searchStr=keyboard.getText()
+        link = OPEN_URL('%s%s'%(url,searchStr))
+        match=re.compile('<h2 class="entry-title"><a href="(.+?)" title=".+?" rel="bookmark">(.+?)</a></h2>').findall(link)
+        match2=re.compile('href="(.+?)" class="page" title="(.+?)">').findall(link)
+        for url,name in match:
+            addDir(name,url,101,'')
+        for url,name in match2:
+            addDir('GO TO PAGE %s '%name,url,100,'')
+def filmover3(url):
+        searchStr = ''
+        keyboard = xbmc.Keyboard(searchStr, 'Search')
+        keyboard.doModal()
+        searchStr=keyboard.getText()
+        link = OPEN_URL('%s%s'%(url,searchStr))
+        match=re.compile('<h2 class="post-title entry-title"><a href="(.+?)" rel="bookmark">(.+?)</a></h2>').findall(link)
+        match2=re.compile('<a class="next page-numbers" href="http://iptv.filmover.com/page/(.+?)/">').findall(link)
+        for url,name in match:
+            addDir('%s'%(name.replace(':','[COLOR yellow] - [/COLOR]')),url.replace(' ',''),201,'')
+        for name in match2:
+            addDir('[COLOR yellow]GO TO PAGE[/COLOR] %s'%(name),'http://iptv.filmover.com/page/%s'%(name),200,'')
 def animakai3(url):
         link = OPEN_URL(url)
         match2=re.compile('<video src="(.+?)"').findall(link)
@@ -149,6 +263,13 @@ def canflix(url):
                 addDir('[COLOR yellow][FOLDER][/COLOR] %s - %s'%(name,size),'%s%s'%(url,url2),12,'%s'%(type))
             else:
                 addDir2('%s - %s'%(name,size),'%s%s'%(url,url2),9,'%s'%(type))
+def BING():
+        link = OPEN_URL(bingpage)
+        match=re.compile('"(.+?)"').findall(link)
+        for id in match:
+            if type == 'video':
+                addDir2('%s','http://prod.video.msn.com/tenant/amp/entityid/%s?blobrefkey=103&$blob=1'%(id),12,'http://img-s-msn-com.akamaized.net/tenant/amp/entityid/%s.img'%id)
+
 def FTP(url):
         link = OPEN_URL(url)
         match=re.compile('<tr><td valign="top"><img src="/icons/.+?.gif" alt="\[(.+?)\]"></td><td><a href="(.+?)">(.+?)</a></td><td align="right">.+?</td><td align="right">(.+?)<').findall(link)
@@ -349,6 +470,35 @@ elif mode==19:
 
 elif mode==20:
         kinokong3(url)
+elif mode==37:
+        BING()
+elif mode==100:
+        tvonlinestreams(url)
+elif mode==101:
+        tvonlinestreams2(url)
+elif mode==102:
+        tvonlinestreams3(url)
+elif mode==200:
+        filmover(url)
+
+elif mode==201:
+        filmover2(url)
+elif mode==203:
+        filmover3(url)
+elif mode==300:
+        freetuxtv(url)
+
+elif mode==301:
+        freetuxtv2(url)
+elif mode==401:
+        BLOGSPOT(url)
+elif mode==501:
+        PASTEBIN(url)
+elif mode==502:
+        PASTEBIN2(url)
+
+elif mode==503:
+        PASTEBIN3(url)
 
 
 
