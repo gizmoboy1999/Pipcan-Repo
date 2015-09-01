@@ -87,7 +87,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.tubidyim" name="GUI SAMPLES" version="1.0.6" provider-name="Pipcan">
+<addon id="plugin.video.tubidyim" name="GUI SAMPLES" version="1.0.8" provider-name="Pipcan">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.urlresolver"  version="2.1.2"/>
