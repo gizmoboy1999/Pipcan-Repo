@@ -5,9 +5,7 @@ password=xbmcplugin.getSetting(int(sys.argv[1]), 'password')
 ADDON = xbmcaddon.Addon(id='plugin.video.megasearch')
 AddonID = 'plugin.video.megasearch'
 Addon = xbmcaddon.Addon(AddonID)
-#LiveLeak.com- by Oneadvent 2012.
 BASE='http://letwatch.us/'
-# Edit line below
 addonDir = Addon.getAddonInfo('path').decode("utf-8")
 bingurl = 'http://prod.video.msn.com/tenant/amp/entityid/'
 bingimage='http://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAbGK17.img'
@@ -48,6 +46,13 @@ def CATEGORIES():
             addDir('[COLOR yellow]IPTV [/COLOR]http://www.iptvlinks.com/','http://www.iptvlinks.com/feeds/posts/summary?alt=json-in-script&callback=pageNavi&max-results=200',2000,'')
             addDir('[COLOR yellow]MUSIC [/COLOR]ARTISTS','http://e-mp3bul.com/albumler/2/yabanci-mp3-indir.html',5000,'')
             addDir('[COLOR yellow]MUSIC [/COLOR]ALBUMS','http://e-mp3bul.com/album/142/2015.html',5000,'')
+            addDir('[COLOR yellow]CARTOONS [/COLOR]Toonova','http://www.toonova.com/cartoon',8000,'')
+            addDir('[COLOR yellow]CARTOONS [/COLOR]www.animetoon.eu','http://www.animetoon.eu/cartoon',8000,'')
+            addDir('[COLOR yellow]CARTOONS MOVIES[/COLOR]www.animetoon.eu','http://www.animetoon.eu/movies',8000,'')
+            addDir('[COLOR yellow]ANIME [/COLOR]Animewow','http://www.animewow.eu/anime',8000,'')
+            addDir('[COLOR yellow]DUBBED ANIME [/COLOR]http://www.animetoon.eu/dubbed-anime','http://www.animetoon.eu/dubbed-anime',8000,'')
+            addDir('[COLOR yellow]ANIME MOVIES [/COLOR]videozoo','http://www.videozoo.me/category/anime-movies',8000,'')
+            addDir('[COLOR yellow]ANIME [/COLOR]videozoo','http://www.videozoo.me/new-anime-list',8000,'')
 
 def UPDATE():
     if ADDON.getSetting(id='password') == '4':
@@ -113,6 +118,33 @@ def canflix(url):
         match=re.compile('<td data-sort-value="(.+?)"><i class="fa fa-(.+?) fa-fw"></i>&nbsp;<a href="(.+?)">.+?\n.+?value=".+?">(.+?)<').findall(link)
         for name,type,url,size in match:
             addDir2('%s - %s'%(name,size),'%s'%url,4,'%s'%(type))
+def CARTOONS(url):
+        link = OPEN_URL(url)
+        match=re.compile('<td><a href="(.+?)">(.+?)</a>').findall(link)
+        match2=re.compile('&nbsp;&nbsp;<a href="(.+?)">(.+?)</a>').findall(link)
+        match3=re.compile('<a href="(.+?)" title="View all posts filed under .+?">(.+?)</a>').findall(link)
+        match4=re.compile('href="(.+?)" rel="bookmark" title="(.+?)"').findall(link)
+        for url,name in match:
+            addDir('%s'%(name),'%s'%url,8000,'')
+        for url,name in match2:
+            addDir('%s'%(name),'%s'%url,8001,'')
+        for url,name in match3:
+            addDir('%s'%(name),'%s'%url,8000,'')
+        for url,name in match4:
+           addDir('%s'%(name),'%s'%url,8001,'')
+def CARTOONS2(url):
+        link = OPEN_URL(url)
+        match=re.compile('<iframe src="(.+?)"').findall(link)
+        for url in match:
+            addDir2('%s'%(url.replace('&#038;','&')),'%s'%url.replace('&#038;','&'),8003,'')
+def CARTOONS3(url):
+        link = OPEN_URL(url)
+        match=re.compile("url: '(.+?)'").findall(link)
+        for url in match:
+            dp = xbmcgui.DialogProgress()
+            dp.create('Featching Your Video','Opening Ready')
+            play=xbmc.Player(GetPlayerCore())
+            play.play(url)
 def freetuxtv(url):
         link = OPEN_URL(url)
         match=re.compile('src="(.+?)" alt="" /> <i>(.+?)</i>.+<a href="(.+?)">(.+?)<').findall(link)
@@ -614,6 +646,13 @@ elif mode==2001:
         IPTVLINKS2(url)
 elif mode==5000:
         MP3(url)
+elif mode==8000:
+        CARTOONS(url)
+elif mode==8001:
+        CARTOONS2(url)
+
+elif mode==8003:
+        CARTOONS3(url)
 
 
 
