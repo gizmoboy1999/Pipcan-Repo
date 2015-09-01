@@ -296,7 +296,7 @@ due to the lack of people being bothered to give me feedback. people wishing to 
   </extension>
 </addon>
 
-<addon id="repository.pipcan" name="My Kodi Repo" version="1.0.0" provider-name="Pipccan">
+<addon id="repository.pipcan" name="My Kodi Repo" version="1.0.1" provider-name="Pipccan">
 	<extension point="xbmc.addon.repository" name="MetalKettles Addon Repository">
 		<info compressed="false">http://raw.github.com/pipcan3/Pipcan-Repo/master/_repo/addons.xml</info>
 		<checksum>http://raw.github.com/pipcan3/Pipcan-Repo/master/_repo/addons.xml.md5</checksum>
