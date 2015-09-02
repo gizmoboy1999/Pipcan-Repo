@@ -57,6 +57,23 @@ def CATEGORIES():
             addDir('[COLOR yellow]ANIME [/COLOR]videozoo','http://www.videozoo.me/new-anime-list',8000,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
             addDir('[COLOR yellow]IPTV [/COLOR]Newstvgenre Altervista/?s=IPTV','http://newstvgenre.altervista.org/?s=IPTV',8005,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
             addDir('[COLOR yellow]ANIME,CARTOONS,MOVIES [/COLOR]watchcartoonweb','http://watchcartoonweb.com/',9000,'http://watchcartoonweb.com/themes/default/img/icon/logo.png')
+            addDir('[COLOR yellow]VIDEOS [/COLOR]FAILARMY','http://www.failarmy.com',4444,'http://www.failarmy.com/2.0.39/media/img/site-logo-sm.png')
+def failarmy(url):
+        link = OPEN_URL(url)
+        match=re.compile('<li data-tag="(.+?)"><figure><a href="(.+?)"><div class="img"><img src="(.+?)"').findall(link)
+        match2=re.compile('<a href="/video/(.+?)/.+?"><div class="img"><img src="(.+?)" alt="(.+?)"><span class="time">(.+?)</span>').findall(link)
+        for name,url,image in match:
+            addDir('[UPPERCASE]%s[/UPPERCASE]'%name,'http://www.failarmy.com%s'%url,4444,image)
+        for url,image,name,time in match2:
+            addDir2('%s - %s'%(name,time),'http://makerplayer.com/embed/failarmy/%s?maker=1&autoplay=true&no_postroll=true&embed_params=brandlink=http://www.failarmy.com&brandname=Fail'%url,4445,image)
+def failarmy2(url):
+        link = OPEN_URL(url)
+        match=re.compile('file":"(.+?)"').findall(link)
+        for url in match:
+            dp = xbmcgui.DialogProgress()
+            dp.create('Featching Your Video','Opening')
+            play=xbmc.Player(GetPlayerCore())
+            play.play(url)
 def watchcartoonweb(url):
         link = OPEN_URL(url)
         match=re.compile('<li class=".+?"><a href="http://watchcartoonweb.com/(.+?)" title="(.+?)">.+?</a></li>').findall(link)
@@ -707,6 +724,10 @@ elif mode==8005:
         altervista(url)
 elif mode==9000:
         watchcartoonweb(url)
+elif mode==4444:
+        failarmy(url)
+elif mode==4445:
+        failarmy2(url)
 
 
 
