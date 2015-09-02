@@ -58,6 +58,25 @@ def CATEGORIES():
             addDir('[COLOR yellow]IPTV [/COLOR]Newstvgenre Altervista/?s=IPTV','http://newstvgenre.altervista.org/?s=IPTV',8005,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
             addDir('[COLOR yellow]ANIME,CARTOONS,MOVIES [/COLOR]watchcartoonweb','http://watchcartoonweb.com/',9000,'http://watchcartoonweb.com/themes/default/img/icon/logo.png')
             addDir('[COLOR yellow]VIDEOS [/COLOR]FAILARMY','http://www.failarmy.com',4444,'http://www.failarmy.com/2.0.39/media/img/site-logo-sm.png')
+            addDir('[COLOR yellow]VIDEOS [/COLOR]http://free-links-iptv.blogspot.co.uk/','https://www.blogger.com/feeds/7582140021242686461/posts/summary?alt=json-in-script&start-index=1&max-results=10',2000,'')
+            addDir('[COLOR yellow]Documentary[/COLOR] Top Documentary Films','http://www.topdocumentaryfilms.com/watch-online/',4448,'')
+def DOC(url):
+        link = OPEN_URL(url)
+        match=re.compile('<a href="http://topdocumentaryfilms.com/category/(.+?)" title="Browse.+?">(.+?)</a>(.+?)</h2>').findall(link)
+        match2=re.compile('<a href="(.+?)" title="(.+?)"><img width="95" height="125" src="(.+?)"').findall(link)
+        match3=re.compile('embedUrl" content="(.+?)"').findall(link)
+        for url,name,count in match:
+            addDir('%s - %s'%(name,count),'http://www.topdocumentaryfilms.com/category/%s'%url,4448,'')
+        for url,name,image in match2:
+            addDir2('%s'%(name),url,4448,image)
+        for url in match3:
+            import urlresolver
+            from urlresolver import common
+            dp = xbmcgui.DialogProgress()
+            dp.create('Featching Your Video','Opening ')
+            play=xbmc.Player(GetPlayerCore())
+            url=urlresolver.HostedMediaFile(url.replace('youtube.com/embed/','youtube.com/watch?v=')).resolve() 
+            play.play(url)
 def failarmy(url):
         link = OPEN_URL(url)
         match=re.compile('<li data-tag="(.+?)"><figure><a href="(.+?)"><div class="img"><img src="(.+?)"').findall(link)
@@ -728,6 +747,8 @@ elif mode==4444:
         failarmy(url)
 elif mode==4445:
         failarmy2(url)
+elif mode==4448:
+        DOC(url)
 
 
 
