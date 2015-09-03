@@ -5,61 +5,83 @@ password=xbmcplugin.getSetting(int(sys.argv[1]), 'password')
 ADDON = xbmcaddon.Addon(id='plugin.video.megasearch')
 AddonID = 'plugin.video.megasearch'
 Addon = xbmcaddon.Addon(AddonID)
-#LiveLeak.com- by Oneadvent 2012.
 BASE='http://letwatch.us/'
 # Edit line below
 addonDir = Addon.getAddonInfo('path').decode("utf-8")
 bingurl = 'http://prod.video.msn.com/tenant/amp/entityid/'
 bingimage='http://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAbGK17.img'
 def CATEGORIES():
+            addDir('[B]SELECT A CATAGORY[/B]','m',8800,'')
+            addDir('[COLOR gold]MY MOVIE LIST[/COLOR]','file:///%s\movies.m3u'%addonDir,555,'')
+            addDir('[COLOR gold]MOVIES[/COLOR]','m',8801,'')
+            addDir('[COLOR gold]VIDEOS[/COLOR]','m',8802,'https://www.ucmo.edu/technology/grants/images/VideoLogo.jpg')
+            addDir('[COLOR gold]DOCUMENTRYS[/COLOR]','m',8803,'http://www.4rfv.co.uk/logo/37290lo.jpg')
+            addDir('[COLOR gold]ANIME & CARTOONS[/COLOR]','m',8804,'http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=40579470')
+            addDir('[COLOR gold]IPTV[/COLOR]','m',8805,'http://androidtivibox.net/sanpham/30-08-2015/files/unnamed.png')
+            addDir('[COLOR gold]MUSIC[/COLOR]','m',8806,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
+            add_item('11','TITLE','PLOT','URL','55','PLOT','77')
+def CATMOVIES():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             searchStr = ''
-            addDir('[COLOR yellow]IPTV [/COLOR]Search PASTEBIN','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&sort=date&q=',503,'http://pastebin.com/i/fb2.jpg')
-            addDir('Search Bing Videos','http://www.msn.com/en-us/video/searchresults?q=',37,'http://microsoft-news.com/wp-content/uploads/2014/09/Bing-logo-1.jpg')
-            addDir('[COLOR yellow]VIDEO [/COLOR]Search letwatch.us','http://letwatch.us/?op=search&k=',3,'http://letwatch.us/images/logo.png')
+            addDir('Search letwatch.us','http://letwatch.us/?op=search&k=',3,'http://letwatch.us/images/logo.png')
             addDir('Search Vodlocker','http://vodlocker.com/?op=search&k=',5,'http://vodlocker.com/images/logo.png')
-            addDir('[COLOR yellow]VIDEO [/COLOR]Search cloudy.ec','http://www.cloudy.ec/search?search=',6,'http://www.cloudy.ec/img/logo.png')
-            addDir('[COLOR yellow]VIDEO [/COLOR]Dedibox','http://sd-41445.dedibox.fr/',8,'ww')
-            addDir('[COLOR yellow]IPTV [/COLOR]http://80.80.160.168/live/','http://80.80.160.168/live',8,'ww')
-            addDir('[COLOR yellow]VIDEO [/COLOR]Filmgozar','http://dl.filmgozar.com/',8,'ww')
-            addDir('[COLOR yellow]VIDEO [/COLOR]LOADS OF FILMS','http://46.105.122.150/',8,'ww')
-            addDir('[COLOR yellow]VIDEO [/COLOR]Moviefarsi','http://dl5.moviefarsi.org/',8,'ww')
-            addDir('[COLOR yellow]VIDEO [/COLOR]Free Upload .IR ','http://dl8.freeupload.ir/',8,'ww')
-            addDir('[COLOR yellow]VIDEO [/COLOR]NFilm','http://dl.nfilm.org/DL/',8,'ww')
-            addDir('[COLOR yellow]VIDEO [/COLOR]Canflix','http://cdn.alpha.canflix.net',8,'ww')
-            addDir('[COLOR yellow]VIDEO [/COLOR]Tehmovies','http://dl.tehmovies.com/',8,'ww')
-            addDir('[COLOR yellow]VIDEO [/COLOR]Yukinoshita','http://yukinoshita.eu/ddl/',12,'ww')
-            addDir('[COLOR yellow]VIDEO [/COLOR]Seed Cows','http://seed.cows.io/',8,'ww')
-            addDir('[COLOR yellow]VIDEO [/COLOR]Hastidownload','http://dl.hastidownload.net/ali/film/',8,'ww')
-            addDir('[COLOR yellow]ANIME [/COLOR]Animakai.tv','http://www.animakai.tv/animes/1/',13,'http://www.animakai.tv/sys_misc/images/logo.png')
-            addDir('[COLOR yellow]VIDEO [/COLOR]Kino Kong','http://kinokong.net',18,'http://smarttvnews.ru/wp-content/uploads/2015/05/32731097.png')
-            addDir('[COLOR yellow]IPTV [/COLOR]TV Online Streams','http://tvonlinestreams.com',100,'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTdHvBF68jexfm7JTjh692IRi4xC5EbtIy5fDsMcE3ItOqMhXpN')
-            addDir('[COLOR yellow]IPTV [/COLOR]IPTV Filmover','http://iptv.filmover.com',200,'http://website.informer.com/thumbnails/280x202/i/iptv.filmover.com.png')
-            addDir('[COLOR yellow]IPTV [/COLOR]FreeTux TV','http://database.freetuxtv.net',300,'http://lh5.googleusercontent.com/-3BqBJNvGN-E/TqQWikkIrfI/AAAAAAAAAnk/nGx_J8pK1mU/s1600/freetuxtv.png')
-            addDir('[COLOR yellow]IPTV [/COLOR]I-PTV BLOGSPOT','http://i-ptv.blogspot.co.uk',401,'http://4.bp.blogspot.com/-nHAYhJE46Vg/VG27mtXmXYI/AAAAAAAAA4Q/-_QhnzBJ8M4/s1600/logo2%2B-%2B500.png')
-            addDir('[COLOR yellow]IPTV [/COLOR]I-PTV BLOGSPOT RUSSIA','http://i-ptv.blogspot.co.uk/p/russia-big.html',401,'http://4.bp.blogspot.com/-nHAYhJE46Vg/VG27mtXmXYI/AAAAAAAAA4Q/-_QhnzBJ8M4/s1600/logo2%2B-%2B500.png')
-            addDir('[COLOR yellow]IPTV [/COLOR]Pastebin m3u','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&q=m3u&sort=date',501,'http://pastebin.com/i/fb2.jpg')
-            addDir('[COLOR yellow]IPTV [/COLOR]Pastebin M3U8','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&q=m3u8&sort=date',501,'http://pastebin.com/i/fb2.jpg')
-            addDir('[COLOR yellow]IPTV [/COLOR]TV Degunino','http://tv.degunino.net/m3u/',8,'')
-            addDir('[COLOR yellow]IPTV [/COLOR]tunisia-dreambox','http://www.tunisia-dreambox.info/e2-addons-manager/Tunisiasat-plugins/softupdates/TSmedia/',8,'')
-            addDir('[COLOR yellow]IPTV [/COLOR]iptvm3u','http://www.iptvm3u.com/search?updated-max=2016-03-03T15%3A14%3A00-08%3A00&max-results=7000',600,'http://3.bp.blogspot.com/-mMVnbnRsISw/U7c8sb8Z2uI/AAAAAAAAAL8/_6Vfvpcfa7c/s1600/freeiptv.png')
-            addDir('[COLOR yellow]IPTV [/COLOR]VLC','http://www.vlchistory.eu.pn',701,'http://www.vlchistory.eu.pn/images/vlcstreamhistory.jpg')
-            addDir('[COLOR yellow]IPTV [/COLOR]langamepp','http://langamepp.com/playlist/pipcan/Snooker85',504,'http://langamepp.com/iptv/img/logo.png')
-            addDir('[COLOR yellow]IPTV [/COLOR]http://www.iptvlinks.com/','http://www.iptvlinks.com/feeds/posts/summary?alt=json-in-script&callback=pageNavi&max-results=200',2000,'http://4.bp.blogspot.com/-D4Nbf7BM52c/VIzTSja7qdI/AAAAAAAACe4/u7PSn24mxK8/s1600/iptvlinkslogo.png')
+            addDir('Search cloudy.ec','http://www.cloudy.ec/search?search=',6,'http://www.cloudy.ec/img/logo.png')
+            addDir('Dedibox','http://sd-41445.dedibox.fr/',8,'ww')
+            addDir('Filmgozar','http://dl.filmgozar.com/',8,'ww')
+            addDir('LOADS OF FILMS','http://46.105.122.150/',8,'ww')
+            addDir('Moviefarsi','http://dl5.moviefarsi.org/',8,'ww')
+            addDir('Free Upload .IR ','http://dl8.freeupload.ir/',8,'ww')
+            addDir('NFilm','http://dl.nfilm.org/DL/',8,'ww')
+            addDir('Canflix','http://cdn.alpha.canflix.net',8,'ww')
+            addDir('Tehmovies','http://dl.tehmovies.com/',8,'ww')
+            addDir('Yukinoshita','http://yukinoshita.eu/ddl/',12,'ww')
+            addDir('Seed Cows','http://seed.cows.io/',8,'ww')
+            addDir('Hastidownload','http://dl.hastidownload.net/ali/film/',8,'ww')
+            addDir('Kino Kong','http://kinokong.net',18,'http://smarttvnews.ru/wp-content/uploads/2015/05/32731097.png')
+
+def CATMUSIC():
+            addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             addDir('[COLOR yellow]MUSIC [/COLOR]ARTISTS','http://e-mp3bul.com/albumler/2/yabanci-mp3-indir.html',5000,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
             addDir('[COLOR yellow]MUSIC [/COLOR]ALBUMS','http://e-mp3bul.com/album/142/2015.html',5000,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
+def CATANIME():
+            addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
+            addDir('[COLOR yellow]VIDEOS [/COLOR]FAILARMY','http://www.failarmy.com',4444,'http://www.failarmy.com/2.0.39/media/img/site-logo-sm.png')
             addDir('[COLOR yellow]CARTOONS [/COLOR]Toonova','http://www.toonova.com/cartoon',8000,'http://www.toonova.com/images/site/front/logo.png')
             addDir('[COLOR yellow]CARTOONS [/COLOR]www.animetoon.eu','http://www.animetoon.eu/cartoon',8000,'http://www.animetoon.eu/images/site/front/logo.png')
             addDir('[COLOR yellow]CARTOONS MOVIES[/COLOR]www.animetoon.eu','http://www.animetoon.eu/movies',8000,'http://www.animetoon.eu/images/site/front/logo.png')
-            addDir('[COLOR yellow]ANIME [/COLOR]Animewow','http://www.animewow.eu/anime',8000,'http://www.animewow.eu/images/site/front/logo.png')
+            addDir('Animewow','http://www.animewow.eu/anime',8000,'http://www.animewow.eu/images/site/front/logo.png')
+            addDir('Animakai.tv','http://www.animakai.tv/animes/1/',13,'http://www.animakai.tv/sys_misc/images/logo.png')
             addDir('[COLOR yellow]DUBBED ANIME [/COLOR]http://www.animetoon.eu/dubbed-anime','http://www.animetoon.eu/dubbed-anime',8000,'http://www.animetoon.eu/images/site/front/logo.png')
             addDir('[COLOR yellow]ANIME MOVIES [/COLOR]videozoo','http://www.videozoo.me/category/anime-movies',8000,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
-            addDir('[COLOR yellow]ANIME [/COLOR]videozoo','http://www.videozoo.me/new-anime-list',8000,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
-            addDir('[COLOR yellow]IPTV [/COLOR]Newstvgenre Altervista/?s=IPTV','http://newstvgenre.altervista.org/?s=IPTV',8005,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
+            addDir('videozoo','http://www.videozoo.me/new-anime-list',8000,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
             addDir('[COLOR yellow]ANIME,CARTOONS,MOVIES [/COLOR]watchcartoonweb','http://watchcartoonweb.com/',9000,'http://watchcartoonweb.com/themes/default/img/icon/logo.png')
+def CATVIDEOS():
+            addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             addDir('[COLOR yellow]VIDEOS [/COLOR]FAILARMY','http://www.failarmy.com',4444,'http://www.failarmy.com/2.0.39/media/img/site-logo-sm.png')
-            addDir('[COLOR yellow]VIDEOS [/COLOR]http://free-links-iptv.blogspot.co.uk/','https://www.blogger.com/feeds/7582140021242686461/posts/summary?alt=json-in-script&start-index=1&max-results=10',2000,'')
+            addDir('Search Bing Videos','http://www.msn.com/en-us/video/searchresults?q=',37,'http://microsoft-news.com/wp-content/uploads/2014/09/Bing-logo-1.jpg')
+def CATDOCS():
+            addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             addDir('[COLOR yellow]Documentary[/COLOR] Top Documentary Films','http://www.topdocumentaryfilms.com/watch-online/',4448,'')
+def CATIPTV():
+            addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
+            searchStr = ''
+            addDir('Search PASTEBIN','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&sort=date&q=',503,'http://pastebin.com/i/fb2.jpg')
+            addDir('http://80.80.160.168/live/','http://80.80.160.168/live',8,'ww')
+            addDir('TV Online Streams','http://tvonlinestreams.com',100,'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTdHvBF68jexfm7JTjh692IRi4xC5EbtIy5fDsMcE3ItOqMhXpN')
+            addDir('IPTV Filmover','http://iptv.filmover.com',200,'http://website.informer.com/thumbnails/280x202/i/iptv.filmover.com.png')
+            addDir('FreeTux TV','http://database.freetuxtv.net',300,'http://lh5.googleusercontent.com/-3BqBJNvGN-E/TqQWikkIrfI/AAAAAAAAAnk/nGx_J8pK1mU/s1600/freetuxtv.png')
+            addDir('I-PTV BLOGSPOT','http://i-ptv.blogspot.co.uk',401,'http://4.bp.blogspot.com/-nHAYhJE46Vg/VG27mtXmXYI/AAAAAAAAA4Q/-_QhnzBJ8M4/s1600/logo2%2B-%2B500.png')
+            addDir('I-PTV BLOGSPOT RUSSIA','http://i-ptv.blogspot.co.uk/p/russia-big.html',401,'http://4.bp.blogspot.com/-nHAYhJE46Vg/VG27mtXmXYI/AAAAAAAAA4Q/-_QhnzBJ8M4/s1600/logo2%2B-%2B500.png')
+            addDir('Pastebin m3u','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&q=m3u&sort=date',501,'http://pastebin.com/i/fb2.jpg')
+            addDir('Pastebin M3U8','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&q=m3u8&sort=date',501,'http://pastebin.com/i/fb2.jpg')
+            addDir('TV Degunino','http://tv.degunino.net/m3u/',8,'')
+            addDir('tunisia-dreambox','http://www.tunisia-dreambox.info/e2-addons-manager/Tunisiasat-plugins/softupdates/TSmedia/',8,'')
+            addDir('iptvm3u','http://www.iptvm3u.com/search?updated-max=2016-03-03T15%3A14%3A00-08%3A00&max-results=7000',600,'http://3.bp.blogspot.com/-mMVnbnRsISw/U7c8sb8Z2uI/AAAAAAAAAL8/_6Vfvpcfa7c/s1600/freeiptv.png')
+            addDir('VLC','http://www.vlchistory.eu.pn',701,'http://www.vlchistory.eu.pn/images/vlcstreamhistory.jpg')
+            addDir('langamepp','http://langamepp.com/playlist/pipcan/Snooker85',504,'http://langamepp.com/iptv/img/logo.png')
+            addDir('http://www.iptvlinks.com/','http://www.iptvlinks.com/feeds/posts/summary?alt=json-in-script&callback=pageNavi&max-results=200',2000,'http://4.bp.blogspot.com/-D4Nbf7BM52c/VIzTSja7qdI/AAAAAAAACe4/u7PSn24mxK8/s1600/iptvlinkslogo.png')
+            addDir('Newstvgenre Altervista/?s=IPTV','http://newstvgenre.altervista.org/?s=IPTV',8005,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
+            addDir('[COLOR yellow]VIDEOS [/COLOR]http://free-links-iptv.blogspot.co.uk/','https://www.blogger.com/feeds/7582140021242686461/posts/summary?alt=json-in-script&start-index=1&max-results=10',2000,'')
 def DOC(url):
         link = OPEN_URL(url)
         match=re.compile('<a href="http://topdocumentaryfilms.com/category/(.+?)" title="Browse.+?">(.+?)</a>(.+?)</h2>').findall(link)
@@ -156,7 +178,9 @@ def openSettings():
     ADDON.openSettings()
 def OPEN_URL(url):
         req = urllib2.Request(url)
-        req.add_header('User-Agent' , "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36")
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36')
+        req.add_header('Referer', '%s'%url)
+        req.add_header('Connection', 'keep-alive')
         response = urllib2.urlopen(req)
         link=response.read()
         response.close()
@@ -262,6 +286,32 @@ def iptvm3u(url):
         match=re.compile('#EXTINF:.+?,(.+?)<.+?\n.+?">(.+?)<').findall(link)
         for name,url in match:
             addDir2('%s'%(name),'%s'%url,9,'')
+def MYMOVIES(url):
+        link = OPEN_URL(url)
+        match=re.compile('https://openload.co/f/(.+?)/(.+?)\n').findall(link)
+        match2=re.compile('id="realGkfuuudownload"><a href="(.+?)"').findall(link)
+        for url,name in match:
+            addDir2('%s'%(name.replace('720P','[COLOR gold]720p[/COLOR]').replace('720p','[COLOR gold]720p[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('1080P','[COLOR gold]1080p[/COLOR]').replace('1080p','[COLOR gold]1080p[/COLOR]').replace('_',' ').replace('mkv',' ').replace('.',' ').replace('mp4',' ')),'https://openload.io/f/%s/%s'%(url,name),555,'')
+        for url2 in match2:
+            play=xbmc.Player(GetPlayerCore())
+            message = 'PLEASE WAIT 5 SECONDS'
+            dp = xbmcgui.DialogProgress()
+            dp.create('Wait ',message)
+            xbmc.sleep(1000)
+            dp.update(20)
+            xbmc.sleep(1000)
+            dp.update(40)
+            xbmc.sleep(1000)
+            dp.update(60)
+            xbmc.sleep(1000)
+            dp.update(80)
+            xbmc.sleep(1000)
+            dp.update(100)
+            xbmc.sleep(1000)
+            dp.create('READY','YOUR VIDEO IS READY')
+            dp.close
+            play.play(url2)
+            dp.close
 def iptvm3u2(url):
         link = OPEN_URL(url)
         match=re.compile("<h2 class='post-title entry-title' itemprop='name'>\n<a href='(.+?)'>(.+?)</a>").findall(link)
@@ -620,6 +670,23 @@ def addDir2(name,url,mode,iconimage):
         liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
         return ok
+def add_item( action="" , title="" , plot="" , url="" ,thumbnail="" , extra="", isPlayable = False, folder=True ):
+    listitem = xbmcgui.ListItem( title, iconImage="DefaultVideo.png", thumbnailImage=thumbnail )
+    listitem.setInfo( "video", { "Title" : title, "FileName" : title, "Plot" : plot } )
+    
+    if url.startswith("plugin://"):
+        itemurl = url
+        listitem.setProperty('IsPlayable', 'true')
+        xbmcplugin.addDirectoryItem( handle=int(sys.argv[1]), url=itemurl, listitem=listitem, isFolder=folder)
+    elif isPlayable:
+        listitem.setProperty("Video", "true")
+        listitem.setProperty('IsPlayable', 'true')
+        itemurl = '%s?action=%s&title=%s&url=%s&thumbnail=%s&plot=%s&extra=%s' % ( sys.argv[ 0 ] , action , urllib.quote_plus( title ) , urllib.quote_plus(url) , urllib.quote_plus( thumbnail ) , urllib.quote_plus( plot ) , urllib.quote_plus( extra ))
+        xbmcplugin.addDirectoryItem( handle=int(sys.argv[1]), url=itemurl, listitem=listitem, isFolder=folder)
+    else:
+        itemurl = '%s?action=%s&title=%s&url=%s&thumbnail=%s&plot=%s&extra=%s' % ( sys.argv[ 0 ] , action , urllib.quote_plus( title ) , urllib.quote_plus(url) , urllib.quote_plus( thumbnail ) , urllib.quote_plus( plot ) , urllib.quote_plus( extra ))
+        xbmcplugin.addDirectoryItem( handle=int(sys.argv[1]), url=itemurl, listitem=listitem, isFolder=folder)
+
         
               
 params=get_params()
@@ -749,7 +816,19 @@ elif mode==4445:
         failarmy2(url)
 elif mode==4448:
         DOC(url)
-
-
+elif mode==8801:
+        CATMOVIES()
+elif mode==8802:
+        CATVIDEOS()
+elif mode==8803:
+        CATDOCS()
+elif mode==8804:
+        CATANIME()
+elif mode==8805:
+        CATIPTV()
+elif mode==8806:
+        CATMUSIC()
+elif mode==555:
+        MYMOVIES(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
