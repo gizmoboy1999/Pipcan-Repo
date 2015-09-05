@@ -22,6 +22,7 @@ def CATEGORIES():
             addDir('[COLOR gold]ANIME & CARTOONS[/COLOR]','m',8804,'http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=40579470')
             addDir('[COLOR gold]IPTV[/COLOR]','m',8805,'http://androidtivibox.net/sanpham/30-08-2015/files/unnamed.png')
             addDir('[COLOR gold]MUSIC[/COLOR]','m',8806,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
+            addDir('[COLOR gold]RADIO[/COLOR]','http://listenlive.eu',8890,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]JOKES[/COLOR]','http://laughfactory.com/jokes',731,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             add_item('11','TITLE','PLOT','URL','55','PLOT','77')
 def SEARCHCAT(url):
@@ -114,6 +115,14 @@ def NAVIX(url):
             addDir2('%s'%(name),'%s'%(url),9,thumb)
         for url in match3:
             addDir('NEXT >>>','http://www.navixtreme.com/wiilist/%s'%url,730,'')
+def RADIO(url):
+        link = OPEN_URL(url)
+        match=re.compile('<td><img width="8" height="8" alt="" src="b.gif" /> <a href="(.+?)">(.+?)</a></td></tr>').findall(link)
+        match2=re.compile('<b>(.+?)</b>.+?<a href="(.+?)">(.+?)<', re.DOTALL).findall(link)
+        for url,name in match:
+            addDir(name,'http://listenlive.eu/%s'%url,8890,'')
+        for name,url,qu in match2:
+            addDir2('%s - %s'%(name,qu),url,9,'')
 def NAVISEARCH(url):
         searchStr = ''
         keyboard = xbmc.Keyboard(searchStr, 'Search')
@@ -975,5 +984,7 @@ elif mode==735:
         NAVISEARCH(url)
 elif mode==345:
         SEARCHCAT(url)
+elif mode==8890:
+        RADIO(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
