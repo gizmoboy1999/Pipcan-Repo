@@ -13,6 +13,8 @@ bingimage='http://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAbGK17.img'
 def CATEGORIES():
             addDir('[B]SELECT A CATAGORY[/B]','m',8800,'')
             addDir('[COLOR gold]MY MOVIE LIST[/COLOR]','file:///%s\movies.m3u'%addonDir,555,'')
+            addDir('[COLOR gold]MY FRENCH TV LIST[/COLOR]','file:///%s\TV2.m3u'%addonDir,555,'')
+            addDir('[COLOR gold]MY TV LIST[/COLOR]','file:///%s\TV.m3u'%addonDir,555,'')
             addDir('[COLOR gold]MOVIES[/COLOR]','m',8801,'')
             addDir('[COLOR gold]VIDEOS[/COLOR]','m',8802,'https://www.ucmo.edu/technology/grants/images/VideoLogo.jpg')
             addDir('[COLOR gold]DOCUMENTRYS[/COLOR]','m',8803,'http://www.4rfv.co.uk/logo/37290lo.jpg')
@@ -82,15 +84,30 @@ def CATIPTV():
             addDir('http://www.iptvlinks.com/','http://www.iptvlinks.com/feeds/posts/summary?alt=json-in-script&callback=pageNavi&max-results=200',2000,'http://4.bp.blogspot.com/-D4Nbf7BM52c/VIzTSja7qdI/AAAAAAAACe4/u7PSn24mxK8/s1600/iptvlinkslogo.png')
             addDir('Newstvgenre Altervista/?s=IPTV','http://newstvgenre.altervista.org/?s=IPTV',8005,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
             addDir('[COLOR yellow]VIDEOS [/COLOR]http://free-links-iptv.blogspot.co.uk/','https://www.blogger.com/feeds/7582140021242686461/posts/summary?alt=json-in-script&start-index=1&max-results=10',2000,'')
+            addDir('NAVI-XTREAM','http://www.navixtreme.com/wiilist/',730,'')
+def NAVIX(url):
+        link = OPEN_URL(url)
+        match=re.compile('type=playlist.+?name=(.+?)thumb=(.+?)\n.+?URL=(.+?)\n', re.DOTALL).findall(link)
+        match3=re.compile('name=>>>.+?URL=http:\/\/www\.navixtreme\.com\/wiilist\/(.+)', re.DOTALL).findall(link)
+        match1=re.compile('type=video.+?name=(.+?)thumb=(.+?)\n.+?URL=(.+?)\n', re.DOTALL).findall(link)
+        for name,thumb,url in match:
+            addDir(name,url,730,thumb)
+        for name,thumb,url in match1:
+            addDir2('%s'%(name),'%s'%(url),9,thumb)
+        for url in match3:
+            addDir('NEXT >>>','http://www.navixtreme.com/wiilist/%s'%url,730,'')
 def DOC(url):
         link = OPEN_URL(url)
         match=re.compile('<a href="http://topdocumentaryfilms.com/category/(.+?)" title="Browse.+?">(.+?)</a>(.+?)</h2>').findall(link)
         match2=re.compile('<a href="(.+?)" title="(.+?)"><img width="95" height="125" src="(.+?)"').findall(link)
         match3=re.compile('embedUrl" content="(.+?)"').findall(link)
+        match4=re.compile('href="/(.+?)">Next<\/a>"').findall(link)
         for url,name,count in match:
             addDir('%s - %s'%(name,count),'http://www.topdocumentaryfilms.com/category/%s'%url,4448,'')
         for url,name,image in match2:
             addDir2('%s'%(name),url,4448,image)
+        for url in match4:
+            addDir('[COLOR yellow]NEXT PAGE[/COLOR]',('http://www.topdocumentaryfilms.com/category/%s')%url,4448,'')
         for url in match3:
             import urlresolver
             from urlresolver import common
@@ -286,30 +303,59 @@ def iptvm3u(url):
         match=re.compile('#EXTINF:.+?,(.+?)<.+?\n.+?">(.+?)<').findall(link)
         for name,url in match:
             addDir2('%s'%(name),'%s'%url,9,'')
+def show_countdown(self, time_to_wait, title='', text=''):       
+        dialog = xbmcgui.DialogProgress()
+        ret = dialog.create(title)        
+        secs = 0
+        increment = 100 / time_to_wait
+        cancelled = False
+        while secs <= time_to_wait:
+            if (dialog.iscanceled()):
+                cancelled = True
+                break
+            if secs != 0: 
+                xbmc.sleep(1000)
+            secs_left = time_to_wait - secs
+            if secs_left == 0: 
+                percent = 100
+            else: 
+                percent = increment * secs            
+            remaining_display = ('Wait %d seconds for the ' +
+                    'video stream to activate...') % secs_left
+            dialog.update(percent, text, remaining_display)
+            secs += 1
+        if cancelled == True:     
+            return False
+        else:
+            return True        
+
+
 def MYMOVIES(url):
+        xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_TITLE )
+        xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_NONE )
+        xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_FULLPATH )
+        xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_FILE )
         link = OPEN_URL(url)
         match=re.compile('https://openload.co/f/(.+?)/(.+?)\n').findall(link)
         match2=re.compile('id="realGkfuuudownload"><a href="(.+?)"').findall(link)
         for url,name in match:
-            addDir2('%s'%(name.replace('720P','[COLOR gold]720p[/COLOR]').replace('720p','[COLOR gold]720p[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('1080P','[COLOR gold]1080p[/COLOR]').replace('1080p','[COLOR gold]1080p[/COLOR]').replace('_',' ').replace('mkv',' ').replace('.',' ').replace('mp4',' ')),'https://openload.io/f/%s/%s'%(url,name),555,'')
+            addDir2('%s'%(name.replace('720P','[COLOR gold]720p[/COLOR]').replace('720p','[COLOR gold]720p[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('1080P','[COLOR gold]1080p[/COLOR]').replace('1080p','[COLOR gold]1080p[/COLOR]').replace('_',' ').replace('mkv',' ').replace('.',' ').replace('mp4',' ').replace('MovieFarsi','')),'https://openload.io/f/%s/%s'%(url,name),555,'')
         for url2 in match2:
             play=xbmc.Player(GetPlayerCore())
             message = 'PLEASE WAIT 5 SECONDS'
             dp = xbmcgui.DialogProgress()
             dp.create('Wait ',message)
             xbmc.sleep(1000)
-            dp.update(20)
+            dp.update(20,'PLEASE WAIT 4 SECONDS')
             xbmc.sleep(1000)
-            dp.update(40)
+            dp.update(40,'PLEASE WAIT 3 SECONDS')
             xbmc.sleep(1000)
-            dp.update(60)
+            dp.update(60,'PLEASE WAIT 2 SECONDS')
             xbmc.sleep(1000)
-            dp.update(80)
+            dp.update(80,'PLEASE WAIT 1 SECONDS')
             xbmc.sleep(1000)
-            dp.update(100)
+            dp.update(100,'YOUR VIDEO IS READY')
             xbmc.sleep(1000)
-            dp.create('READY','YOUR VIDEO IS READY')
-            dp.close
             play.play(url2)
             dp.close
 def iptvm3u2(url):
@@ -602,8 +648,27 @@ def PLAYVIDEO(url,name):
     url=urlresolver.HostedMediaFile(url).resolve() 
     play.play(url)
 def PLAYVIDEO2(url,name):
+    import urlresolver
+    from urlresolver import common
+    play=xbmc.Player(GetPlayerCore())
     dp = xbmcgui.DialogProgress()
-    dp.create('Featching Your Video','Opening %s Ready'%(name))
+    dp.create('Featching Your Video','Trying To Play Directly')
+    try: play.play(url)
+    except: pass
+    dp.update(50,'Trying Directly')
+    try: url=urlresolver.HostedMediaFile(url).resolve()
+    except: pass 
+    dp.create('Featching Your Video','Trying With Url Resolver')
+    dp.update(50,'Trying To Resollver')
+    try: play.play(url)
+    except: pass 
+    dp.close()
+    
+def PLAYVIDEO3(url):
+    import urlresolver
+    from urlresolver import common
+    dp = xbmcgui.DialogProgress()
+    dp.create('Featching Your Video','Opening Ready')
     play=xbmc.Player(GetPlayerCore())
     play.play(url)
 
@@ -736,6 +801,8 @@ elif mode==8:
         FTP(url)
 elif mode==9:
         PLAYVIDEO2(url,name)
+elif mode==10:
+        PLAYVIDEO3(url)
 elif mode==12:
         canflix(url)
 
@@ -830,5 +897,7 @@ elif mode==8806:
         CATMUSIC()
 elif mode==555:
         MYMOVIES(url)
+elif mode==730:
+        NAVIX(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
