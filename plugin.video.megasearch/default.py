@@ -12,19 +12,35 @@ bingurl = 'http://prod.video.msn.com/tenant/amp/entityid/'
 bingimage='http://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAbGK17.img'
 def CATEGORIES():
             addDir('[B]SELECT A CATAGORY[/B]','m',8800,'')
-            addDir('[COLOR gold]MY MOVIE LIST[/COLOR]','file:///%s\movies.m3u'%addonDir,555,'')
-            addDir('[COLOR gold]MY FRENCH TV LIST[/COLOR]','file:///%s\TV2.m3u'%addonDir,555,'')
-            addDir('[COLOR gold]MY TV LIST[/COLOR]','file:///%s\TV.m3u'%addonDir,555,'')
+            addDir('[COLOR green]SEARCH[/COLOR]','search',345,'')
+            addDir('[COLOR gold]Direct Movie List[/COLOR]','file:///%s\movies.m3u'%addonDir,555,'')
+            addDir('[COLOR gold]Direct French TV List[/COLOR]','file:///%s\TV2.m3u'%addonDir,555,'')
+            addDir('[COLOR gold]Direct TV List[/COLOR]','file:///%s\TV.m3u'%addonDir,555,'')
             addDir('[COLOR gold]MOVIES[/COLOR]','m',8801,'')
             addDir('[COLOR gold]VIDEOS[/COLOR]','m',8802,'https://www.ucmo.edu/technology/grants/images/VideoLogo.jpg')
             addDir('[COLOR gold]DOCUMENTRYS[/COLOR]','m',8803,'http://www.4rfv.co.uk/logo/37290lo.jpg')
             addDir('[COLOR gold]ANIME & CARTOONS[/COLOR]','m',8804,'http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=40579470')
             addDir('[COLOR gold]IPTV[/COLOR]','m',8805,'http://androidtivibox.net/sanpham/30-08-2015/files/unnamed.png')
             addDir('[COLOR gold]MUSIC[/COLOR]','m',8806,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
+            addDir('[COLOR gold]JOKES[/COLOR]','http://laughfactory.com/jokes',731,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             add_item('11','TITLE','PLOT','URL','55','PLOT','77')
+def SEARCHCAT(url):
+            addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
+            searchStr = ''
+            addDir('Search Navix','http://www.navixtreme.com/playlist/search/video/',735,'http://media.navi-x.org/images/logos/search.png')
+            addDir('Search letwatch.us','http://letwatch.us/?op=search&k=',3,'http://letwatch.us/images/logo.png')
+            addDir('Search Vodlocker','http://vodlocker.com/?op=search&k=',5,'http://vodlocker.com/images/logo.png')
+            addDir('Search cloudy.ec','http://www.cloudy.ec/search?search=',6,'http://www.cloudy.ec/img/logo.png')
+            addDir('Search Bing Videos','http://www.msn.com/en-us/video/searchresults?q=',37,'http://microsoft-news.com/wp-content/uploads/2014/09/Bing-logo-1.jpg')
+            addDir('Search PASTEBIN','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&sort=date&q=',503,'http://pastebin.com/i/fb2.jpg')
+            addDir('Search TV Online Streams','http://www.tvonlinestreams.com/?s=',102,'')
+            addDir('Search Filmover','http://iptv.filmover.com/?s=',203,'')
+
+
 def CATMOVIES():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             searchStr = ''
+            addDir('Search Navix','http://www.navixtreme.com/playlist/search/video/',735,'http://media.navi-x.org/images/logos/search.png')
             addDir('Search letwatch.us','http://letwatch.us/?op=search&k=',3,'http://letwatch.us/images/logo.png')
             addDir('Search Vodlocker','http://vodlocker.com/?op=search&k=',5,'http://vodlocker.com/images/logo.png')
             addDir('Search cloudy.ec','http://www.cloudy.ec/search?search=',6,'http://www.cloudy.ec/img/logo.png')
@@ -67,6 +83,7 @@ def CATDOCS():
 def CATIPTV():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             searchStr = ''
+            addDir('Search Navix','http://www.navixtreme.com/playlist/search/video/',735,'http://media.navi-x.org/images/logos/search.png')
             addDir('Search PASTEBIN','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&sort=date&q=',503,'http://pastebin.com/i/fb2.jpg')
             addDir('http://80.80.160.168/live/','http://80.80.160.168/live',8,'ww')
             addDir('TV Online Streams','http://tvonlinestreams.com',100,'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTdHvBF68jexfm7JTjh692IRi4xC5EbtIy5fDsMcE3ItOqMhXpN')
@@ -84,8 +101,9 @@ def CATIPTV():
             addDir('http://www.iptvlinks.com/','http://www.iptvlinks.com/feeds/posts/summary?alt=json-in-script&callback=pageNavi&max-results=200',2000,'http://4.bp.blogspot.com/-D4Nbf7BM52c/VIzTSja7qdI/AAAAAAAACe4/u7PSn24mxK8/s1600/iptvlinkslogo.png')
             addDir('Newstvgenre Altervista/?s=IPTV','http://newstvgenre.altervista.org/?s=IPTV',8005,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
             addDir('[COLOR yellow]VIDEOS [/COLOR]http://free-links-iptv.blogspot.co.uk/','https://www.blogger.com/feeds/7582140021242686461/posts/summary?alt=json-in-script&start-index=1&max-results=10',2000,'')
-            addDir('NAVI-XTREAM','http://www.navixtreme.com/wiilist/',730,'')
+            addDir('Navi-X','http://www.navixtreme.com/wiilist/',730,'')
 def NAVIX(url):
+        addDir('[COLOR yellow]SEARCH[/COLOR]','http://www.navixtreme.com/playlist/search/video/',735,'http://media.navi-x.org/images/logos/search.png')
         link = OPEN_URL(url)
         match=re.compile('type=playlist\nname=(.+?)\nthumb=(.+?)\nURL=(.+?)\n').findall(link)
         match3=re.compile('name=>>>.+?URL=http:\/\/www\.navixtreme\.com\/wiilist\/(.+)', re.DOTALL).findall(link)
@@ -96,6 +114,50 @@ def NAVIX(url):
             addDir2('%s'%(name),'%s'%(url),9,thumb)
         for url in match3:
             addDir('NEXT >>>','http://www.navixtreme.com/wiilist/%s'%url,730,'')
+def NAVISEARCH(url):
+        searchStr = ''
+        keyboard = xbmc.Keyboard(searchStr, 'Search')
+        keyboard.doModal()
+        searchStr=keyboard.getText()
+        link = OPEN_URL('%s%s'%(url,searchStr))
+        match=re.compile('type=playlist\nname=(.+?)\nthumb=(.+?)\nURL=(.+?)\n').findall(link)
+        match3=re.compile('name=>>>.+?URL=http:\/\/www\.navixtreme\.com\/wiilist\/(.+)', re.DOTALL).findall(link)
+        match1=re.compile('type=video\nname=(.+?)\nthumb=(.+?)\nURL=(.+?)\n').findall(link)
+        for name,thumb,url in match:
+            addDir(name,url,730,thumb)
+        for name,thumb,url in match1:
+            addDir2('%s'%(name),'%s'%(url),9,thumb)
+        for url in match3:
+            addDir('NEXT >>>','http://www.navixtreme.com/wiilist/%s'%url,730,'')
+def joke(url):
+        link = OPEN_URL(url)
+        match=re.compile('<p id="joke_(.+?)">(.+?)</p>', re.DOTALL).findall(link)
+        match2=re.compile('<li ><a  href="http://www.laughfactory.com/jokes/(.+?)">(.+?)</a></li>', re.DOTALL).findall(link)
+        match3=re.compile('<li class="active"><span>(.+?)</span></li><li><span><a href="http://www.laughfactory.com/jokes/(.+?)/(.+?)">', re.DOTALL).findall(link)
+        for name,url in match:
+            addDir2('%s'%(name),'%s'%(url),733,'')
+        for name,url in match2:
+            addDir('%s'%(name),'http://laughfactory.com/jokes/%s'%(url),731,'')
+        for name,url,next in match3:
+            addDir('CURRENT:%s GO TO PAGE %s  >>> '%(name,next),'http://laughfactory.com/jokes/%s/%s/'%(url,next),731,'')
+
+def jokes2(name,url):
+        showText(name,url)
+def showText(heading, text):
+    id = 10147
+    xbmc.executebuiltin('ActivateWindow(%d)' % id)
+    xbmc.sleep(100)
+    win = xbmcgui.Window(id)
+    retry = 50
+    while (retry > 0):
+        try:
+            xbmc.sleep(10)
+            retry -= 1
+            win.getControl(1).setLabel(heading)
+            win.getControl(5).setText(text.replace('<br>','\n').replace('  ',''))
+            return
+        except:
+            pass
 def DOC(url):
         link = OPEN_URL(url)
         match=re.compile('<a href="http://topdocumentaryfilms.com/category/(.+?)" title="Browse.+?">(.+?)</a>(.+?)</h2>').findall(link)
@@ -217,7 +279,7 @@ def VOD(url):
         keyboard.doModal()
         searchStr=keyboard.getText()
         link = OPEN_URL('%s%s'%(url,searchStr))
-        match=re.compile('background-image:url\((.+?)\);"><span>(.+?)</span></a></TD>.+?\n.+?<TD valign=top>.+?\n.+?<div class="link"><a href="(.+?)">(.+?)</a></div>').findall(link)
+        match=re.compile('background-image:url\((.+?)\);"><span>(.+?)</span></a></TD>\n<TD valign=top>\n<div class="link"><a href="(.+?)">(.+?)</a></div>').findall(link)
         for image,time,url,name in match:
             addDir2('%s - %s'%(name,time),url,4,'%s'%(image))
 def canflix(url):
@@ -336,9 +398,12 @@ def MYMOVIES(url):
         xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_FULLPATH )
         xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_FILE )
         link = OPEN_URL(url)
-        match=re.compile('https://openload.co/f/(.+?)/(.+?)\n').findall(link)
+        match=re.compile('https://openload.co/f/(.+?)/(.+?)mp4').findall(link)
+        match3=re.compile('https://openload.co/f/(.+?)/(.+?)mkv').findall(link)
         match2=re.compile('id="realGkfuuudownload"><a href="(.+?)"').findall(link)
         for url,name in match:
+            addDir2('%s'%(name.replace('720P','[COLOR gold]720p[/COLOR]').replace('720p','[COLOR gold]720p[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('1080P','[COLOR gold]1080p[/COLOR]').replace('1080p','[COLOR gold]1080p[/COLOR]').replace('_',' ').replace('mkv',' ').replace('.',' ').replace('mp4',' ').replace('MovieFarsi','')),'https://openload.co/f/%s/%s'%(url,name),9,'')
+        for url,name in match3:
             addDir2('%s'%(name.replace('720P','[COLOR gold]720p[/COLOR]').replace('720p','[COLOR gold]720p[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('1080P','[COLOR gold]1080p[/COLOR]').replace('1080p','[COLOR gold]1080p[/COLOR]').replace('_',' ').replace('mkv',' ').replace('.',' ').replace('mp4',' ').replace('MovieFarsi','')),'https://openload.io/f/%s/%s'%(url,name),555,'')
         for url2 in match2:
             play=xbmc.Player(GetPlayerCore())
@@ -636,9 +701,9 @@ def CLOUD(url):
         keyboard.doModal()
         searchStr=keyboard.getText()
         link = OPEN_URL('%s%s'%(url,searchStr))
-        match=re.compile('<a title="(.+?)" href="(.+?)"').findall(link)
-        for name,url in match:
-            addDir2('%s'%(name),'https://www.cloudy.ec/embed.php?id=%s'%(url.replace('/v/','')),4,'http://thumbs.cloudy.ec//thumbs/62b3a545e36115ff7a45f452073cecb1-%s.jpg'%(password))
+        match=re.compile('<a title="(.+?)" href="\/v\/(.+?)".+?time">(.+?)<.+?src="(.+?)"', re.DOTALL).findall(link)
+        for name,url,time,image in match:
+            addDir2('%s - %s'%(name,time),'https://www.cloudy.ec/embed.php?id=%s'%(url),4,image)
 def PLAYVIDEO(url,name):
     import urlresolver
     from urlresolver import common
@@ -653,15 +718,16 @@ def PLAYVIDEO2(url,name):
     play=xbmc.Player(GetPlayerCore())
     dp = xbmcgui.DialogProgress()
     dp.create('Featching Your Video','Trying To Play Directly')
+    dp.update(35,'Trying To Play Directly')
     try: play.play(url)
     except: pass
-    dp.update(50,'Trying Directly')
     try: url=urlresolver.HostedMediaFile(url).resolve()
     except: pass 
-    dp.create('Featching Your Video','Trying With Url Resolver')
-    dp.update(50,'Trying To Resollver')
+    dp.create('Featching Your Video','Trying To Play Directly')
+    dp.update(65,'Trying To Resollver')
     try: play.play(url)
-    except: pass 
+    except: pass
+    dp.update(100,'You Video Is Ready')
     dp.close()
     
 def PLAYVIDEO3(url):
@@ -899,5 +965,15 @@ elif mode==555:
         MYMOVIES(url)
 elif mode==730:
         NAVIX(url)
+elif mode==731:
+        joke(url)
+elif mode==732:
+        showtext(heading, text)
+elif mode==733:
+        jokes2(name,url)
+elif mode==735:
+        NAVISEARCH(url)
+elif mode==345:
+        SEARCHCAT(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
