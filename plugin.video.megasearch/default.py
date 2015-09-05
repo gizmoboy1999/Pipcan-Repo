@@ -87,9 +87,9 @@ def CATIPTV():
             addDir('NAVI-XTREAM','http://www.navixtreme.com/wiilist/',730,'')
 def NAVIX(url):
         link = OPEN_URL(url)
-        match=re.compile('type=playlist.+?name=(.+?)thumb=(.+?)\n.+?URL=(.+?)\n', re.DOTALL).findall(link)
+        match=re.compile('type=playlist\nname=(.+?)\nthumb=(.+?)\nURL=(.+?)\n').findall(link)
         match3=re.compile('name=>>>.+?URL=http:\/\/www\.navixtreme\.com\/wiilist\/(.+)', re.DOTALL).findall(link)
-        match1=re.compile('type=video.+?name=(.+?)thumb=(.+?)\n.+?URL=(.+?)\n', re.DOTALL).findall(link)
+        match1=re.compile('type=video\nname=(.+?)\nthumb=(.+?)\nURL=(.+?)\n').findall(link)
         for name,thumb,url in match:
             addDir(name,url,730,thumb)
         for name,thumb,url in match1:
