@@ -16,6 +16,7 @@ def CATEGORIES():
             addDir('[COLOR gold]Direct Movie List[/COLOR]','file:///%s\movies.m3u'%addonDir,555,'')
             addDir('[COLOR gold]Direct French TV List[/COLOR]','file:///%s\TV2.m3u'%addonDir,555,'')
             addDir('[COLOR gold]Direct TV List[/COLOR]','file:///%s\TV.m3u'%addonDir,555,'')
+            addDir('[COLOR gold]TRAILERS[/COLOR]','file:///%s\l.m3u'%addonDir,555,'')
             addDir('[COLOR gold]MOVIES[/COLOR]','m',8801,'')
             addDir('[COLOR gold]VIDEOS[/COLOR]','m',8802,'https://www.ucmo.edu/technology/grants/images/VideoLogo.jpg')
             addDir('[COLOR gold]DOCUMENTRYS[/COLOR]','m',8803,'http://www.4rfv.co.uk/logo/37290lo.jpg')
@@ -27,17 +28,72 @@ def CATEGORIES():
             add_item('11','TITLE','PLOT','URL','55','PLOT','77')
 def SEARCHCAT(url):
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
+            addDir2('[COLOR green]Still Work In Progrss Some Dont Work Fully[/COLOR]','',1000,'')
             searchStr = ''
-            addDir('Search Navix','http://www.navixtreme.com/playlist/search/video/',735,'http://media.navi-x.org/images/logos/search.png')
-            addDir('Search letwatch.us','http://letwatch.us/?op=search&k=',3,'http://letwatch.us/images/logo.png')
-            addDir('Search Vodlocker','http://vodlocker.com/?op=search&k=',5,'http://vodlocker.com/images/logo.png')
-            addDir('Search cloudy.ec','http://www.cloudy.ec/search?search=',6,'http://www.cloudy.ec/img/logo.png')
-            addDir('Search Bing Videos','http://www.msn.com/en-us/video/searchresults?q=',37,'http://microsoft-news.com/wp-content/uploads/2014/09/Bing-logo-1.jpg')
-            addDir('Search PASTEBIN','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&sort=date&q=',503,'http://pastebin.com/i/fb2.jpg')
-            addDir('Search TV Online Streams','http://www.tvonlinestreams.com/?s=',102,'')
-            addDir('Search Filmover','http://iptv.filmover.com/?s=',203,'')
-
-
+            xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_TITLE )
+            addDir('[COLOR green]100% [/COLOR]Search Navix','http://www.navixtreme.com/playlist/search/video/',735,'http://media.navi-x.org/images/logos/search.png')
+            addDir('[COLOR green]100% [/COLOR]Search letwatch.us','http://letwatch.us/?op=search&k=',3,'http://letwatch.us/images/logo.png')
+            addDir('[COLOR green]100% [/COLOR]Search Vodlocker','http://vodlocker.com/?op=search&k=',5,'http://vodlocker.com/images/logo.png')
+            addDir('[COLOR green]100% [/COLOR]Search cloudy.ec','http://www.cloudy.ec/search?search=',6,'http://www.cloudy.ec/img/logo.png')
+            addDir('[COLOR green]100% [/COLOR]Search Bing Videos','http://www.msn.com/en-us/video/searchresults?q=',37,'http://microsoft-news.com/wp-content/uploads/2014/09/Bing-logo-1.jpg')
+            addDir('[COLOR green]100% [/COLOR]Search FreeMp3.SE','http://freemp3.se/?query=',5023,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
+            addDir('[COLOR green]100% [/COLOR]Search PASTEBIN','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&sort=date&q=',503,'http://pastebin.com/i/fb2.jpg')
+            addDir('[COLOR red]Search Only [/COLOR]Search ALL My Videos .Net','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:3428957054&googlehost=www.google.com&gs_l=partner.12...0.0.1.20932.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.0jj1..1ac..25.partner..0.0.0.&callback=google.search.Search.apiary18154&q=',5055,'http://allmyvideos.net/images/amvlogo-200-min.png')
+            addDir('[COLOR green]100% [/COLOR]Search MoviShare.NET','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:4545021852&googlehost=www.google.com&oq=hell&gs_l=partner.3...1800.2471.0.2719.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.672j160640j4..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary16046&q=',5055,'http://allmyvideos.net/images/amvlogo-200-min.png')
+            addDir('[COLOR red]Search Only [/COLOR]Search 180 Upload','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:5103425050&googlehost=www.google.com&gs_l=partner.3...4025.4624.0.4785.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.599j105313j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary12175&q=',5055,'http://allmyvideos.net/images/amvlogo-200-min.png')
+            addDir('[COLOR green]100% [/COLOR]Search TV Online Streams','http://www.tvonlinestreams.com/?s=',102,'')
+            addDir('[COLOR green]100% [/COLOR]Search Filmover','http://iptv.filmover.com/?s=',203,'')
+            addDir('[COLOR red]Search Only [/COLOR]Search XVIDSTAGE','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:3986618654&googlehost=www.google.com&gs_l=partner.3...1135.1806.0.1935.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.656j110976j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary13567&q=',5055,'')
+            addDir('[COLOR green]100% [/COLOR]Search Gorillavid','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:7638089059&&googlehost=www.google.com&gs_l=partner.3...1478.2143.0.2302.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.656j112896j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary10799&q=',5055,'')
+            addDir('[COLOR green]100% [/COLOR]Search Filhoot','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:7777689852&googlehost=www.google.com&gs_l=partner.12...0.0.1.82212.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.0jj1..1ac..25.partner..0.0.0.&callback=google.search.Search.apiary14624&q=',5055,'')
+            addDir('[COLOR green]100% [/COLOR]Search FlashX','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:4684622655&googlehost=www.google.com&gs_l=partner.3...2228.2922.0.3067.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.696j125120j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary2894&q=',5055,'')
+            addDir('[COLOR green]100% [/COLOR]Search Filnuke','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:9254423052&googlehost=www.google.com&gs_l=partner.3...1165.1836.0.1957.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.648j105280j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary18526&q=',5055,'')
+            addDir('[COLOR green]100% [/COLOR]Search Beststreams','http://bestreams.net/?op=search&k=',5055,'')
+            addDir('[COLOR red]Search Only [/COLOR]Search Nos Video','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:7498488250&googlehost=www.google.com&o&gs_l=partner.12...0.0.2.8454.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.0..1ac..25.partner..0.0.0.&callback=google.search.Search.apiary4775&nocache=1441486920204&q=',5055,'')
+            addDir('[COLOR green]100% [/COLOR]Search nowvideo','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:8975221455&googlehost=www.google.com&gs_l=partner.3...1363.2322.0.3779.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.927j217665j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary373&nocache=1441490987165&q=',5055,'')
+            addDir('[COLOR green]100% [/COLOR]Search promtfile','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:2928687859&googlehost=www.google.com&gs_l=partner.3...4542.5525.0.5654.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.951j258993j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary10461&nocache=1441490844196&q=',5055,'')
+            addDir('[COLOR green]100% [/COLOR]Search sharedsix','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:5882154254&googlehost=www.google.com&gs_l=partner.3...1403.2138.0.2268.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.736j142848j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary16986&nocache=1441490770544&q=',5055,'')
+            addDir('[COLOR red]Search Only [/COLOR]Search thevideo','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:1312353853&gs_l=partner.3...1557.1557.0.1925.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.0jj1..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary11714&nocache=1441490528350&q=',5055,'')
+            addDir('[COLOR red]Search Only [/COLOR]Search weehd',' https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:7280387058&googlehost=www.google.com&gs_l=partner.3...1022.1821.0.3431.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.775j191121j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary4756&nocache=1441489115347&q=',5055,'')
+            addDir('[COLOR green]100% [/COLOR]Search vidbull',' https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:3552639851&googlehost=www.google.com&gs_l=partner.3...1357.2204.0.2317.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.824j199968j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary15372&nocache=1441489162158&q=',5055,'')
+            addDir('[COLOR red]Search Only [/COLOR]Search videomega','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:9108890656&gs_l=partner.12...2781.2781.1.3942.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.0jj1..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary7206&nocache=1441489072515&q=',5055,'')
+            addDir('[COLOR red]Search Only [/COLOR]Search videoveed','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:2649486255&googlehost=www.google.com&gs_l=partner.3...1327.2063.0.2207.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.728j144576j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary17700&nocache=1441488422216&q=',5055,'')
+            addDir('[COLOR red]Search Only [/COLOR]Search vimeo',' https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:4399489457&googlehost=www.google.com&gs_l=partner.3...1340.1963.0.2100.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.616j96704j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary17326&nocache=1441488697093&q=',5055,'')
+            addDir('[COLOR red]Search Only [/COLOR]Search vk','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:7352955859&googlehost=www.google.com&gs_l=partner.12...0.0.1.46617.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.0jj1..1ac..25.partner..0.0.0.&callback=google.search.Search.apiary87&nocache=1441488557076&q=',5055,'')
+            addDir('[COLOR green]100% [/COLOR]Search youwatch','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:8416818254&googlehost=www.google.com&gs_l=partner.3...1197.2570.0.2749.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.1367j752721j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary15167&nocache=1441488504168&q=',5055,'')
+def GSEARCH(name,url):
+        if name == 'NEXT >>>':
+            link = OPEN_URL(url)
+            match=re.compile('titleNoFormatting":"(.+?)","unescapedUrl":"(.+?)"', re.DOTALL).findall(link)
+            match2=re.compile('background-image:url\((.+?)\);"><span>(.+?)</span></a></TD>\n<TD valign=top>\n<div class="link"><a href="(.+?)">(.+?)</a></div>').findall(link)
+            counts=re.compile('"resultCount":"(.+?)"').findall(link)
+            nextpage=re.compile("<a href='(.+?)'>Next").findall(link)
+            for name in counts:
+                addDir2('FOUND %s MATCHS'%(counts),'count',4,'')
+            for name,url in match:
+                addDir2(name,'%s/'%url.replace('-640x360.html','').replace('embed-',''),4,'')
+            for image,time,url,name in match2:
+                addDir2('%s - %s'%(name,time),url,4,'%s'%(image))
+            for url in nextpage:
+                addDir('NEXT >>>',url.replace('&amp;','&'),5055,'')
+        else:
+            searchStr = ''
+            keyboard = xbmc.Keyboard(searchStr, 'Search')
+            keyboard.doModal()
+            searchStr=keyboard.getText()
+            link = OPEN_URL('%s%s'%(url,searchStr))
+            counts=re.compile('"resultCount":"(.+?)"').findall(link)
+            match=re.compile('titleNoFormatting":"(.+?)","unescapedUrl":"(.+?)"', re.DOTALL).findall(link)
+            match2=re.compile('background-image:url\((.+?)\);"><span>(.+?)</span></a></TD>\n<TD valign=top>\n<div class="link"><a href="(.+?)">(.+?)</a></div>').findall(link)
+            nextpage=re.compile("<a href='(.+?)'>Next").findall(link)
+            for name in counts:
+                addDir2('[COLOR yellow]FOUND %s MATCHS[/COLOR]'%(name),'count',4,'')
+            for name,url in match:
+                addDir2(name,'%s/'%url.replace('-640x360.html','').replace('embed-',''),4,'')
+            for image,time,url,name in match2:
+                addDir2('%s - %s'%(name,time),url,4,'%s'%(image))
+            for url in nextpage:
+                addDir('NEXT >>>',url.replace('&amp;','&'),5055,'')
 def CATMOVIES():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             searchStr = ''
@@ -60,27 +116,27 @@ def CATMOVIES():
 
 def CATMUSIC():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
-            addDir('[COLOR yellow]MUSIC [/COLOR]ARTISTS','http://e-mp3bul.com/albumler/2/yabanci-mp3-indir.html',5000,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
-            addDir('[COLOR yellow]MUSIC [/COLOR]ALBUMS','http://e-mp3bul.com/album/142/2015.html',5000,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
+            addDir('ARTISTS','http://e-mp3bul.com/albumler/2/yabanci-mp3-indir.html',5000,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
+            addDir('ALBUMS','http://e-mp3bul.com/album/142/2015.html',5000,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
+            addDir('Search FreeMp3.SE','http://freemp3.se/?query=',5023,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
 def CATANIME():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
-            addDir('[COLOR yellow]VIDEOS [/COLOR]FAILARMY','http://www.failarmy.com',4444,'http://www.failarmy.com/2.0.39/media/img/site-logo-sm.png')
-            addDir('[COLOR yellow]CARTOONS [/COLOR]Toonova','http://www.toonova.com/cartoon',8000,'http://www.toonova.com/images/site/front/logo.png')
-            addDir('[COLOR yellow]CARTOONS [/COLOR]www.animetoon.eu','http://www.animetoon.eu/cartoon',8000,'http://www.animetoon.eu/images/site/front/logo.png')
-            addDir('[COLOR yellow]CARTOONS MOVIES[/COLOR]www.animetoon.eu','http://www.animetoon.eu/movies',8000,'http://www.animetoon.eu/images/site/front/logo.png')
+            addDir('Toonova Cartoon','http://www.toonova.com/cartoon',8000,'http://www.toonova.com/images/site/front/logo.png')
+            addDir('Animetoon.eu Cartoon','http://www.animetoon.eu/cartoon',8000,'http://www.animetoon.eu/images/site/front/logo.png')
+            addDir('Animetoon.eu Movies','http://www.animetoon.eu/movies',8000,'http://www.animetoon.eu/images/site/front/logo.png')
             addDir('Animewow','http://www.animewow.eu/anime',8000,'http://www.animewow.eu/images/site/front/logo.png')
-            addDir('Animakai.tv','http://www.animakai.tv/animes/1/',13,'http://www.animakai.tv/sys_misc/images/logo.png')
-            addDir('[COLOR yellow]DUBBED ANIME [/COLOR]http://www.animetoon.eu/dubbed-anime','http://www.animetoon.eu/dubbed-anime',8000,'http://www.animetoon.eu/images/site/front/logo.png')
-            addDir('[COLOR yellow]ANIME MOVIES [/COLOR]videozoo','http://www.videozoo.me/category/anime-movies',8000,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
-            addDir('videozoo','http://www.videozoo.me/new-anime-list',8000,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
-            addDir('[COLOR yellow]ANIME,CARTOONS,MOVIES [/COLOR]watchcartoonweb','http://watchcartoonweb.com/',9000,'http://watchcartoonweb.com/themes/default/img/icon/logo.png')
+            addDir('Animakai Anime','http://www.animakai.tv/animes/1/',13,'http://www.animakai.tv/sys_misc/images/logo.png')
+            addDir('Animetoon Dubbed Anime','http://www.animetoon.eu/dubbed-anime',8000,'http://www.animetoon.eu/images/site/front/logo.png')
+            addDir('videozoo Movies','http://www.videozoo.me/category/anime-movies',8000,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
+            addDir('videozoo Animne','http://www.videozoo.me/new-anime-list',8000,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
+            addDir('watchcartoonweb','http://watchcartoonweb.com/',9000,'http://watchcartoonweb.com/themes/default/img/icon/logo.png')
 def CATVIDEOS():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
-            addDir('[COLOR yellow]VIDEOS [/COLOR]FAILARMY','http://www.failarmy.com',4444,'http://www.failarmy.com/2.0.39/media/img/site-logo-sm.png')
             addDir('Search Bing Videos','http://www.msn.com/en-us/video/searchresults?q=',37,'http://microsoft-news.com/wp-content/uploads/2014/09/Bing-logo-1.jpg')
+            addDir('Failarmy','http://www.failarmy.com',4444,'http://www.failarmy.com/2.0.39/media/img/site-logo-sm.png')
 def CATDOCS():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
-            addDir('[COLOR yellow]Documentary[/COLOR] Top Documentary Films','http://www.topdocumentaryfilms.com/watch-online/',4448,'')
+            addDir('Top Documentary Films','http://www.topdocumentaryfilms.com/watch-online/',4448,'')
 def CATIPTV():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             searchStr = ''
@@ -115,6 +171,28 @@ def NAVIX(url):
             addDir2('%s'%(name),'%s'%(url),9,thumb)
         for url in match3:
             addDir('NEXT >>>','http://www.navixtreme.com/wiilist/%s'%url,730,'')
+def FREEMP3SE(url):
+        searchStr = ''
+        keyboard = xbmc.Keyboard(searchStr, 'Search')
+        keyboard.doModal()
+        searchStr=keyboard.getText()
+        link = OPEN_URL('%s%s'%(url,searchStr))
+        match2=re.compile('data-title="(.+?)" data-url="(.+?)"', re.DOTALL).findall(link)
+        match=re.compile('<a class="page-next" href="(.+?)">(.+?)<', re.DOTALL).findall(link)
+        for name,url in match2:
+            addDir2(name,url.replace(' ','%20'),9,'')
+        for url2,name in match:
+            addDir(name,url2,5024,'')
+def FREEMP3SE2(url):
+        link = OPEN_URL(url)
+        match2=re.compile('data-title="(.+?)" data-url="(.+?)"', re.DOTALL).findall(link)
+        match=re.compile('<a class="page-next" href="(.+?)">(.+?)<', re.DOTALL).findall(link)
+        for name,url in match2:
+            addDir2(name,url.replace(' ','%20'),9,'')
+        for url2,name in match:
+            addDir(name,url2,5024,'')
+
+
 def RADIO(url):
         link = OPEN_URL(url)
         match=re.compile('<td><img width="8" height="8" alt="" src="b.gif" /> <a href="(.+?)">(.+?)</a></td></tr>').findall(link)
@@ -746,6 +824,9 @@ def PLAYVIDEO3(url):
     dp.create('Featching Your Video','Opening Ready')
     play=xbmc.Player(GetPlayerCore())
     play.play(url)
+def PLAYVIDEO4(url):
+    play=xbmc.Player(GetPlayerCore())
+    play.play(url)
 
 
 def DownloaderClass(url,dest):
@@ -986,5 +1067,13 @@ elif mode==345:
         SEARCHCAT(url)
 elif mode==8890:
         RADIO(url)
+elif mode==5023:
+        FREEMP3SE(url)
+elif mode==5024:
+        FREEMP3SE2(url)
+elif mode==5025:
+        PLAYVIDEO4(url)
+elif mode==5055:
+        GSEARCH(name,url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
