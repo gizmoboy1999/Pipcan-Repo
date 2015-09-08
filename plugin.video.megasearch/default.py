@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import urllib,urllib2,sys,re,xbmcplugin,xbmcgui,xbmcaddon,datetime,base64
+import urllib,urllib2,sys,re,xbmcplugin,xbmcgui,xbmcaddon,datetime,base64,os
 username=xbmcplugin.getSetting(int(sys.argv[1]), 'username')
 password=xbmcplugin.getSetting(int(sys.argv[1]), 'password')
 ADDON = xbmcaddon.Addon(id='plugin.video.megasearch')
@@ -13,30 +13,33 @@ bingimage='http://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAbGK17.img'
 def CATEGORIES():
             addDir('[B]SELECT A CATAGORY[/B]','m',8800,'')
             addDir('[COLOR green]SEARCH[/COLOR]','search',345,'')
-            addDir('[COLOR gold]Direct Movie List[/COLOR]','file:///%s\movies.m3u'%addonDir,555,'')
-            addDir('[COLOR gold]Direct French TV List[/COLOR]','file:///%s\TV2.m3u'%addonDir,555,'')
-            addDir('[COLOR gold]Direct TV List[/COLOR]','file:///%s\TV.m3u'%addonDir,555,'')
-            addDir('[COLOR gold]TRAILERS[/COLOR]','file:///%s\l.m3u'%addonDir,555,'')
+            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct Movie List[/COLOR]','file:///%s\movies.m3u'%addonDir,555,'')
+            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct French TV List[/COLOR]','file:///%s\TV2.m3u'%addonDir,555,'')
+            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct TV List[/COLOR]','file:///%s\TV.m3u'%addonDir,555,'')
+            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]TRAILERS[/COLOR]','file:///%s\l.m3u'%addonDir,555,'')
             addDir('[COLOR gold]MOVIES[/COLOR]','m',8801,'')
             addDir('[COLOR gold]VIDEOS[/COLOR]','m',8802,'https://www.ucmo.edu/technology/grants/images/VideoLogo.jpg')
             addDir('[COLOR gold]DOCUMENTRYS[/COLOR]','m',8803,'http://www.4rfv.co.uk/logo/37290lo.jpg')
             addDir('[COLOR gold]ANIME & CARTOONS[/COLOR]','m',8804,'http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=40579470')
             addDir('[COLOR gold]IPTV[/COLOR]','m',8805,'http://androidtivibox.net/sanpham/30-08-2015/files/unnamed.png')
             addDir('[COLOR gold]MUSIC[/COLOR]','m',8806,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
+            addDir('[COLOR gold]ADDONS[/COLOR]','s',1655,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]RADIO[/COLOR]','http://listenlive.eu',8890,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]JOKES[/COLOR]','http://laughfactory.com/jokes',731,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
+            addDir('[COLOR red][SOON][/COLOR] [COLOR gold]Contact Me[/COLOR]','http://laughfactory.com/jokes',5680,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
+            addDir('[COLOR gold]TEST[/COLOR]','https://www.alluc.com/api/search/',2468,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             add_item('11','TITLE','PLOT','URL','55','PLOT','77')
 def SEARCHCAT(url):
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             addDir2('[COLOR green]Still Work In Progrss Some Dont Work Fully[/COLOR]','',1000,'')
-            searchStr = ''
-            xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_TITLE )
+            addDir('[COLOR green]100% [/COLOR]Search kodi.altervista','http://kodi.altervista.org/category/iptv-playlist/',8008,'http://media.navi-x.org/images/logos/search.png')
+            addDir('[COLOR brown]100% [/COLOR]Torrent TV','http://torrent-tv.gr/sport.php',5678,'http://media.navi-x.org/images/logos/search.png')
             addDir('[COLOR green]100% [/COLOR]Search Navix','http://www.navixtreme.com/playlist/search/video/',735,'http://media.navi-x.org/images/logos/search.png')
             addDir('[COLOR green]100% [/COLOR]Search letwatch.us','http://letwatch.us/?op=search&k=',3,'http://letwatch.us/images/logo.png')
             addDir('[COLOR green]100% [/COLOR]Search Vodlocker','http://vodlocker.com/?op=search&k=',5,'http://vodlocker.com/images/logo.png')
             addDir('[COLOR green]100% [/COLOR]Search cloudy.ec','http://www.cloudy.ec/search?search=',6,'http://www.cloudy.ec/img/logo.png')
             addDir('[COLOR green]100% [/COLOR]Search Bing Videos','http://www.msn.com/en-us/video/searchresults?q=',37,'http://microsoft-news.com/wp-content/uploads/2014/09/Bing-logo-1.jpg')
-            addDir('[COLOR green]100% [/COLOR]Search FreeMp3.SE','http://freemp3.se/?query=',5023,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
+            addDir('[COLOR red][BROKEN] [/COLOR]Search FreeMp3.SE','http://freemp3.se/?query=',5023,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
             addDir('[COLOR green]100% [/COLOR]Search PASTEBIN','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&sort=date&q=',503,'http://pastebin.com/i/fb2.jpg')
             addDir('[COLOR red]Search Only [/COLOR]Search ALL My Videos .Net','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:3428957054&googlehost=www.google.com&gs_l=partner.12...0.0.1.20932.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.0jj1..1ac..25.partner..0.0.0.&callback=google.search.Search.apiary18154&q=',5055,'http://allmyvideos.net/images/amvlogo-200-min.png')
             addDir('[COLOR green]100% [/COLOR]Search MoviShare.NET','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:4545021852&googlehost=www.google.com&oq=hell&gs_l=partner.3...1800.2471.0.2719.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.672j160640j4..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary16046&q=',5055,'http://allmyvideos.net/images/amvlogo-200-min.png')
@@ -57,7 +60,7 @@ def SEARCHCAT(url):
             addDir('[COLOR red]Search Only [/COLOR]Search weehd',' https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:7280387058&googlehost=www.google.com&gs_l=partner.3...1022.1821.0.3431.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.775j191121j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary4756&nocache=1441489115347&q=',5055,'')
             addDir('[COLOR green]100% [/COLOR]Search vidbull',' https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:3552639851&googlehost=www.google.com&gs_l=partner.3...1357.2204.0.2317.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.824j199968j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary15372&nocache=1441489162158&q=',5055,'')
             addDir('[COLOR red]Search Only [/COLOR]Search videomega','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:9108890656&gs_l=partner.12...2781.2781.1.3942.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.0jj1..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary7206&nocache=1441489072515&q=',5055,'')
-            addDir('[COLOR red]Search Only [/COLOR]Search videoveed','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:2649486255&googlehost=www.google.com&gs_l=partner.3...1327.2063.0.2207.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.728j144576j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary17700&nocache=1441488422216&q=',5055,'')
+            addDir('[COLOR green]100%[/COLOR]Search videoveed','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:2649486255&googlehost=www.google.com&gs_l=partner.3...1327.2063.0.2207.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.728j144576j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary17700&nocache=1441488422216&q=',5055,'')
             addDir('[COLOR red]Search Only [/COLOR]Search vimeo',' https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:4399489457&googlehost=www.google.com&gs_l=partner.3...1340.1963.0.2100.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.616j96704j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary17326&nocache=1441488697093&q=',5055,'')
             addDir('[COLOR red]Search Only [/COLOR]Search vk','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:7352955859&googlehost=www.google.com&gs_l=partner.12...0.0.1.46617.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.0jj1..1ac..25.partner..0.0.0.&callback=google.search.Search.apiary87&nocache=1441488557076&q=',5055,'')
             addDir('[COLOR green]100% [/COLOR]Search youwatch','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:8416818254&googlehost=www.google.com&gs_l=partner.3...1197.2570.0.2749.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.1367j752721j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary15167&nocache=1441488504168&q=',5055,'')
@@ -94,6 +97,124 @@ def GSEARCH(name,url):
                 addDir2('%s - %s'%(name,time),url,4,'%s'%(image))
             for url in nextpage:
                 addDir('NEXT >>>',url.replace('&amp;','&'),5055,'')
+def CRAVING(url):
+            link = OPEN_URL(url)
+            match=re.compile('<li><a href="(.+?)">(.+?)</a>', re.DOTALL).findall(link)
+            match2=re.compile('<li>(.+?)<a href="(.+?)">(.+?)</a></li>').findall(link)
+            match3=re.compile('<b>(.+?)</b></span><b id=\'ko\' data-iframe=\'<iframe src="(.+?)"').findall(link)
+            for url,name in match:
+                addDir(name,url,5679,'')
+            addDir('[COLOR yellow]----------------- EPISODES BELLOW----------------------------[/COLOR]','hhh',5679,'')
+            for number,url,name in match2:
+                addDir('%s - %s'%(number,name),'%s'%url,5679,'')
+            for name,url in match3:
+                addDir2(name,url,4,'')
+
+def contact():
+    dialog = xbmcgui.Dialog()
+    ret = dialog.select('Were Do You Want It Sent', ['Request A Website', 'Request A Section', 'Everything Else'])
+    if ret == 1:
+        dialog.input('Enter secret code', type=xbmcgui.INPUT_ALPHANUM)
+    if ret == 2:
+        dialog.input('Enter secret code', type=xbmcgui.INPUT_ALPHANUM)
+    if ret == 3:
+        dialog.input('Enter secret code', type=xbmcgui.INPUT_ALPHANUM)
+
+
+def addons(url):
+    addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
+    addDir('wtyczki.iptvlive.org','http://wtyczki.iptvlive.org',1656,'')
+    addDir('computertechs.org','http://computertechs.org/xbmc/',1656,'')
+    addDir('The Little Black Box','http://cloud.thelittleblackbox.co.uk/repo/zips/',1656,'')
+    addDir('xstream-addon.square7','http://xstream-addon.square7.ch/repo',1656,'')
+    addDir('iptvip.info','http://iptvip.info/repo/',1656,'')
+    addDir('kodi.media-guru.com.au','http://kodi.media-guru.com.au/',1656,'')
+    addDir('kodi.shivuthegreat','http://kodi.shivuthegreat.com/Video/',1656,'')
+    addDir('gerrymoth.co.uk/KODI','https://home.pilsfree.net/chudy/',1656,'')
+    addDir('gerrymoth.co.uk','http://gerrymoth.co.uk/KODI/',1656,'')
+    addDir('srp.nu','http://srp.nu/',1656,'')
+    addDir('xfinity.xunitytalk.com','http://xfinity.xunitytalk.com',1656,'')
+    addDir('srp.nu','http://srp.nu',1656,'')
+    addDir('i.totalxbmc.tv/COLOR]','http://i.totalxbmc.tv',1656,'')
+    addDir('solved.no-issue.ca','http://solved.no-issue.ca',1656,'')
+    addDir('xbmc.aminhacasadigital.com','http://xbmc.aminhacasadigital.com',1656,'')
+    addDir('install.kaosbox.tv','http://install.kaosbox.tv',1656,'')
+    addDir('kodi.metalkettle.co','http://kodi.metalkettle.co',1656,'')
+    addDir('jas0npc.pcriot.com','http://jas0npc.pcriot.com',1656,'')
+    addDir('halow.x10.bz','http://halow.x10.bz',1656,'')
+    addDir('www.kodicustombuilds.com/wizard','http://www.kodicustombuilds.com/wizard/',1656,'')
+    addDir('entertainmentrepo.x10.bz','http://entertainmentrepo.x10.bz',1656,'')
+    addDir('theyidsrepo.x10host.com','http://theyidsrepo.x10host.com',1656,'')
+    addDir('tecbox.tv/repo/install','http://tecbox.tv/repo/install/',1656,'')
+    addDir('shadowcrew.info/shadows','http://shadowcrew.info/shadows/',1656,'')
+    addDir('chrisbkodi.uk/kodi','http://chrisbkodi.uk/kodi/',1656,'')
+    addDir('muckys.kodimediaportal.ml','http://muckys.kodimediaportal.ml',1656,'')
+    addDir('iwillfolo.com/iwf','http://iwillfolo.com/iwf/',1656,'')
+    addDir('add.taffymc.com','http://add.taffymc.com',1656,'')
+    addDir('upgrades.montrealandroidtv.com','http://upgrades.montrealandroidtv.com',1656,'')
+    addDir('transform.mega-tron.tv','http://transform.mega-tron.tv',1656,'')
+    addDir('dan-elmore.co.uk/kodi','http://dan-elmore.co.uk/kodi/',1656,'')
+    addDir('Http//install.tvaddons.nl','http://Http//install.tvaddons.nl/',1656,'')
+    addDir('renegades.x10host.com/addons','http://renegades.x10host.com/addons/',1656,'')
+    addDir('repository.bbtsip.tv/repo','http://repository.bbtsip.tv/repo/',1656,'')
+    addDir('tugafree.hostei.com','http://tugafree.hostei.com',1656,'')
+    addDir('prozone.getxbmc.com','http://prozone.getxbmc.com',1656,'')
+    addDir('njmweb.we.bs/NJMC','http://njmweb.we.bs/NJMC/',1656,'')
+    addDir('lihattv.com/install','http://lihattv.com/install/',1656,'')
+    addDir('zeusrepo.com/zeus','http://zeusrepo.com/zeus/',1656,'')
+    addDir('www.vectordroid.com/repo','http://www.vectordroid.com/repo/',1656,'')
+    addDir('diavolettotv-repo.16mb.com','http://diavolettotv-repo.16mb.com',1656,'')
+    addDir('cwal.me/xbmc/addons','http://cwal.me/xbmc/addons/',1656,'')
+    addDir('mrtvbox.net/support','http://mrtvbox.net/support/',1656,'')
+    addDir('thaisatellite.tv/repo','http://thaisatellite.tv/repo/',1656,'')
+    addDir('www.xbmcmods.com','http://www.xbmcmods.com/',1656,'')
+    addDir('droidtv4free.partypixxphotobooth.com','http://droidtv4free.partypixxphotobooth.com/',1656,'')
+    addDir('cesego.com','http://cesego.com',1656,'')
+    addDir('www.xbmc.digiwizard.net/repo','http://www.xbmc.digiwizard.net/repo/',1656,'')
+    addDir('cynagen.com/xbmcapp/Addons/','http://cynagen.com/xbmcapp/Addons/',1656,'')
+    addDir('dmdsoftware.net/repository.ddurdle','http://dmdsoftware.net/repository.ddurdle/',1656,'')
+    addDir('www.we-fix-it.ca/xbmc/','http://www.we-fix-it.ca/xbmc/',1656,'')
+    addDir('jetstreambox.com/repo','http://jetstreambox.com/repo/',1656,'')
+    addDir('wanttowatchtv.com/addons','http://wanttowatchtv.com/addons/',1656,'')
+    addDir('viewstationusa.org/vs/XbmcRepos','http://viewstationusa.org/vs/XbmcRepos/',1656,'')
+    addDir('xbmc.kestouf.com/~XBMC/addons/Files','http://xbmc.kestouf.com/~XBMC/addons/Files/',1656,'')
+    addDir('xbmc-czech.sourceforge.net/addons','http://xbmc-czech.sourceforge.net/addons/',1656,'')
+    addDir('147.194.93.20:8080/xbmc','http://147.194.93.20:8080/xbmc/',1656,'')
+    addDir('web.ist.utl.pt/~ist157804/xbmc','http://web.ist.utl.pt/~ist157804/xbmc/',1656,'')
+    addDir('xbmc.channaa.com','http://xbmc.channaa.com/',1656,'')
+    addDir('xbmcil.com/addons','http://xbmcil.com/addons/',1656,'')
+    addDir('wtyczki.iptvlive.org','http://wtyczki.iptvlive.org/',1656,'')
+    addDir('www.bruggers.net/repo','http://www.bruggers.net/repo/',1656,'')
+    addDir('digsim.homelinux.org/xbmc/code','http://digsim.homelinux.org/xbmc/code/',1656,'')
+    addDir('web-develop.ca/kodi/20150328-repositories','http://web-develop.ca/kodi/20150328-repositories/',1656,'')
+    addDir('xstream-addon.square7.ch/repo','http://xstream-addon.square7.ch/repo/',1656,'')
+    addDir('xbmc.samyantoun.com/addons','http://xbmc.samyantoun.com/addons/',1656,'')
+    addDir('iptvip.info/repo/','http://iptvip.info/repo/',1656,'')
+    addDir('www.alelec.net/kodi','http://www.alelec.net/kodi/',1656,'')
+    addDir('d.openboxfan.com/xbmc','http://d.openboxfan.com/xbmc/',1656,'')
+    addDir('koditr.org/kurulum','http://koditr.org/kurulum/',1656,'')
+    addDir('[COLOR http://android.bulfon.com/MiBoxMini/Media/Kodi','http://android.bulfon.com/MiBoxMini/Media/Kodi/',1656,'')
+    addDir('home.pilsfree.net/chudy/','https://home.pilsfree.net/chudy/',1656,'')
+    addDir('kodi.shivuthegreat.com/Video','http://kodi.shivuthegreat.com/Video/',1656,'')
+    addDir('kodi.media-guru.com.au','http://kodi.media-guru.com.au/',1656,'')
+    addDir('kodi.neptune-one.net','http://kodi.neptune-one.net/',1656,'')
+def addoncats():
+    addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
+def addonsdownloadpage(url):
+    link = OPEN_URL(url)
+    url2 = url
+    match=re.compile('<[aA] href="(.+?)\/">(.+?)\/</[aA]>').findall(link)
+    match2=re.compile('<[aA] href="(.+?)\.(.+?)"(.+?)</[aA]>').findall(link)
+    for url,name in match:
+        addDir('../%s'%name.replace(' ',''),'%s/%s'%(url2,url),1656,'')
+    for url,ext,name in match2:
+        addDir2('%s'%name.replace('>','[COLOR yellow]DOWNLOAD [/COLOR]'),'%s/%s.%s'%(url2,url,ext),1654,'')
+def MAILRU(url):
+            link = OPEN_URL(url)
+            match=re.compile('tId="(.+?)"><a href="#">(.+?)\n', re.DOTALL).findall(link)
+            for url,name in match:
+                addDir2(name,'plugin://program.plexus/?url=acestream://%s&mode=1&name=acestream+title'%url,9,'')
+
 def CATMOVIES():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             searchStr = ''
@@ -102,6 +223,8 @@ def CATMOVIES():
             addDir('Search Vodlocker','http://vodlocker.com/?op=search&k=',5,'http://vodlocker.com/images/logo.png')
             addDir('Search cloudy.ec','http://www.cloudy.ec/search?search=',6,'http://www.cloudy.ec/img/logo.png')
             addDir('Dedibox','http://sd-41445.dedibox.fr/',8,'ww')
+            addDir('Craving TV','http://series-cravings.me/tv-show-1',5679,'ww')
+            addDir('Craving Movie','http://series-cravings.me/tv-show-1',5679,'ww')
             addDir('Filmgozar','http://dl.filmgozar.com/',8,'ww')
             addDir('LOADS OF FILMS','http://46.105.122.150/',8,'ww')
             addDir('Moviefarsi','http://dl5.moviefarsi.org/',8,'ww')
@@ -109,16 +232,18 @@ def CATMOVIES():
             addDir('NFilm','http://dl.nfilm.org/DL/',8,'ww')
             addDir('Canflix','http://cdn.alpha.canflix.net',8,'ww')
             addDir('Tehmovies','http://dl.tehmovies.com/',8,'ww')
+            addDir('MVSnap','http://mvsnap.com',299,'ww')
             addDir('Yukinoshita','http://yukinoshita.eu/ddl/',12,'ww')
             addDir('Seed Cows','http://seed.cows.io/',8,'ww')
             addDir('Hastidownload','http://dl.hastidownload.net/ali/film/',8,'ww')
             addDir('Kino Kong','http://kinokong.net',18,'http://smarttvnews.ru/wp-content/uploads/2015/05/32731097.png')
+            addDir('HDFullTV','http://hdfull.tv',656,'')
 
 def CATMUSIC():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             addDir('ARTISTS','http://e-mp3bul.com/albumler/2/yabanci-mp3-indir.html',5000,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
             addDir('ALBUMS','http://e-mp3bul.com/album/142/2015.html',5000,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
-            addDir('Search FreeMp3.SE','http://freemp3.se/?query=',5023,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
+            addDir('[COLOR red][BROKEN] Search FreeMp3.SE[/COLOR]','http://freemp3.se/?query=',5023,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
 def CATANIME():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             addDir('Toonova Cartoon','http://www.toonova.com/cartoon',8000,'http://www.toonova.com/images/site/front/logo.png')
@@ -142,7 +267,7 @@ def CATIPTV():
             searchStr = ''
             addDir('Search Navix','http://www.navixtreme.com/playlist/search/video/',735,'http://media.navi-x.org/images/logos/search.png')
             addDir('Search PASTEBIN','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&sort=date&q=',503,'http://pastebin.com/i/fb2.jpg')
-            addDir('http://80.80.160.168/live/','http://80.80.160.168/live',8,'ww')
+            addDir('[COLOR red][BROKEN] [/COLOR]http://80.80.160.168/live/','http://80.80.160.168/live',8,'ww')
             addDir('TV Online Streams','http://tvonlinestreams.com',100,'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTdHvBF68jexfm7JTjh692IRi4xC5EbtIy5fDsMcE3ItOqMhXpN')
             addDir('IPTV Filmover','http://iptv.filmover.com',200,'http://website.informer.com/thumbnails/280x202/i/iptv.filmover.com.png')
             addDir('FreeTux TV','http://database.freetuxtv.net',300,'http://lh5.googleusercontent.com/-3BqBJNvGN-E/TqQWikkIrfI/AAAAAAAAAnk/nGx_J8pK1mU/s1600/freetuxtv.png')
@@ -156,9 +281,9 @@ def CATIPTV():
             addDir('VLC','http://www.vlchistory.eu.pn',701,'http://www.vlchistory.eu.pn/images/vlcstreamhistory.jpg')
             addDir('langamepp','http://langamepp.com/playlist/pipcan/Snooker85',504,'http://langamepp.com/iptv/img/logo.png')
             addDir('http://www.iptvlinks.com/','http://www.iptvlinks.com/feeds/posts/summary?alt=json-in-script&callback=pageNavi&max-results=200',2000,'http://4.bp.blogspot.com/-D4Nbf7BM52c/VIzTSja7qdI/AAAAAAAACe4/u7PSn24mxK8/s1600/iptvlinkslogo.png')
-            addDir('Newstvgenre Altervista/?s=IPTV','http://newstvgenre.altervista.org/?s=IPTV',8005,'http://www.videozoo.me/wp-content/themes/anime/images/header.jpg')
             addDir('[COLOR yellow]VIDEOS [/COLOR]http://free-links-iptv.blogspot.co.uk/','https://www.blogger.com/feeds/7582140021242686461/posts/summary?alt=json-in-script&start-index=1&max-results=10',2000,'')
             addDir('Navi-X','http://www.navixtreme.com/wiilist/',730,'')
+            addDir('HDFULLHD EU','http://hdfullhd.eu/iptv_groups.txt',181,'')
 def NAVIX(url):
         addDir('[COLOR yellow]SEARCH[/COLOR]','http://www.navixtreme.com/playlist/search/video/',735,'http://media.navi-x.org/images/logos/search.png')
         link = OPEN_URL(url)
@@ -171,6 +296,20 @@ def NAVIX(url):
             addDir2('%s'%(name),'%s'%(url),9,thumb)
         for url in match3:
             addDir('NEXT >>>','http://www.navixtreme.com/wiilist/%s'%url,730,'')
+def FULLHDTV(url):
+        link = OPEN_URL(url)
+        match=re.compile('<li><a href="http://hdfull.tv/tags-peliculas/(.+?)">(.+?)</a></li>').findall(link)
+        match2=re.compile('<a href="(.+?)".+?<img class="img-preview spec-border"  src="(.+?)" alt="(.+?)"', re.DOTALL).findall(link)
+        match3=re.compile('<b class="provider" style="background-image: url\((.+?)\)">(.+?)</b>.+?</b>(.+?)\n.+?&nbsp;<a href="(.+?)"', re.DOTALL).findall(link)
+        match4=re.compile('<iframe src="http://(.+?)/(.+?)" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="920" height="360" allowfullscreen="true">', re.DOTALL).findall(link)
+        for url,name in match:
+            addDir('%s'%(name),'http://hdfull.tv/tags-peliculas/%s'%url,656,'')
+        for name,url in match4:
+            addDir2('%s'%(name),'http://s/%s'%(name,url),6,'')
+        for image,name in match2:
+            addDir('%s'%(name),'http://hdfull.tv/movies/%s'%name.replace('',''),656,image)
+        for image,server,quality,url in match3:
+            addDir2('%s [COLOR yellow]%s[/COLOR]'%(url,quality),url,4,image)
 def FREEMP3SE(url):
         searchStr = ''
         keyboard = xbmc.Keyboard(searchStr, 'Search')
@@ -250,13 +389,13 @@ def DOC(url):
         match=re.compile('<a href="http://topdocumentaryfilms.com/category/(.+?)" title="Browse.+?">(.+?)</a>(.+?)</h2>').findall(link)
         match2=re.compile('<a href="(.+?)" title="(.+?)"><img width="95" height="125" src="(.+?)"').findall(link)
         match3=re.compile('embedUrl" content="(.+?)"').findall(link)
-        match4=re.compile('href="/(.+?)">Next<\/a>"').findall(link)
+        match4=re.compile('<link rel="next" href="(.+?)" />"').findall(link)
         for url,name,count in match:
             addDir('%s - %s'%(name,count),'http://www.topdocumentaryfilms.com/category/%s'%url,4448,'')
         for url,name,image in match2:
             addDir2('%s'%(name),url,4448,image)
         for url in match4:
-            addDir('[COLOR yellow]NEXT PAGE[/COLOR]',('http://www.topdocumentaryfilms.com/category/%s')%url,4448,'')
+            addDir('[COLOR yellow]NEXT PAGE[/COLOR]',('%s')%url,4448,'')
         for url in match3:
             import urlresolver
             from urlresolver import common
@@ -374,6 +513,66 @@ def canflix(url):
         match=re.compile('<td data-sort-value="(.+?)"><i class="fa fa-(.+?) fa-fw"></i>&nbsp;<a href="(.+?)">.+?\n.+?value=".+?">(.+?)<').findall(link)
         for name,type,url,size in match:
             addDir2('%s - %s'%(name,size),'%s'%url,4,'%s'%(type))
+def HDFULLHD(url):
+        link = OPEN_URL(url)
+        match=re.compile('(.+?),(.+?)txt').findall(link)
+        match2=re.compile('(.+?),(.+?)m3u8').findall(link)
+        match3=re.compile('(.+?),(.+?)ts').findall(link)
+        match4=re.compile('(.+?),(.+?)\/').findall(link)
+        for name,url in match:
+            addDir(name,'%stxt'%url,181,'')
+        addDir2('------------ END --------------','f',9,'')
+        for name,url in match2:
+            addDir2(name,'%sm3u8'%url,9,'')
+        for name,url in match3:
+            addDir2(name,'%sts'%url,9,'')
+        for name,url in match4:
+            addDir2(name,'%sm3u8'%url,9,'')
+        addDir2('------------ END --------------','f',9,'')
+def MVSNAP(url):
+        addDir('[COLOR green]SEARCH[/COLOR]','http://mvsnap.com/v1/api/search?query=',299,'ww')
+        if url == 'http://mvsnap.com/v1/api/search?query=':
+            searchStr = ''
+            keyboard = xbmc.Keyboard(searchStr, 'Search')
+            keyboard.doModal()
+            searchStr=keyboard.getText()
+            link = OPEN_URL('%s%s'%(url,searchStr.replace(' ','%20')))
+            match=re.compile('"title":"(.+?)","type":"(.+?)","slug":"(.+?)","photo":"(.+?)"', re.DOTALL).findall(link)
+            for name,type,url,image in match:
+                addDir('%s'%(name),'http://mvsnap.com/%s/%s'%(type,url),299,image)
+        else:
+            link = OPEN_URL(url)
+            match=re.compile('<div class="media-body">.+?<h3 class="media-title">.+?<a href="(.+?)">(.+?)</a>', re.DOTALL).findall(link)
+            match2=re.compile('<option value="(.+?)">(.+?)</option>', re.DOTALL).findall(link)
+            for url,name in match2:
+                addDir2('%s'%(name),'%s'%url,9,'')
+            addDir2('','g',9,'')
+            addDir2('[COLOR yellow]You May Like[/COLOR]','g',9,'')
+            for url,name in match:
+                addDir('%s'%(name),'http://mvsnap.com/%s'%url,299,'')
+
+def ALLUC(url):
+        addDir('[COLOR green]SEARCH[/COLOR]','https://www.alluc.com/api/search/',2468,'ww')
+        if url == 'https://www.alluc.com/api/search/':
+            searchStr = ''
+            keyboard = xbmc.Keyboard(searchStr, 'Search')
+            keyboard.doModal()
+            searchStr=keyboard.getText()
+            link = OPEN_URL('%s/stream/?apikey=708e0b7bbc1e087e4f4a1daf925cfa22&%s&count=10'%(url,searchStr.replace(' ','+')))
+            match=re.compile('"sourcetitle":"(.+?)".+?sourcename":"(.+?)".+?"sourceurl":"(.+?)".+?"description","value":".+?".+?name":"length","value":"(.+?)".+?"pic","value":"(.+?)"', re.DOTALL).findall(link)
+            for name,url,host,length,image in match:
+                addDir2('%s - %s - %s'%(name,length,host),'%s'%(url.replace('\/','/')),9,image.replace('\/','/'))
+        else:
+            link = OPEN_URL(url)
+            match=re.compile('<div class="media-body">.+?<h3 class="media-title">.+?<a href="(.+?)">(.+?)</a>', re.DOTALL).findall(link)
+            match2=re.compile('<option value="(.+?)">(.+?)</option>', re.DOTALL).findall(link)
+            for url,name in match2:
+                addDir2('%s'%(name),'%s'%url,9,'')
+            addDir2('','g',9,'')
+            addDir2('[COLOR yellow]You May Like[/COLOR]','g',9,'')
+            for url,name in match:
+                addDir('%s'%(name),'http://mvsnap.com/%s'%url,299,'')
+
 def altervista(url):
         link = OPEN_URL(url)
         match=re.compile('<a href="(.+?)" title="Permalink to (.+?)" rel="bookmark">').findall(link)
@@ -383,7 +582,7 @@ def altervista(url):
         match5=re.compile('#EXTINF:.+?,(.+?)<br />\n(.+?)</p>').findall(link)
         match6=re.compile('a href="(.+?)" ><span class="meta-nav">&larr;</span>(.+?)</a>').findall(link)
         for url,name in match:
-            addDir('%s'%(name),'%s'%url,8005,'')
+            addDir('%s'%name.replace('</span>','').replace('</b>',''),'%s'%url,8005,'')
         for name,url in match2:
             addDir2('%s'%(name),'%s'%url,9,'')
         for name,url in match3:
@@ -394,6 +593,35 @@ def altervista(url):
             addDir2('%s'%(name),'%s'%url,9,'')
         for url,name in match6 	:
             addDir('%s'%(name),'%s'%url,8005,'')
+def kodialtervista(url):
+        link = OPEN_URL(url)
+        match7=re.compile('<h2 class="post-title entry-title"><a href="(.+?)" rel="bookmark">(.+?)</a></h2>').findall(link)
+        match=re.compile('<a href="(.+?)" title="(.+?)" rel="bookmark"><time class="(.+?)" datetime=".+?">(.+?)</time></a>').findall(link)
+        match2=re.compile(':.+?,(.+?)<br />(.+?)<').findall(link)
+        match3=re.compile('#EXTINF:.+?,(.+?)<br />(.+?)<').findall(link)
+        match4=re.compile('<p>(.+?)<br/>(.+?) </p>').findall(link)
+        match5=re.compile('#EXTINF:.+?,(.+?)<br />\n(.+?)</p>').findall(link)
+        match6=re.compile('a href="(.+?)"><span class="meta-nav">&larr;</span>(.+?)</a>').findall(link)
+        match9=re.compile('>(.+?)</span></b><br /><b style="background: transparent;border: 0px;margin: 0px;padding: 0px;vertical-align: baseline"><span style="background: transparent;border: 0px;color: red;margin: 0px;padding: 0px;vertical-align: baseline">(.+?)<').findall(link)
+        match10=re.compile("<span class='page-numbers current'>(.+?)</span>\n.+?<a class='page-numbers' href='(.+?)'>(.+?)</a>", re.DOTALL).findall(link)
+        for url,name in match7:
+            addDir('%s'%(name.replace('</span>','').replace('</b>','')),'%s'%url,8008,'')
+        for url,time,name,date in match:
+            addDir('%s  - %s -  %s'%(name,date,time),'%s'%url,8008,'')
+        for name,url in match2:
+            addDir2('%s'%(name),'%s'%url,9,'')
+        for name,url in match9:
+            addDir2('%s'%(name),'%s'%url,9,'')
+        for name,url in match3:
+            addDir2('%s'%(name),'%s'%url,9,'')
+        for name,url in match4:
+            addDir2('%s'%(name),'%s'%url,9,'')
+        for name,url in match5:
+            addDir2('%s'%(name),'%s'%url,9,'')
+        for url,name in match6:
+            addDir('%s'%(name),'%s'%url,8008,'')
+        for current,url,next in match10:
+            addDir('%s GO TO PAGE %s  >>>>'%(current,next),url,8008,'')
 def CARTOONS(url):
         link = OPEN_URL(url)
         match=re.compile('<td><a href="(.+?)">(.+?)</a>').findall(link)
@@ -452,6 +680,7 @@ def iptvm3u(url):
         match=re.compile('#EXTINF:.+?,(.+?)<.+?\n.+?">(.+?)<').findall(link)
         for name,url in match:
             addDir2('%s'%(name),'%s'%url,9,'')
+
 def show_countdown(self, time_to_wait, title='', text=''):       
         dialog = xbmcgui.DialogProgress()
         ret = dialog.create(title)        
@@ -491,7 +720,7 @@ def MYMOVIES(url):
         for url,name in match:
             addDir2('%s'%(name.replace('720P','[COLOR gold]720p[/COLOR]').replace('720p','[COLOR gold]720p[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('1080P','[COLOR gold]1080p[/COLOR]').replace('1080p','[COLOR gold]1080p[/COLOR]').replace('_',' ').replace('mkv',' ').replace('.',' ').replace('mp4',' ').replace('MovieFarsi','')),'https://openload.co/f/%s/%s'%(url,name),9,'')
         for url,name in match3:
-            addDir2('%s'%(name.replace('720P','[COLOR gold]720p[/COLOR]').replace('720p','[COLOR gold]720p[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('1080P','[COLOR gold]1080p[/COLOR]').replace('1080p','[COLOR gold]1080p[/COLOR]').replace('_',' ').replace('mkv',' ').replace('.',' ').replace('mp4',' ').replace('MovieFarsi','')),'https://openload.io/f/%s/%s'%(url,name),555,'')
+            addDir2('%s'%(name.replace('720P','[COLOR gold]720p[/COLOR]').replace('720p','[COLOR gold]720p[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('1080P','[COLOR gold]1080p[/COLOR]').replace('1080p','[COLOR gold]1080p[/COLOR]').replace('_',' ').replace('mkv',' ').replace('.',' ').replace('mp4',' ').replace('MovieFarsi','')),'https://openload.io/f/%s/%s'%(url,name),9,'')
         for url2 in match2:
             play=xbmc.Player(GetPlayerCore())
             message = 'PLEASE WAIT 5 SECONDS'
@@ -857,7 +1086,51 @@ def GetPlayerCore():
     except: PlayerMeth=xbmc.PLAYER_CORE_AUTO 
     return PlayerMeth 
     return True 
-
+def DownloaderClass(url,dest):
+    dp = xbmcgui.DialogProgress()
+    dp.create("Iptv Manager","Downloading")
+    urllib.urlretrieve(url,dest,lambda nb, bs, fs, url=url: _pbhook(nb,bs,fs,url,dp))
+def _pbhook(numblocks, blocksize, filesize, url=None,dp=None):
+    try:
+        percent = min((numblocks*blocksize*100)/filesize, 100)
+        print percent
+        dp.update(percent)
+    except:
+        percent = 100
+        dp.update(percent)
+    if dp.iscanceled(): 
+        print "DOWNLOAD CANCELLED"
+    dp.close()
+def DOWNLOAD(url):
+    HOME = xbmc.translatePath('special://home/addons/')
+    dialog = xbmcgui.Dialog()
+    if dialog.yesno("DOWNLOADING ADDON", 'Do you Wish To Install Addon','', "",'Close','Yes'):
+        dp = xbmcgui.DialogProgress()
+        dp.create('UPDATING')
+        dp.update(20)
+        dialog = xbmcgui.Dialog()
+        dp = xbmcgui.DialogProgress()
+        dp.create('Downloading Zip')
+        dp.update(60)
+        import zipfile 
+        url = ("%s"%(url))
+        localfile = os.path.join(addonDir,"resources/addons.zip")
+        urllib.urlretrieve(url,localfile,lambda nb, bs, fs, url=url: _pbhook(nb,bs,fs,url,dp))
+        zin = zipfile.ZipFile(localfile, 'r')
+        zin.extractall(HOME)
+        dp.update(70,'Updating Addons')
+        xbmc.executebuiltin("UpdateLocalAddons")
+        xbmc.executebuiltin("UpdateLocalAddons")
+        dp.update(70,'Refreshing Repos')
+        xbmc.executebuiltin("UpdateAddonRepos")
+        xbmc.executebuiltin("UpdateAddonRepos")
+        dp.update(100)
+        dp.close()
+        dialog.ok("Finished Installing", "Installation Is Complete")
+        xbmc.executebuiltin("UpdateLocalAddons")
+        xbmc.executebuiltin("UpdateAddonRepos")
+    else:
+        return
                 
 def get_params():
         param=[]
@@ -1031,6 +1304,8 @@ elif mode==8003:
         CARTOONS3(url)
 elif mode==8005:
         altervista(url)
+elif mode==8008:
+        kodialtervista(url)
 elif mode==9000:
         watchcartoonweb(url)
 elif mode==4444:
@@ -1075,5 +1350,25 @@ elif mode==5025:
         PLAYVIDEO4(url)
 elif mode==5055:
         GSEARCH(name,url)
+elif mode==656:
+        FULLHDTV(url)
+elif mode==299:
+        MVSNAP(url)
+elif mode==181:
+        HDFULLHD(url)
+elif mode==5678:
+        MAILRU(url)
+elif mode==5679:
+        CRAVING(url)
+elif mode==5680:
+        contact()
+elif mode==2468:
+        ALLUC(url)
+elif mode==1654:
+        DOWNLOAD(url)
+elif mode==1655:
+        addons(url)
+elif mode==1656:
+        addonsdownloadpage(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
