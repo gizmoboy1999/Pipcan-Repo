@@ -19,22 +19,45 @@ time2= datetime.datetime.today().strftime('%H:%M')
 def CATEGORIES():
         xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
         addDir('SKY','http://epgservices.sky.com/tvlistings-proxy/TVListingsProxy/init.json',4,'')
-        addDir('FILMON','http://thaisatellite.tv/ftv/guide_filmon.xmltv',13,'')
+        addDir('FILMON','http://www.astro.com.my/whats-on/channels',13,'')
         addDir('Catch Up Sports','http://www.fullmatchesandshows.com',10,'http://i1.wp.com/www.fullmatchesandshows.com/wp-content/uploads/2015/01/Premier-League-World.png?resize=700%2C500')
-        addDir('Catch Up Movies','http://tv.pubfilmhd.com',80,'http://i1.wp.com/www.fullmatchesandshows.com/wp-content/uploads/2015/01/Premier-League-World.png?resize=700%2C500')
         addDir('GERMANY','http://m.tvtv.de/api/v1/channel_groups.json',15,'')
         addDir('FRANCE','http://www.skysiertv.com/stv/index2.php',18,'')
         addDir('VIRGIN','http://www.tvguide.co.uk/mobile/?systemid=25',20,'')
         addDir('SKY2','http://www.tvguide.co.uk/mobile/?systemid=5',20,'')
         addDir('BT','http://www.tvguide.co.uk/mobile/?systemid=22',20,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
-        addDir('Radio Times','http://www.radiotimes.com/rt-service/schedule/get?startdate=30-08-2015%2016:00:00&hours=3&totalWidthUnits=858&channels=94,105,26,132,248,197,2685,11820,288,2050,1061,180,2212,45,47,11741,185,1859,1961,40,11680,1461,5076,1201,922,292,158,1959,2056,11314,1994,2179,11740,2586,2178,2177,1963,1882,11595,5097,11771,134,2189,2008,2062,11708,2603,5074,11816,2134,2195,2139,11450,2185,249,2210,260,5093,258,2204,257,2206,2208,2168,253,160,271,2476,2059,2058,300,262,264,265,2200,11693,2700,2174,123,1876,11150,11791,11568,2142,2175,2176,11774,256,48,49,147,213,182,1601,10008,2668,801,2165,156,482,483,1981',60,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
-        addDir('BT TEST','https://voila.metabroadcast.com/1.0/schedules/?annotations=broadcasts,locations,description&apiKey=public:64a03c33f9a64c2b80b6f58cd218e5c8&from=now&count=10&id=hkwh',50,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
+        addDir('Radio Times','https://voila.metabroadcast.com/1.0/schedules/?annotations=broadcasts,locations,description&apiKey=public:64a03c33f9a64c2b80b6f58cd218e5c8&from=now&count=2&id=hkqs,hkqs,hn2v,hkvp,hkvp,hkvb,hkvb,hkvk,hk7x,hkyp,hmbs,hm77,hky6,hm4r,hk5v,hkzp,hkzt,hn6s,hn6t,hn7d,hkwj,hkwm,hkwp,hk7y,hkyn,hn8c,hk8t,hn4f,hmhb,hkzw,hk5s,hk4s,hnz2,hkwb,hn2c,hm6d,hkwz,hkwx,hkwx,hkxc,hkxb,hnzn,hkxf,hm2w,hkqz,hkrh,hkrh,hmb4,hk9n,hkxz,hk9x,hm6w,hk92,hk9z,hkzq,hny5,hk56,hk57,hn29,hk5q,hn6h,hm27,hn4m,hk5t,hpbt,hkx2,hmb2,hky7,hk8k,hnyj,hkvh,hmb5,hk5n,hkvn,hn68,hkvm,hkvj,hkv7,hn86,hkw9,hm6z,hn97,hn4k,hmbc,hnxq,hnz6,hmcj,hk47,hk9b,hkxk,hnz5,hpdr,hkxd,hkzs,hk9p,hkx4,hn6k,hn8t,hn9m,hn6b,hkzr,hkvf,hnw7,hkzn,hkzv,hkxh,hpbg,hn8b,hkrq,hkrr,hn9k,hk87,hk45,hk2f,hn9t,hmb7,hkxr,hmbx,hmbr,hk2z,hkwh,hkzm,hkwy,hn6y,hkvc,hk9f,hk8m,hn28,hn9g,hn6g,hn9h,hpcj,hk4t,hk2g,hk2h,hk54,hk4d,hkx5,hk86,hk44,hkzk,hk95,hkxt,hk96,hkxv,hn9f,hk8p,hmbg,hk4c,hn9c,hn9p,hkwk,hn8g,hn9y,hk89,hkwn,hn7t,hkxs,hn9b,hpdp,hk68,hk67,hmbv,hk7r,hn2y,hk7g,hk7d,hk7b,hk65,hk7j,hk7m,hk7t,hk66,hk2c,hk2d,hnyf,hn5q,hk5d,hk5f,hk55,hk8y,hm7h,hm22,hk8w,hk8x,hmcf,hmcg,hn7y,hmbt,hk7q,hn2x,hk7f,hk7c,hk69,hk64,hk7h,hk7k,hk7s,hkzy,hkvd,hpb8,hmb8,hkxq,hkxp,hk27,hkyk,hkzd,hkzc,hk94,hny2,hkx8,hkvg,hk2p,hk4p,hk4n,hnbd,hk4j,hn87,hk4w,hk4q,hm6h,hpdw,hn9w,hk4v,hk8s,hk4x,hn96,hn95,hn94,hk9c,hn92,hn9z,hm4h,hk6q,hk6r,hk8r,hmbq,hn8n,hnxp,hk2k,hk2s,hk2n,hnz8,hk2m,hn4y,hpck,hk4f,hn4v,hn8y,hk26,hpb5,hk5h,hk9s,hn4x,hnw6,hm62,hk5g,hpcm,hk2t,hk2v,hn85,hk2w,hn8p,hnxn,hk5p,hk52,hmbf,hkqk,hk2j,hpbc,hn4w,hk9r,hpdm,hn84,hpby,hpbz,hkyj,hkx7,hn6x,hkrv,hn2d,hkx9,hnxb,hn7q,hnzd,hny7,hk7v,hkyh,hnw5,hk6k,hkzg,hk9d,hm6y,hkzj,hkyv,hk6m,hky5,hk9m,hk7w,hky2,hk84,hk5b,hk49,hmck,hkys,hkyt,hk4k,hk4m,hk4r,hky4,hk6t,hkyz,hkyg,hn4h,hk9k,hk6w,hk6v,hkyw,hkzf,hkyf,hk48,hkrs,hn9n,hn98,hkyc,hm7c,hn7k,hpcf,hnx4,hkz2,hk4g,hk9w,hk9v,hm54,hky9,hn4d,hk2r,hn6v,hn6r,hkz5,hk8h,hk8j,hkz7,hk7z,hk99,hkxj,hk9t,hnyz,hkry,hm5c,hm6t,hn7c,hk2q,hn8z,hny4,hky8,hkzz,hkrx,hkyb,hkz6,hk2y,hk72,hkz8,hk76,hnx7,hnyt,hkx6,hk6n,hk24,hkzx,hn4z,hnz7,hkxy,hkxx,hn24,hm55,hpb2,hkxw,hn46,hn4r,hnw4,hn45,hk78,hn5h,hn4b,hk28,hn88,hmcb,hnx9,hnxg,hkzb,hnxy,hnzx,hnzc,hny9,hnzf,hkq2,hkrg,hkrf,hkq4,hkrd,hkqy,hkqx,hnwz,hkq8,hkq7,hnwx,hkrc,hkrb,hnwy,hkrm,hkrn,hkrj,hkq6,hkq9,hkqt,hmbn,hmbn,hkth,hktk,hktm,hktn,hktp,hmcx,hmcn,hmcy,hmc5,hmxb,hmc6,hmvy,hmcm,hmrp,hktv,hktw,hkt4,hktz,hm56,hktr,hmsy,hmvz,hmpy,hkt9,hktj,hkty,hkt8,hktq,hkrz,hkt7,hmyk,hmqf,hmyj,hmyn,hmcv,hmv9,hmqt,hmvc,hmcs,hmwz',61,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
+        addDir('BT TEST','https://voila.metabroadcast.com/1.0/schedules/?annotations=broadcasts,locations,description&apiKey=public:64a03c33f9a64c2b80b6f58cd218e5c8&from=now&count=1&id=hn2v,hkvp,hkvb,hkvk,hk7x,hkyp,hky6,hn6t,hk5s,hk4s,hkxc,hkvf,hkvc,hm2w,hkqz,hkrh,hk9n,hkxz,hk9x,hk92,hk9z,hk56,hk5q,hn4m,hpbt,hkvh,hmb5,hkvn,hkvm,hn86,hmbc,hnxq,hk47,hpdr,hkx4,hkzr,hkzn,hkzv,hkrq,hkrr,hk2f,hmbx,hmbr,hk2z,hkwh,hn28,hn6g,hk86,hk44,hkzk,hk95,hkwk,hpbj,hkwn,hn7t,hk66,hk5d,hk55,hk8w,hmbt,hk7q,hn2x,hk7f,hk7c,hk69,hk64,hk7h,hk7k,hk7s,hkzy,hkvd,hk6q,hk6r,hk8r,hk2k,hk2s,hk2m,hn4x,hpcm,hk2t,hk2v,hk2w,hn8p,hk5p,hkqk,hn4w,hk9r,hpbz,hkrs,hkrv,hkyh,hmck,hkys,hk4k,hky4,hkyz,hk6v,hkzf,hk48,hkrx,hkry,hkxj,hky8',50,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
         addDir('NETHERLANDS','https://www.ziggo.tv/tv-gids',21,'')
         addDir('ITALY','http://www.tvtoday.de/programm/standard/',22,'')
-        addDir('IPTV','http://i-ptv.blogspot.co.uk',29,'')
         addDir('RUSSIA','https://tv.mail.ru/go-mobile/',31,'')
         addDir('POLAND','http://tv.wp.pl/kanaly-lista.html',31,'')
         addDir('INDIA [COLOR yellow]Requested[/COLOR]','http://tv.burrp.com/channels.html',40,'')
+        addDir('UK TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=uk',4117,'')
+        addDir('Denmark TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=dk',4117,'')
+        addDir('Finland TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=fi',4117,'')
+        addDir('France TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=fr',4117,'')
+        addDir('Germany TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=de',4117,'')
+        addDir('Italy TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=it',4117,'')
+        addDir('Netherlands TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=nl',4117,'')
+        addDir('Norway TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=no',4117,'')
+        addDir('Poland TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=po',4117,'')
+        addDir('Russia TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=ru',4117,'')
+        addDir('Spain TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=es',4117,'')
+        addDir('Swedan TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=se',4117,'')
+        addDir('Swetzaland TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=sw',4117,'')
+        addDir('Turkey TV Guide','http://en.timefor.tv/ajax/channel_list.php?language=tr',4117,'')
+def SHOOT(url):
+        link = OPEN_URL(url)
+        match=re.compile('url\((.+?)\).+?<p style="font-size:10px; line-height:20px; overflow:hidden; height:18px; margin:-5px 0px 0px 0px; padding:0px 2px;">(.+?)<.+?onclick="document.location.href=\'(.+?)\'', re.DOTALL).findall(link)
+        match2=re.compile('<td class="time"><p>(.+?)<.+?<td class="title"><p><a href=".+?" class="programsummary" programid=".+?">(.+?)<', re.DOTALL).findall(link)
+        match3=re.compile('<h3 class="epg">.+?programid=".+?">(.+?)<', re.DOTALL).findall(link)
+        for name in match3:
+            addDir('[COLOR yellow]Now Playing[/COLOR]%s'%(name),'',4117,'')
+        for url,name,url in match:
+            addDir(name,'http://en.timefor.tv%s'%url,4117,url)
+        for name,name2 in match2:
+            addDir('%s %s'%(name,name2),'',4117,'')
 def Fixture(url):
         addDir('[B]See Fixtures Week 1[/B]','1',25,'%s/CTH_1.png'%(addonDir))
         addDir('[B]See Fixtures Week 2[/B]','2',25,'%s/CTH_1.png'%(addonDir))
@@ -47,6 +70,11 @@ def Fixture(url):
         addDir('[B]See Fixtures Week 9[/B]','9',25,'%s/CTH_1.png'%(addonDir))
         addDir('[B]See Fixtures Week 10[/B]','10',25,'%s/CTH_1.png'%(addonDir))
         addDir('[B]See Fixtures Week 11[/B]','11',25,'%s/CTH_1.png'%(addonDir))
+def SA(url):
+        link = OPEN_URL(url)
+        match=re.compile('channelName":"(.+?)","channelNumber":"(.+?)","channelTag":".+?",".+?"XLARGE":"(.+?)".+?"Mobile","playerUrl":"(.+?)"').findall(link)
+        for name,number,image,url in match:
+            addDir('%s %s'%(number,name),url,19,image)
 def two_e(str):
   count = 0
   for ch in str:  ## this loops over each char in the string
@@ -84,14 +112,18 @@ def NL(url):
         for name,icon,de in match:
             addDir('[COLOR yellow]%s[/COLOR] - %s'%(name,de),'',19,'https://static.ziggo-apps.nl/images/channels/%s'%(icon))
 def BTTEST(url):
+        xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_VIDEO_TITLE)
+        count1=0
+        count2=0
         link = OPEN_URL(url)
         match=re.compile('{"id":".+?","type":"(.+?)","title":"(.+?)","description":"(.+?)","image":"(.+?)","specialization":".+?","broadcasts":\[{"transmission_time":"%sT(.+?)","transmission_end_time":".+?"'%(date2)).findall(link)
         match2=re.compile('{"channel":{"title":"(.+?)","image":"(.+?)"').findall(link)
         for name,image in match2:
-            addDir('CHANNEL [%s]'%name,'',50,'%s'%image)
-            addDir('--------------------------------------','',50,'')
+            count1=count1+1
+            addDir('%s'%(name),'%s'%count1,50,'%s'%image)
         for type,name,description,image,start in match:
-            addDir5('[COLOR yellow]%s[/COLOR] - %s [%s]'%(start.replace('%sT'%(date2),'').replace('Z',''),name,type),'%s'%(id),19,'%s'%(image),'',description)
+            count2=count2+1
+            addDir5('[COLOR yellow]%s[/COLOR] - %s [%s]'%(start.replace('%sT'%(date2),'').replace('Z',''),name,type),'%s'%(count2),19,'%s'%(image),'',description)
 def GERMANY2(url):
         link = OPEN_URL(url)
         match=re.compile('<span class="zc-st-c"><a class="zc-st-a" href="(.+?)">(.+?)</a></span>').findall(link)
@@ -105,9 +137,9 @@ def Radiotime(url):
             addDir5('%s - [Now: %s]'%(channel,name),'',61,image,'',description)
 def Radiotime2(name):
         link = OPEN_URL(url)
-        match=re.compile('"DisplayName":"(.+?)"').findall(link)
-        for name in match:
-            addDir('%s - '%(name),'',61,'')
+        match=re.compile('parent":{"title":"(.+?)","id":"(.+?)"}.+?".+?"title":"(.+?)".+?"title":"(.+?)".+?"image":"(.+?)"').findall(link)
+        for channel,id,next,now,image in match:
+            addDir('%s - [COLOR gold]Now[/COLOR] - %s [COLOR brown]Next[/COLOR] - %s  '%(channel,now,next),'https://voila.metabroadcast.com/1.0/schedules/?annotations=broadcasts,locations,description&apiKey=public:64a03c33f9a64c2b80b6f58cd218e5c8&from=now&count=10&id=%s'%id,61,image)
 def ITALY(url):
         link = OPEN_URL(url)
         match=re.compile('href=".+?">(.+?)</a>').findall(link)
@@ -209,12 +241,49 @@ def INDIA2(url):
 def FILMON(url):
         xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
         link = OPEN_URL(url)
-        match=re.compile('<display-name lang="en">(.+?)</display-name>.+?\n.+?<icon src="(.+?)" />').findall(link)
-        match2=re.compile('<display-name lang="en">(.+?)</display-name>').findall(link)
+        match=re.compile('title":"(.+?)","channel_number":(.+?),').findall(link)
         for name,icon in match:
-            addDir('%s'%(name),'http://thaisatellite.tv/ftv/guide_filmon.xmltv',14,'%s'%(icon))
-        for name in match2:
-            addDir('%s'%(name),'http://thaisatellite.tv/ftv/guide_filmon.xmltv',14,'')
+            addDir('%s'%(name),'http://thaisatellite.tv/ftv/guide_filmon.xmltv',14,'http://www.astro.com.my/whats-on/logoimages/ChannelLogo/Pos/%s_100.png	'%(icon))
+
+def orange(url):
+        xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
+        link = OPEN_URL(url)
+        match=re.compile('<span class="number">(.+?)</span><span class="title"> - (.+?)<').findall(link)
+        for url,name in match:
+            addDir('%s'%(name),url,14,'')
+
+def torrent(url):
+        xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
+        link = OPEN_URL(url)
+        match=re.compile('<a href="(.+?)" rel="bookmark" title="Permanent Link to (.+?)" class="entry-link">\n<div class="entry-image" style="background-image: url\(\'(.+?)\'\)"></div>').findall(link)
+        match2=re.compile('<div class="posts-nav-next">\n<a class="btn" href="(.+?)"><span class="btn-text">Older&hellip;</span>').findall(link)
+        for url,name,image in match:
+            addDir2('%s'%(name),'https://torrentfreak.com/%s'%url,91,'https://torrentfreak.com/%s'%image)
+        for url in match2:
+            addDir('NEXT >>>','https://torrentfreak.com%s'%url,90,'')
+def torrent2(url):
+        link = OPEN_URL(url)
+        match=re.compile('<div class="entry-content">(.+?)</article>', re.DOTALL).findall(link)
+        for text in match:
+            showText('read',text)
+def torrent3(name):
+            showText('read',name)
+def showText(heading, text):
+    id = 10147
+    xbmc.executebuiltin('ActivateWindow(%d)' % id)
+    xbmc.sleep(100)
+    win = xbmcgui.Window(id)
+    retry = 50
+    while (retry > 0):
+        try:
+            xbmc.sleep(10)
+            retry -= 1
+            win.getControl(1).setLabel(heading)
+            win.getControl(5).setText(text)
+            return
+        except:
+            pass
+
 def FILMON2(url,name):
         link = OPEN_URL(url)
         match=re.compile('<programme start="(.+?)\s\+.+?" stop="(.+?)\s\+.+?" channel="%s">.+?\n.+?<title lang="en">(.+?)</title>'%(name)).findall(link)
@@ -613,5 +682,19 @@ elif mode==83:
           MOVIES4(url)
 elif mode==84:
           MOVIES5(url)
+elif mode==89:
+          orange(url)
+elif mode==90:
+          torrent(url)
+elif mode==91:
+          torrent2(url)
+elif mode==93:
+          torrent3(name)
+elif mode==93:
+          torrent3(name)
+elif mode==95:
+          SA(url)
+elif mode==4117:
+          SHOOT(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
