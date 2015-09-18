@@ -161,7 +161,11 @@ due to the lack of people being bothered to give me feedback. people wishing to 
 </extension>
 </addon>
 
+<<<<<<< HEAD
 <addon id="plugin.video.megasearch" name="Mega Search" version="2.21.0" provider-name="Pipcan">
+=======
+<addon id="plugin.video.megasearch" name="Mega Search" version="2.20.0" provider-name="Pipcan">
+>>>>>>> 142acc726ff624403306b62a338098561d814ab6
   <requires>
     <import addon="xbmc.python" version="2.7.9"/>
 	<import addon="script.module.urlresolver"  version="2.1.2"/>
