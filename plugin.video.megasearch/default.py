@@ -14,10 +14,10 @@ bingimage='http://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAbGK17.img'
 def CATEGORIES():
             addDir('[B]SELECT A CATAGORY[/B]','m',8800,'')
             addDir('[COLOR green]SEARCH[/COLOR] [I]Click here For Searches[/I]','search',345,'')
-            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct Movie List[/COLOR]','file:///%s\movies.m3u'%addonDir,555,'')
+#            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct Movie List[/COLOR]','file:///%s\movies.m3u'%addonDir,555,'')
 #            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct French TV List[/COLOR]','file:///%s\TV2.m3u'%addonDir,555,'')
 #            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct TV List[/COLOR]','file:///%s\TV.m3u'%addonDir,555,'')
-            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]TRAILERS[/COLOR]','file:///%s\l.m3u'%addonDir,555,'')
+#            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]TRAILERS[/COLOR]','file:///%s\l.m3u'%addonDir,555,'')
             addDir('[COLOR gold]MOVIES[/COLOR]','m',8801,'')
             addDir('[COLOR gold]VIDEOS[/COLOR]','m',8802,'https://www.ucmo.edu/technology/grants/images/VideoLogo.jpg')
             addDir('[COLOR gold]DOCUMENTRYS[/COLOR]','m',8803,'http://www.4rfv.co.uk/logo/37290lo.jpg')
@@ -28,10 +28,8 @@ def CATEGORIES():
             addDir('[COLOR gold]ADDONS[/COLOR]','s',1655,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]RADIO[/COLOR]','http://listenlive.eu',8890,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]JOKES[/COLOR]','http://laughfactory.com/jokes',731,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
-            addDir('[COLOR red][SOON][/COLOR] [COLOR gold]Contact Me[/COLOR]','http://laughfactory.com/jokes',5680,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]MISC[/COLOR]','http://www.tv-logo.com',4913,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]Test My M3u [I]Click Here To Test Your Ownn M3u For Broken Links[/I][/COLOR]','f',1457,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
-            addDir('[COLOR gold]Test My M3u [I]Click Here To Test Your Ownn M3u For Broken Links[/I][/COLOR]','%s/Links.txt'%addonDir,8004,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
 def MISC(url):
             addDir('[COLOR gold]TV LOGOS[/COLOR]','http://www.tv-logo.com',5464,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]HQ FLAGS[/COLOR]','CONTRRYD',4912,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
@@ -41,6 +39,7 @@ def MISC(url):
             addDir('[COLOR gold]LOTTERY RESULT[/COLOR]','http://www.testious.com/free-cccam-servers',5691,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]News From Torrent Freak[/COLOR]','https://torrentfreak.com/',977,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]LOGOPIDA[/COLOR]','http://logos.wikia.com/wiki/Special:Search?fulltext=Search&search=',9777,'http://www.lyngsat-logo.com/images/ls_logo.gif')
+            addDir('[COLOR gold]VIPERGIRLS[/COLOR]','http://vipergirls.to/forum.php',9778,'http://www.lyngsat-logo.com/images/ls_logo.gif')
 
 def Guidecat():
             addDir('Search','http://en.timefor.tv/search/?channels=all&title=on&period=1209600&q=',4118,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
@@ -104,14 +103,36 @@ def showText(heading, text, image):
 def TESTLINKS(url):
     list = []
     count = 0
-    link = OPEN_URL(url)
+    r = requests.get(url)
     dp = xbmcgui.DialogProgress()
-    match=re.compile('#EXTINF:(.+?)\n.+?http(.+?)[\n<>"]', re.DOTALL).findall(link)
+    match=re.compile('#EXTINF:(.+?)\n.+?http(.+?)[\n<>"]', re.DOTALL).findall(r.text)
+    match2=re.compile('#EXTINF:.+?,(.+?)http(.+?)[#<"\s\n]').findall(r.text)
     for name,url in match:
         count = count + 1
         dp.create('Testing %s Of'%(count),'%s'%url)
     LF = open('%s/Links.txt'%addonDir, 'a')
     for name,url in match:
+            if dp.iscanceled(): 
+                return
+            try:
+                url = "http"+url
+                count = count - 1
+                r = requests.get(url, timeout=0.500, allow_redirects=True)
+                stat = r.reason
+                stat2 = stat+' '+name
+                dp.update(count,'%s - %s'%(stat2,count))
+                list.append(stat)
+                if dp.iscanceled(): 
+                    return
+                if r.reason == 'OK':
+                   addDir2(stat2.replace('<br />',''),url.replace('>','').replace('"','').replace('<','').replace('?','').replace('%0D',''),10,'')
+                   LF.write('#EXTINF:' +name + '\n' + url + '\n')
+            except :
+                 pass
+    for name,url in match2:
+        count = count + 1
+        dp.create('Testing %s Of'%(count),'%s'%url)
+    for name,url in match2:
             if dp.iscanceled(): 
                 return
             try:
@@ -457,11 +478,12 @@ def CATMOVIES():
             addDir('Craving TV','http://series-cravings.me/tv-show-1',5679,'ww')
             addDir('Craving Movie','http://series-cravings.me/tv-show-1',5679,'ww')
             addDir('Filmgozar','http://dl.filmgozar.com/',8,'ww')
+            addDir('Filmgozar','http://dl.tehmovies.com/94',8,'ww')
             addDir('LOADS OF FILMS','http://46.105.122.150/',8,'ww')
             addDir('Moviefarsi','http://dl5.moviefarsi.org/',8,'ww')
             addDir('Free Upload .IR ','http://dl8.freeupload.ir/',8,'ww')
             addDir('NFilm','http://dl.nfilm.org/DL/',8,'ww')
-#            addDir('Canflix','http://cdn.alpha.canflix.net',8,'ww')
+            addDir('Canflix','http://cdn.alpha.canflix.net',8,'ww')
             addDir('Tehmovies','http://dl.tehmovies.com/',8,'ww')
             addDir('MVSnap','http://mvsnap.com',299,'ww')
             addDir('Yukinoshita','http://yukinoshita.eu/ddl/',12,'ww')
@@ -469,6 +491,7 @@ def CATMOVIES():
             addDir('Hastidownload','http://dl.hastidownload.net/ali/film/',8,'ww')
             addDir('Kino Kong','http://kinokong.net',18,'http://smarttvnews.ru/wp-content/uploads/2015/05/32731097.png')
             addDir('HDFullTV','http://hdfull.tv',656,'')
+            addDir('MOVIE25','http://movie25.ag',9780,'')
 def CATMUSIC():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             addDir('ARTISTS','http://e-mp3bul.com/albumler/2/yabanci-mp3-indir.html',5000,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
@@ -517,6 +540,8 @@ def CATIPTV():
             addDir('Navi-X','http://www.navixtreme.com/wiilist/',730,'')
             addDir('HDFULLHD EU','http://hdfullhd.eu/iptv_groups.txt',181,'')
             addDir('skysate','http://www.skysate.net',182,'')
+            addDir('IPTVPLAYLIST.com','http://iptvplaylists.com/',183,'')
+            addDir('iptvm3u8.blogspot.com','http://iptvm3u8.blogspot.co.uk/',184,'')
 def TVLOGOS(url):
         link = OPEN_URL(url)	
         match=re.compile('<img src="/views/default/images/flags/(.+?)" alt="(.+?)" width="48" height="48" /><a href="(.+?)"').findall(link)
@@ -929,6 +954,18 @@ def CARTOONS3(url):
             dp.create('Featching Your Video','Opening Ready')
             play=xbmc.Player(GetPlayerCore())
             play.play(url)
+def movie25(url):
+        r = requests.get(url)
+        match=re.compile('<div class="movie_pic"><a href="(.+?)" target="_self" title="(.+?)">\n<img src="(.+?)"').findall(r.text)
+        match2=re.compile('(.+?)</li>\n<li id="playing_button"><a href="(.+?)"').findall(r.text)
+        match3=re.compile('external.php?url=\'(.+?)\'').findall(r.text)
+        for url,name,image in match:
+            addDir(name,'http://movie25.ag/%s'%url,9780,image)
+        for name,url in match2:
+            addDir(name,'http://movie25.ag/%s'%url,9780,'')
+        for url in match3:
+            addDir(url,'http://movie25.ag/%s'%url,9780,'')
+
 def LANGSAT(url):
         link = OPEN_URL(url)
         match=re.compile('font face="Arial" size=1><b><a href="\.\.\/tvcountry\/(.+?)_1\.html">(.+?)</a>').findall(link)
@@ -1259,13 +1296,13 @@ def MYMOVIES(url):
         xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_FULLPATH )
         xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_FILE )
         link = OPEN_URL(url)
-        match=re.compile('https://openload.co/f/(.+?)/(.+?)mp4').findall(link)
-        match3=re.compile('https://openload.co/f/(.+?)/(.+?)mkv').findall(link)
+        match=re.compile('href="(.+?)" target=_blank>(.+?)<').findall(link)
+        match3=re.compile('(.+?)\n').findall(link)
         match2=re.compile('id="realGkfuuudownload"><a href="(.+?)"').findall(link)
         for url,name in match:
-            addDir2('%s'%(name.replace('720P','[COLOR gold]720p[/COLOR]').replace('720p','[COLOR gold]720p[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('1080P','[COLOR gold]1080p[/COLOR]').replace('1080p','[COLOR gold]1080p[/COLOR]').replace('_',' ').replace('mkv',' ').replace('.',' ').replace('mp4',' ').replace('MovieFarsi','')),'https://openload.co/f/%s/%s'%(url,name),9,'')
-        for url,name in match3:
-            addDir2('%s'%(name.replace('720P','[COLOR gold]720p[/COLOR]').replace('720p','[COLOR gold]720p[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('4k','[COLOR gold]4K[/COLOR]').replace('1080P','[COLOR gold]1080p[/COLOR]').replace('1080p','[COLOR gold]1080p[/COLOR]').replace('_',' ').replace('mkv',' ').replace('.',' ').replace('mp4',' ').replace('MovieFarsi','')),'https://openload.io/f/%s/%s'%(url,name),9,'')
+            addDir2(name,url,9,'')
+        for url in match3:
+            addDir2(url.replace('',''),'%s'%url,9,'')
         for url2 in match2:
             play=xbmc.Player(GetPlayerCore())
             message = 'PLEASE WAIT 5 SECONDS'
@@ -1470,6 +1507,16 @@ def animakai3(url):
             addDir2('PlaY Google Video','%s'%(url),9,'')
         for url in match1:
             addDir2('PlaY Google Video','http://videohd1.mais.uol.com.br/%s.mp4?r=http://www.animakai.tv/episodio/'%(url),9,'')
+def Husham(url):
+        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        link = OPEN_URL(url)
+        match2=re.compile('<a href="(.+?)" title="(.+?)"').findall(link)
+        match=re.compile('#EXTINF:.+?,(.+?)http(.+?)[#<"\s\n]', re.DOTALL).findall(link)
+        for url,name in match2:
+            addDir(name,'%s'%(url),183,'')
+        for name,url in match:
+            addDir2(name,'http%s'%(url),10,'')
+
 def canflix(url):
         link = OPEN_URL(url)
         match=re.compile('<td data-sort-value="(.+?)"><i class="fa fa-(.+?) fa-fw"></i>&nbsp;<a href="(.+?)">.+?\n.+?value=".+?">(.+?)<').findall(link)
@@ -1478,6 +1525,37 @@ def canflix(url):
                 addDir('[COLOR yellow][FOLDER][/COLOR] %s - %s'%(name,size),'%s%s'%(url,url2),12,'%s'%(type))
             else:
                 addDir2('%s - %s'%(name,size),'%s%s'%(url,url2),9,'%s'%(type))
+def iptvm3u8blogspot(url):
+        link = OPEN_URL(url)
+        match=re.compile('<h3 class=\'post-title entry-title\'>\n<a href=\'(.+?)\'>(.+?)</a>').findall(link)
+        match2=re.compile('<a class=\'blog-pager-older-link\' href=\'(.+?)\'').findall(link)
+        for url,name in match:
+                addDir(name,url,185,'')
+        for url in match2:
+                addDir('NEXTT >>>>',url,184,'')
+def iptvm3u8blogspot2(url):
+        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        link = OPEN_URL(url)
+        match=re.compile('#EXTINF:.+?,(.+?)\n(.+?)\n').findall(link)
+        for name,url in match:
+                addDir2(name,url,10,'')
+def VIPER(url):
+        link = OPEN_URL(url)
+        match=re.compile('<h2 class="forumtitle"><a href="(.+?)">(.+?)</a></h2>').findall(link)
+        match2=re.compile('<a class="title" href="(.+?)" id=".+?"').findall(link)
+        match3=re.compile('<a href="(.+?)" target="_blank"><img src="(.+?)" border="0"').findall(link)
+        for url,name in match:
+                addDir(name,'http://vipergirls.to/%s'%url,9778,'')
+        for url in match2:
+                addDir(url,'http://vipergirls.to/%s'%url,9778,'')
+        for url,image in match3:
+                addDir(image,url,9779,image)
+def VIPER2(url):
+    payload = dict(imgContinue='')
+    r = requests.post(url, data=payload)
+    test = ["http"+url for url in re.findall(r'http(.+?)\'', r.content)]
+    for url in test:
+        addDir2(url,url,4914,url)
 def BING(url):
         searchStr = ''
         keyboard = xbmc.Keyboard(searchStr, 'Search')
@@ -1588,13 +1666,11 @@ def PLAYVIDEO2(url,name):
     dp.create('Featching Your Video','Trying To Play Directly')
     dp.update(35,'Trying To Play Directly')
     try: play.play(url)
-    except: pass
-    try: url=urlresolver.HostedMediaFile(url).resolve()
     except: pass 
-    dp.create('Featching Your Video','Trying To Play Directly')
     dp.update(65,'Trying To Resollver')
-    try: play.play(url)
+    try: url=urlresolver.HostedMediaFile(url).resolve()
     except: pass
+
     dp.update(100,'You Video Is Ready')
     dp.close()
 def PLAYVIDEO3(url):
@@ -1974,5 +2050,17 @@ elif mode==9777:
           LOGOPIDIA(url)
 elif mode==182:
           skysate(url)
+elif mode==183:
+          Husham(url)
+elif mode==184:
+          iptvm3u8blogspot(url)
+elif mode==185:
+          iptvm3u8blogspot2(url)
+elif mode==9778:
+          VIPER(url)
+elif mode==9779:
+          VIPER2(url)
+elif mode==9780:
+          movie25(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
