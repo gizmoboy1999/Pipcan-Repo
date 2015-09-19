@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import urllib,urllib2,sys,re,xbmcplugin,xbmcgui,xbmcaddon,datetime,base64,os,requests,ssl,HTMLParser,httplib,stat
-
 username=xbmcplugin.getSetting(int(sys.argv[1]), 'username')
 password=xbmcplugin.getSetting(int(sys.argv[1]), 'password')
 ADDON = xbmcaddon.Addon(id='plugin.video.megasearch')
@@ -30,11 +29,14 @@ def CATEGORIES():
             addDir('[COLOR gold]JOKES[/COLOR]','http://laughfactory.com/jokes',731,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]MISC[/COLOR]','http://www.tv-logo.com',4913,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]Test My M3u [I]Click Here To Test Your Ownn M3u For Broken Links[/I][/COLOR]','f',1457,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
+            addDir('[COLOR gold]OPEN TESTING STOREAGE M3u [I]Click Here [/I][/COLOR]','file:///%s\Links.txt'%addonDir,1458,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
 def MISC(url):
             addDir('[COLOR gold]TV LOGOS[/COLOR]','http://www.tv-logo.com',5464,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]HQ FLAGS[/COLOR]','CONTRRYD',4912,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]LANGSAT LOGOS[/COLOR]','http://www.lyngsat-logo.com/tvcountry/tvcountry.html',4915,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]CCAMS[/COLOR]','http://www.hack-sat.com/cccam&newcamd.html',4286,'http://www.lyngsat-logo.com/images/ls_logo.gif')
+            addDir('[COLOR gold]ocbfreeservers[/COLOR]','https://sites.google.com/site/ocbfreeservers/home/free-servers/cccam-free-servers',4286,'http://www.lyngsat-logo.com/images/ls_logo.gif')
+            addDir('[COLOR gold]CCams select-pedia [/COLOR]','http://select-pedia.com/tutos/category/cccam-servers/',4289,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]CCAMS Testious.com[/COLOR]','http://www.testious.com/free-cccam-servers',4286,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]LOTTERY RESULT[/COLOR]','http://www.testious.com/free-cccam-servers',5691,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]News From Torrent Freak[/COLOR]','https://torrentfreak.com/',977,'http://www.lyngsat-logo.com/images/ls_logo.gif')
@@ -42,7 +44,8 @@ def MISC(url):
             addDir('[COLOR gold]VIPERGIRLS[/COLOR]','http://vipergirls.to/forum.php',9778,'http://www.lyngsat-logo.com/images/ls_logo.gif')
 
 def Guidecat():
-            addDir('Search','http://en.timefor.tv/search/?channels=all&title=on&period=1209600&q=',4118,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
+            xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
+            addDir('...Search','http://en.timefor.tv/search/?channels=all&title=on&period=1209600&q=',4118,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
             addDir('UK','https://voila.metabroadcast.com/1.0/schedules/?annotations=broadcasts,locations,description&apiKey=public:64a03c33f9a64c2b80b6f58cd218e5c8&from=now&count=2&id=hkq7,hkq7,hn2v,hkvp,hkvp,hkvb,hkvb,hkvk,hk7x,hkyp,hmbs,hm77,hky6,hm4r,hk5v,hkzp,hkzt,hn6s,hn6t,hn7d,hkwj,hkwm,hkwp,hk7y,hkyn,hn8c,hk8t,hn4f,hmhb,hkzw,hk5s,hk4s,hnz2,hkwb,hn2c,hm6d,hkwz,hkwx,hkwx,hkxc,hkxb,hnzn,hkxf,hm2w,hkqz,hkrh,hkrh,hmb4,hk9n,hkxz,hk9x,hm6w,hk92,hk9z,hkzq,hny5,hk56,hk57,hn29,hk5q,hn6h,hm27,hn4m,hk5t,hpbt,hkx2,hmb2,hky7,hk8k,hnyj,hkvh,hmb5,hk5n,hkvn,hn68,hkvm,hkvj,hkv7,hn86,hkw9,hm6z,hn97,hn4k,hmbc,hnxq,hnz6,hmcj,hk47,hk9b,hkxk,hnz5,hpdr,hkxd,hkzs,hk9p,hkx4,hn6k,hn8t,hn9m,hn6b,hkzr,hkvf,hnw7,hkzn,hkzv,hkxh,hpbg,hn8b,hkrq,hkrr,hn9k,hk87,hk45,hk2f,hn9t,hmb7,hkxr,hmbx,hmbr,hk2z,hkwh,hkzm,hkwy,hn6y,hkvc,hk9f,hk8m,hn28,hn9g,hn6g,hn9h,hpcj,hk4t,hk2g,hk2h,hk54,hk4d,hkx5,hk86,hk44,hkzk,hk95,hkxt,hk96,hkxv,hn9f,hk8p,hmbg,hk4c,hn9c,hn9p,hkwk,hn8g,hn9y,hk89,hkwn,hn7t,hkxs,hn9b,hpdp,hk68,hk67,hmbv,hk7r,hn2y,hk7g,hk7d,hk7b,hk65,hk7j,hk7m,hk7t,hk66,hk2c,hk2d,hnyf,hn5q,hk5d,hk5f,hk55,hk8y,hm7h,hm22,hk8w,hk8x,hmcf,hmcg,hn7y,hmbt,hk7q,hn2x,hk7f,hk7c,hk69,hk64,hk7h,hk7k,hk7s,hkzy,hkvd,hpb8,hmb8,hkxq,hkxp,hk27,hkyk,hkzd,hkzc,hk94,hny2,hkx8,hkvg,hk2p,hk4p,hk4n,hnbd,hk4j,hn87,hk4w,hk4q,hm6h,hpdw,hn9w,hk4v,hk8s,hk4x,hn96,hn95,hn94,hk9c,hn92,hn9z,hm4h,hk6q,hk6r,hk8r,hmbq,hn8n,hnxp,hk2k,hk2s,hk2n,hnz8,hk2m,hn4y,hpck,hk4f,hn4v,hn8y,hk26,hpb5,hk5h,hk9s,hn4x,hnw6,hm62,hk5g,hpcm,hk2t,hk2v,hn85,hk2w,hn8p,hnxn,hk5p,hk52,hmbf,hkqk,hk2j,hpbc,hn4w,hk9r,hpdm,hn84,hpby,hpbz,hkyj,hkx7,hn6x,hkrv,hn2d,hkx9,hnxb,hn7q,hnzd,hny7,hk7v,hkyh,hnw5,hk6k,hkzg,hk9d,hm6y,hkzj,hkyv,hk6m,hky5,hk9m,hk7w,hky2,hk84,hk5b,hk49,hmck,hkys,hkyt,hk4k,hk4m,hk4r,hky4,hk6t,hkyz,hkyg,hn4h,hk9k,hk6w,hk6v,hkyw,hkzf,hkyf,hk48,hkrs,hn9n,hn98,hkyc,hm7c,hn7k,hpcf,hnx4,hkz2,hk4g,hk9w,hk9v,hm54,hky9,hn4d,hk2r,hn6v,hn6r,hkz5,hk8h,hk8j,hkz7,hk7z,hk99,hkxj,hk9t,hnyz,hkry,hm5c,hm6t,hn7c,hk2q,hn8z,hny4,hky8,hkzz,hkrx,hkyb,hkz6,hk2y,hk72,hk76,hnx7,hnyt,hkx6,hk6n,hk24,hkzx,hn4z,hnz7,hkxy,hkxx,hn24,hm55,hpb2,hkxw,hn46,hn4r,hnw4,hn45,hk78,hn5h,hn4b,hk28,hn88,hmcb,hnx9,hnxg,hkzb,hnxy,hnzx,hnzc,hny9,hnzf,hkqs,hkq2,hkrg,hkrf,hkq4,hkrd,hkqy,hkqx,hnwz,hkq8,hnwx,hkrc,hkrb,hnwy,hkrm,hkrn,hkrj,hkq6,hkq9,hkqt,hmbn,hmbn,hkth,hktk,hktm,hktn,hktp,hmcx,hmcn,hmcy,hmc5,hmxb,hmc6,hmvy,hmcm,hmrp,hktv,hktw,hkt4,hktz,hm56,hktr,hmsy,hmvz,hmpy,hkt9,hktj,hkty,hkt8,hktq,hkrz,hkt7,hmyk,hmqf,hmyj,hmyn,hmcv,hmv9,hmqt,hmvc,hmcs,hmwz',5691,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
             addDir('India','http://tv.burrp.com/channels.html',4111,'')
             addDir('POLAND','http://www.teleman.pl',4113,'')
@@ -68,6 +71,16 @@ def Guidecat():
             addDir('Austria','http://en.timefor.tv/ajax/channel_list.php?language=at',4117,'')
             addDir('Benelux','http://en.timefor.tv/ajax/channel_list.php?language=be',4117,'')
             addDir('Bailtikum','http://en.timefor.tv/ajax/channel_list.php?language=ee,lv,lt',4117,'')
+            addDir('Ireland','http://entertainment.ie/tv/whats-on-now.asp?utm_source=entertainment.ie&utm_medium=navmenu&utm_campaign=fullmenu',191,'')
+            addDir('Ireland','https://web-api-salt.horizon.tv/oesp/api/IE/eng/web/channels?includeInvisible=true&byLocationId=6651943228&personalised=false',192,'')
+            addDir('Germany','https://web-api-salt.horizon.tv/oesp/api/DE/deu/web/channels?includeInvisible=true&byLocationId=97245734974&personalised=false',192,'')
+            addDir('Netherlands','https://web-api-salt.horizon.tv/oesp/api/NL/nld/web/channels?includeInvisible=true&byLocationId=24443942973&personalised=false',192,'')
+            addDir('Switzaland','https://web-api-salt.horizon.tv/oesp/api/CH/deu/web/channels?includeInvisible=true&byLocationId=21656615412&personalised=false',192,'')
+            addDir('Czech','https://web-api-salt.horizon.tv/oesp/api/CZ/ces/web/channels?includeInvisible=true&byLocationId=546677286980&personalised=false',192,'')
+            addDir('Poland','https://web-api-salt.horizon.tv/oesp/api/PL/pol/web/channels?includeInvisible=true&byLocationId=239100967286&personalised=false',192,'')
+            addDir('Romainia','https://web-api-salt.horizon.tv/oesp/api/RO/ron/web/channels?includeInvisible=true&byLocationId=552441895089&personalised=false',192,'')
+            addDir('Austria','https://web-api-salt.horizon.tv/oesp/api/AT/deu/web/channels?includeInvisible=true&byLocationId=554823207312&personalised=false',192,'')
+            addDir('Hugary','https://web-api-salt.horizon.tv/oesp/api/HU/hun/web/channels?includeInvisible=true&byLocationId=552442407296&personalised=false',192,'')
 def torrent(url):
         xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
         link = OPEN_URL(url)
@@ -109,7 +122,8 @@ def TESTLINKS(url):
     match2=re.compile('#EXTINF:.+?,(.+?)http(.+?)[#<"\s\n]').findall(r.text)
     for name,url in match:
         count = count + 1
-        dp.create('Testing %s Of'%(count),'%s'%url)
+        count2 = count
+        dp.create('FOUND %s'%(count),'%s'%url)
     LF = open('%s/Links.txt'%addonDir, 'a')
     for name,url in match:
             if dp.iscanceled(): 
@@ -120,7 +134,10 @@ def TESTLINKS(url):
                 r = requests.get(url, timeout=0.500, allow_redirects=True)
                 stat = r.reason
                 stat2 = stat+' '+name
-                dp.update(count,'%s - %s'%(stat2,count))
+                if r.reason == 'OK':
+                    dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR green]%s[/COLOR]'%(count,stat))
+                else:
+                    dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
                 list.append(stat)
                 if dp.iscanceled(): 
                     return
@@ -141,7 +158,46 @@ def TESTLINKS(url):
                 r = requests.get(url, timeout=0.500, allow_redirects=True)
                 stat = r.reason
                 stat2 = stat+' '+name
-                dp.update(count,'%s - %s'%(stat2,count))
+                if r.reason == 'OK':
+                    dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR green]%s[/COLOR]'%(count,stat))
+                else:
+                    dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
+                list.append(stat)
+                if dp.iscanceled():
+                    return
+                if r.reason == 'OK':
+                   addDir2(stat2.replace('<br />',''),url.replace('>','').replace('"','').replace('<','').replace('?','').replace('%0D',''),10,'')
+                   LF.write('#EXTINF:' +name + '\n' + url + '\n')
+            except :
+                 pass
+    dp.close()
+    LF.close()
+    dialog = xbmcgui.Dialog()
+    ret = dialog.select('RESULTS', list)
+def TESTLINKS2(url):
+    list = []
+    count = 0
+    link = OPEN_URL(url)
+    dp = xbmcgui.DialogProgress()
+    match=re.compile('#EXTINF:(.+?)\n.+?http(.+?)[\n<>"]', re.DOTALL).findall(link)
+    for name,url in match:
+        count = count + 1
+        count2 = count
+        dp.create('FOUND %s'%(count),'%s'%url)
+    LF = open('%s/Links.txt'%addonDir, 'a')
+    for name,url in match:
+            if dp.iscanceled(): 
+                return
+            try:
+                url = "http"+url
+                count = count - 1
+                r = requests.get(url, timeout=0.500, allow_redirects=True)
+                stat = r.reason
+                stat2 = stat+' '+name
+                if r.reason == 'OK':
+                    dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR green]%s[/COLOR]'%(count,stat))
+                else:
+                    dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
                 list.append(stat)
                 if dp.iscanceled(): 
                     return
@@ -181,13 +237,20 @@ def SHOOTs(url):
         match2=re.compile('<td class="time"><p>(.+?)<.+?<td class="title"><p><a href=".+?" class="programsummary" programid=".+?">(.+?)<|<td class="logo">.+?<a href="/listings/(.+?)"><img src="(.+?)"', re.DOTALL).findall(link)
         for name,name2,name3,image in match2:
             addDir('%s %s %s'%(name3.replace('-',' '),name,name2),'',4117,image)
-def TESTING():
-        url = 'https://megasearch.unblocked.pw/?q=1080&h=0&c=2&s=1&a=&m1=&m2='
-        r = requests.get(url, timeout=0.500,allow_redirects=True)
-        r.content
-        match=re.compile('href="(.+?)"').findall(r.content)
-        for url in match:
-            addDir(url,url,4112,url)
+
+def ie(url):
+    r = requests.get(url)
+    match=re.compile('data-original="(.+?)"  title="(.+?)".+?title="(.+?)".+?<em>(.+?)</em>', re.DOTALL).findall(r.content)
+    for image,name,now,timee in match:
+        addDir('[B]%s[/B] - [COLOR yellow]NOW:[/COLOR] %s - 	%s'%(name,now.replace('View','').replace('programme details',''),timee),'',191,'http:%s'%image)
+def ie2(url):
+    r = requests.get(url)
+    match=re.compile('languageCode":"(.+?)","deviceCode":".+?","locationId":".+?","channelNumber":.+?,"stationSchedules":\[{"station":{"id":"(.+?)","countryCode":"(.+?)","locationId":"(.+?)","title":"(.+?)"').findall(r.content)
+    match2=re.compile('"startTime":\d\d\d\d\d\d\d(\d\d)(\d\d)(\d\d),"endTime":.+?,"stationId":".+?","imi":".+?","program":{"id":"crid:.+?","title":"(.+?)","description":"(.+?)"').findall(r.content)
+    for lan,id,CC,LID,name in match:
+        addDir('%s'%(name),'https://web-api-salt.horizon.tv/oesp/api/%s/%s/web/listings?range=1-12&byStationId=%s&byLocationId=%s'%(CC,lan,id,LID),192,'http:%s'%name)
+    for start,start1,start2,name,de in match2:
+        addDir('[%s:%s:%s] - [B]%s[/B] - [I]%s[/I]'%(start,start1,start2,name,de),'',192,'http:%s'%name)
 def VIAT(url):
         xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
         link = OPEN_URL(url)
@@ -497,6 +560,7 @@ def CATMUSIC():
             addDir('ARTISTS','http://e-mp3bul.com/albumler/2/yabanci-mp3-indir.html',5000,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
             addDir('ALBUMS','http://e-mp3bul.com/album/142/2015.html',5000,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
             addDir('[COLOR red][BROKEN] Search FreeMp3.SE[/COLOR]','http://freemp3.se/?query=',5023,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
+            addDir('http://muscut.ru/','http://muscut.ru/search/',190,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
 def CATANIME():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             addDir('Toonova Cartoon','http://www.toonova.com/cartoon',8000,'http://www.toonova.com/images/site/front/logo.png')
@@ -534,14 +598,75 @@ def CATIPTV():
             addDir('tunisia-dreambox','http://www.tunisia-dreambox.info/e2-addons-manager/Tunisiasat-plugins/softupdates/TSmedia/',8,'')
             addDir('iptvm3u','http://www.iptvm3u.com/search?updated-max=2016-03-03T15%3A14%3A00-08%3A00&max-results=7000',600,'http://3.bp.blogspot.com/-mMVnbnRsISw/U7c8sb8Z2uI/AAAAAAAAAL8/_6Vfvpcfa7c/s1600/freeiptv.png')
             addDir('VLC','http://www.vlchistory.eu.pn',701,'http://www.vlchistory.eu.pn/images/vlcstreamhistory.jpg')
-            addDir('langamepp','http://langamepp.com/playlist/pipcan/Snooker85',504,'http://langamepp.com/iptv/img/logo.png')
-            addDir('http://www.iptvlinks.com/','http://www.iptvlinks.com/feeds/posts/summary?alt=json-in-script&callback=pageNavi&max-results=200',2000,'http://4.bp.blogspot.com/-D4Nbf7BM52c/VIzTSja7qdI/AAAAAAAACe4/u7PSn24mxK8/s1600/iptvlinkslogo.png')
-            addDir('[COLOR yellow]VIDEOS [/COLOR]http://free-links-iptv.blogspot.co.uk/','https://www.blogger.com/feeds/7582140021242686461/posts/summary?alt=json-in-script&start-index=1&max-results=10',2000,'')
+            addDir('LANMEAPP','http://langamepp.com/playlist/pipcan/Snooker85',504,'http://langamepp.com/iptv/img/logo.png')
+            addDir('Iptvlinks','http://www.iptvlinks.com/feeds/posts/summary?alt=json-in-script&callback=pageNavi&max-results=200',2000,'http://4.bp.blogspot.com/-D4Nbf7BM52c/VIzTSja7qdI/AAAAAAAACe4/u7PSn24mxK8/s1600/iptvlinkslogo.png')
+            addDir('Free-links-iptv.blogspot','https://www.blogger.com/feeds/7582140021242686461/posts/summary?alt=json-in-script&start-index=1&max-results=10',2000,'')
             addDir('Navi-X','http://www.navixtreme.com/wiilist/',730,'')
             addDir('HDFULLHD EU','http://hdfullhd.eu/iptv_groups.txt',181,'')
-            addDir('skysate','http://www.skysate.net',182,'')
+            addDir('SKYSKATE','http://www.skysate.net',182,'')
             addDir('IPTVPLAYLIST.com','http://iptvplaylists.com/',183,'')
-            addDir('iptvm3u8.blogspot.com','http://iptvm3u8.blogspot.co.uk/',184,'')
+            addDir('IPTVM3U.BLOGSPOT','http://iptvm3u8.blogspot.co.uk/',184,'')
+            addDir('IPTVSPORTT','http://www.iptvsportt.com',186,'')
+            addDir('IPTV.Online-TV','http://iptv.online-tv.ws/',187,'')
+            addDir('RUSSIAN PEERS TV','http://api.peers.tv/iptv/2/playlist.m3u',188,'')
+            addDir('GLAZTV','http://www.glaz.tv/online-tv/',189,'')
+            addDir('FILMON','file:///%s/VLC.m3u'%addonDir,194,'')
+            addDir('select-pedia','http://select-pedia.com/tutos/tag/playlist/',4289,'')
+def sportiptv(url):
+        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        r = requests.get(url)
+        match=re.compile("<h2 class='post-home-title post-main-home-title'>\n<a href='(.+?)' title='(.+?)'>").findall(r.text)
+        match2=re.compile("#EXTINF:.+?,(.+?)<br />\n(.+?)<br />").findall(r.text)
+        for url,name in match:
+            addDir('[COLOR yellow]%s[/COLOR]'%name,url,186,'')
+        for name,url in match2:
+            addDir2(name,url,9,'')
+def PEERSTV(url):
+        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        r = requests.get(url)
+        match=re.compile('EXTINF:.+?,(.+?)\nhttp(.+?)\n', re.DOTALL).findall(r.content)
+        for name,url in match:
+            addDir2(name,'http%s'%url,9,'')
+def tew(url):
+        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        link = OPEN_URL(url)
+        match=re.compile('EXTINF:.+?,(.+?)[<\n].+?http(.+?)[<\n]', re.DOTALL).findall(link)
+        for name,url in match:
+            addDir2(name,'http%s'%url,9,'')
+def muscut(url):
+            searchStr = ''
+            keyboard = xbmc.Keyboard(searchStr, 'Search')
+            keyboard.doModal()
+            searchStr=keyboard.getText()
+            r = requests.get('%s%s'%(url,searchStr))
+            match=re.compile('<h2 class="search-title" >(.+?)</h2>.+?onclick="data_update\(\'(.+?)\'.+?open_download\(\'(.+?)\'', re.DOTALL).findall(r.content)
+            for url,image,down in match:
+                addDir2(url,down,10,image)
+
+def glaztv(url):
+        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        r = requests.get(url)
+        match=re.compile('<a href="(.+?)"><img width="60" height="60" src="(.+?)" alt="(.+?)"').findall(r.content)
+        match2=re.compile('file=(.+?)&').findall(r.content)
+        match3=re.compile('class="pageactive">(.+?)</span><a href="(.+?)">').findall(r.content)
+        for url,img,name in match:
+            addDir(name,'http://www.glaz.tv%s'%url,189,'http://www.glaz.tv%s'%img)
+        for url in match2:
+            addDir2(url,url,10,'http://www.glaz.tv%s'%url)
+        for name,url in match3:
+            addDir('Currrnt Page %s Go To Next >>>>'%name,'http://www.glaz.tv%s'%url,189,'http://www.glaz.tv%s'%url)
+def iptvonline(url):
+        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        r = requests.get(url)
+        match=re.compile('<span class="thumbnail"><a href="(.+?)"><img width="100" height="100" src="(.+?)"').findall(r.text)
+        match2=re.compile("#EXTINF:.+?,(.+?)<br/>\n(.+?)<br/>").findall(r.text)
+        match3=re.compile('<link rel="next" href="(.+?)"/>').findall(r.text)
+        for url in match3:
+            addDir('[COLOR yellow]NEXT >>>>>[/COLOR]',url,187,'')
+        for url,name in match:
+            addDir('[COLOR yellow]%s[/COLOR]'%name,url,187,name)
+        for name,url in match2:
+            addDir2(name,url,9,'')
 def TVLOGOS(url):
         link = OPEN_URL(url)	
         match=re.compile('<img src="/views/default/images/flags/(.+?)" alt="(.+?)" width="48" height="48" /><a href="(.+?)"').findall(link)
@@ -589,9 +714,14 @@ def HACKSAT(url):
             addDir2('%s - %s  (%s)'%(number,url,ammount),'%s'%url,9,'')
 def CCAMS(url):
         link = OPEN_URL(url)
-        match=re.compile('[\n>]([CN])(.+?)\n').findall(link)
+        match=re.compile('[\n>]([CN])(.+?)[<\n]').findall(link)
         for norc,code in match:
             addDir2('%s%s'%(norc,code),'d',4287,'')
+def CCAM(url):
+        link = OPEN_URL(url)
+        match=re.compile('\d\d\d\d\d\d;">(.+?)<').findall(link)
+        for code in match:
+            addDir2('%s'%(code),'d',4287,'')
 def SHOWCCAMS(name):
     dialog = xbmcgui.Dialog()
     dialog.ok("Your CamLine", "%s"%name)
@@ -1366,6 +1496,22 @@ def IPTVLINKS2(url):
                 addDir2('%s) - %s'%(id,name.replace('<span style="color: red;">','').replace('</span>','')),'%s'%(url),9,'')
             else:
                 addDir2('%s) - %s'%(id,name.replace('<span style="color: red;">','').replace('</span>','')),'%s'%(url),9,'')
+def FILMON(url):
+        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        link = OPEN_URL(url)
+        match=re.compile('<title>(.+?)</title>.+?\n<link>(.+?)</link>').findall(link)
+        for name,url in match:
+            addDir2(name,'%s'%(url),10,'')
+def CCS(url):
+        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        link = OPEN_URL(url)
+        match=re.compile('#EXTINF:(.+?)<.+?http(.+?)<', re.DOTALL).findall(link)
+        match2=re.compile('<a class="next page-numbers" href="http://select-pedia.com/tutos/tag/playlist/page/(.+?)/">Next').findall(link)
+        for url in match2:
+            addDir('NEXT >>>>','http://select-pedia.com/tutos/tag/playlist/page/%s'%url,4289,'')
+        for name,url in match:
+            addDir2(name,'http%s'%(url),10,'')
+
 def kinokong(url):
         link = OPEN_URL(url)
         match=re.compile('<a href="/films/(.+?)/">.+?<b>(.+?)</b>').findall(link)
@@ -2009,6 +2155,8 @@ elif mode==4285:
         HACKSAT(url)
 elif mode==4286:
         CCAMS(url)
+elif mode==4289:
+        CCS(url)
 elif mode==4287:
         SHOWCCAMS(name)
 elif mode==5691:
@@ -2029,11 +2177,13 @@ elif mode==966:
           torrent3(name,image)
 elif mode==1456:
           TESTLINKS(url)
+elif mode==1458:
+    tew(url)
 elif mode==1457:
     dialog = xbmcgui.Dialog()
     fn = dialog.browse(1, 'XBMC', 'files', '', False, False, 'C:')
     url = 'file:///'+fn
-    TESTLINKS(url)
+    TESTLINKS2(url)
 elif mode==4113:
           VIAT(url)
 elif mode==4114:
@@ -2062,5 +2212,25 @@ elif mode==9779:
           VIPER2(url)
 elif mode==9780:
           movie25(url)
+elif mode==186:
+          sportiptv(url)
+elif mode==187:
+          iptvonline(url)
+elif mode==188:
+          PEERSTV(url)
+elif mode==189:
+          glaztv(url)
+elif mode==190:
+          muscut(url)
+elif mode==191:
+          ie(url)
+elif mode==192:
+          ie2(url)
+elif mode==194:
+          FILMON(url)
+elif mode==195:
+          FILMON2()
+elif mode==4289:
+          CCAM(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
