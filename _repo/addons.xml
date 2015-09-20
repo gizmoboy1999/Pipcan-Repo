@@ -161,7 +161,7 @@ due to the lack of people being bothered to give me feedback. people wishing to 
 </extension>
 </addon>
 
-<addon id="plugin.video.megasearch" name="Mega Search" version="2.31.0" provider-name="Pipcan">
+<addon id="plugin.video.megasearch" name="Mega Search" version="2.35.0" provider-name="Pipcan">
   <requires>
     <import addon="xbmc.python" version="2.7.9"/>
 	<import addon="script.module.urlresolver"  version="2.1.2"/>
@@ -172,8 +172,8 @@ due to the lack of people being bothered to give me feedback. people wishing to 
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
+    <summary lang="en">Think Of Mash-Up+Zeus Video X 1000</summary>
+    <description lang="en">Search Any Site For Streams Movies And So You Dont Waste Time Clicking On Dead Links Your Can Run The Stream Tester And Will Quickley Sort Out The Broken From The Working Can Do This On Any Page Can Even Test Own M3U</description>
 	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
     <platform>all</platform>
   </extension>

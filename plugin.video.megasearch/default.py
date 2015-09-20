@@ -11,25 +11,26 @@ addonDir = Addon.getAddonInfo('path').decode("utf-8")
 bingurl = 'http://prod.video.msn.com/tenant/amp/entityid/'
 bingimage='http://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAbGK17.img'
 def CATEGORIES():
-            addDir('[B]SELECT A CATAGORY[/B]','m',8800,'')
-            addDir('[COLOR green]SEARCH[/COLOR] [I]Click here For Searches[/I]','search',345,'')
+            addDir('[B]SELECT A CATAGORY[/B]','m',8800,'http://icons.iconseeker.com/png/fullsize/toolbar-icons-6/favorites-7.png')
+            addDir('[COLOR green]SEARCH[/COLOR] [I]Click here For Searches[/I]','search',345,'http://icons.iconseeker.com/png/fullsize/pastel/search-10.png')
 #            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct Movie List[/COLOR]','file:///%s\movies.m3u'%addonDir,555,'')
 #            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct French TV List[/COLOR]','file:///%s\TV2.m3u'%addonDir,555,'')
 #            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct TV List[/COLOR]','file:///%s\TV.m3u'%addonDir,555,'')
 #            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]TRAILERS[/COLOR]','file:///%s\l.m3u'%addonDir,555,'')
-            addDir('[COLOR gold]MOVIES[/COLOR]','m',8801,'')
-            addDir('[COLOR gold]VIDEOS[/COLOR]','m',8802,'https://www.ucmo.edu/technology/grants/images/VideoLogo.jpg')
-            addDir('[COLOR gold]DOCUMENTRYS[/COLOR]','m',8803,'http://www.4rfv.co.uk/logo/37290lo.jpg')
-            addDir('[COLOR gold]ANIME & CARTOONS[/COLOR]','m',8804,'http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=40579470')
-            addDir('[COLOR gold]IPTV[/COLOR]','m',8805,'http://androidtivibox.net/sanpham/30-08-2015/files/unnamed.png')
-            addDir('[COLOR gold]TV Guides[/COLOR]','m',8855,'http://androidtivibox.net/sanpham/30-08-2015/files/unnamed.png')
-            addDir('[COLOR gold]MUSIC[/COLOR]','m',8806,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
-            addDir('[COLOR gold]ADDONS[/COLOR]','s',1655,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
-            addDir('[COLOR gold]RADIO[/COLOR]','http://listenlive.eu',8890,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
-            addDir('[COLOR gold]JOKES[/COLOR]','http://laughfactory.com/jokes',731,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
-            addDir('[COLOR gold]MISC[/COLOR]','http://www.tv-logo.com',4913,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
-            addDir('[COLOR gold]Test My M3u [I]Click Here To Test Your Ownn M3u For Broken Links[/I][/COLOR]','f',1457,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
-            addDir('[COLOR gold]OPEN TESTING STOREAGE M3u [I]Click Here [/I][/COLOR]','file:///%s\Links.txt'%addonDir,1458,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
+            addDir('[COLOR gold]MOVIES[/COLOR]','m',8801,'http://icons.iconseeker.com/png/fullsize/smoothicons-5/movies-46.png')
+            addDir('[COLOR gold]VIDEOS[/COLOR]','m',8802,'http://icons.iconseeker.com/png/fullsize/on-stage/video-11.png')
+            addDir('[COLOR gold]TORRENTS[/COLOR]','m',8899,'http://icons.iconseeker.com/png/fullsize/soft-dimension/utorrent.png')
+            addDir('[COLOR gold]DOCUMENTRYS[/COLOR]','m',8803,'http://icons.iconseeker.com/png/fullsize/crystal-project-application/camera-8.png')
+            addDir('[COLOR gold]ANIME & CARTOONS[/COLOR]','m',8804,'http://icons.iconseeker.com/png/fullsize/cartoons/disc-3.png')
+            addDir('[COLOR gold]IPTV[/COLOR]','m',8805,'http://www.unidat.sk/images/icon_iptv.png')
+            addDir('[COLOR gold]TV Guides[/COLOR]','m',8855,'http://apk-dl.com/detail/image/net.micene.minigroup.palimpsests.lite-w250.png')
+            addDir('[COLOR gold]MUSIC[/COLOR]','m',8806,'http://icons.iconseeker.com/png/fullsize/fush-folders/music.png')
+            addDir('[COLOR gold]ADDONS[/COLOR]','s',1655,'http://icons.iconseeker.com/png/fullsize/fresh-addon/part.png')
+            addDir('[COLOR gold]RADIO[/COLOR]','http://listenlive.eu',8890,'http://icons.iconseeker.com/png/fullsize/antique/radio.png')
+            addDir('[COLOR gold]JOKES[/COLOR]','http://laughfactory.com/jokes',731,'http://icons.iconseeker.com/png/fullsize/forum-faces/joker.png')
+            addDir('[COLOR gold]MISC[/COLOR]','http://www.tv-logo.com',4913,'http://icons.iconseeker.com/png/fullsize/slate/misc.png')
+            addDir('[COLOR gold]Test My M3u [I]Click Here To Test Your Ownn M3u For Broken Links[/I][/COLOR]','f',1457,'http://icons.iconseeker.com/png/fullsize/nova/test-tubes.png')
+            addDir('[COLOR gold]OPEN TESTING STOREAGE M3u [I]Click Here [/I][/COLOR]','file:///%s\Links.txt'%addonDir,1458,'http://icons.iconseeker.com/png/fullsize/toolbar-icons-6/favorites-7.png')
 def MISC(url):
             addDir('[COLOR gold]TV LOGOS[/COLOR]','http://www.tv-logo.com',5464,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]HQ FLAGS[/COLOR]','CONTRRYD',4912,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
@@ -42,45 +43,91 @@ def MISC(url):
             addDir('[COLOR gold]News From Torrent Freak[/COLOR]','https://torrentfreak.com/',977,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]LOGOPIDA[/COLOR]','http://logos.wikia.com/wiki/Special:Search?fulltext=Search&search=',9777,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]VIPERGIRLS[/COLOR]','http://vipergirls.to/forum.php',9778,'http://www.lyngsat-logo.com/images/ls_logo.gif')
+            addDir('[COLOR gold]EROTIC STORYS[/COLOR]','http://www.asstr.org/files/Collections/',9788,'http://www.lyngsat-logo.com/images/ls_logo.gif')
 
 def Guidecat():
             xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
             addDir('...Search','http://en.timefor.tv/search/?channels=all&title=on&period=1209600&q=',4118,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
-            addDir('UK','https://voila.metabroadcast.com/1.0/schedules/?annotations=broadcasts,locations,description&apiKey=public:64a03c33f9a64c2b80b6f58cd218e5c8&from=now&count=2&id=hkq7,hkq7,hn2v,hkvp,hkvp,hkvb,hkvb,hkvk,hk7x,hkyp,hmbs,hm77,hky6,hm4r,hk5v,hkzp,hkzt,hn6s,hn6t,hn7d,hkwj,hkwm,hkwp,hk7y,hkyn,hn8c,hk8t,hn4f,hmhb,hkzw,hk5s,hk4s,hnz2,hkwb,hn2c,hm6d,hkwz,hkwx,hkwx,hkxc,hkxb,hnzn,hkxf,hm2w,hkqz,hkrh,hkrh,hmb4,hk9n,hkxz,hk9x,hm6w,hk92,hk9z,hkzq,hny5,hk56,hk57,hn29,hk5q,hn6h,hm27,hn4m,hk5t,hpbt,hkx2,hmb2,hky7,hk8k,hnyj,hkvh,hmb5,hk5n,hkvn,hn68,hkvm,hkvj,hkv7,hn86,hkw9,hm6z,hn97,hn4k,hmbc,hnxq,hnz6,hmcj,hk47,hk9b,hkxk,hnz5,hpdr,hkxd,hkzs,hk9p,hkx4,hn6k,hn8t,hn9m,hn6b,hkzr,hkvf,hnw7,hkzn,hkzv,hkxh,hpbg,hn8b,hkrq,hkrr,hn9k,hk87,hk45,hk2f,hn9t,hmb7,hkxr,hmbx,hmbr,hk2z,hkwh,hkzm,hkwy,hn6y,hkvc,hk9f,hk8m,hn28,hn9g,hn6g,hn9h,hpcj,hk4t,hk2g,hk2h,hk54,hk4d,hkx5,hk86,hk44,hkzk,hk95,hkxt,hk96,hkxv,hn9f,hk8p,hmbg,hk4c,hn9c,hn9p,hkwk,hn8g,hn9y,hk89,hkwn,hn7t,hkxs,hn9b,hpdp,hk68,hk67,hmbv,hk7r,hn2y,hk7g,hk7d,hk7b,hk65,hk7j,hk7m,hk7t,hk66,hk2c,hk2d,hnyf,hn5q,hk5d,hk5f,hk55,hk8y,hm7h,hm22,hk8w,hk8x,hmcf,hmcg,hn7y,hmbt,hk7q,hn2x,hk7f,hk7c,hk69,hk64,hk7h,hk7k,hk7s,hkzy,hkvd,hpb8,hmb8,hkxq,hkxp,hk27,hkyk,hkzd,hkzc,hk94,hny2,hkx8,hkvg,hk2p,hk4p,hk4n,hnbd,hk4j,hn87,hk4w,hk4q,hm6h,hpdw,hn9w,hk4v,hk8s,hk4x,hn96,hn95,hn94,hk9c,hn92,hn9z,hm4h,hk6q,hk6r,hk8r,hmbq,hn8n,hnxp,hk2k,hk2s,hk2n,hnz8,hk2m,hn4y,hpck,hk4f,hn4v,hn8y,hk26,hpb5,hk5h,hk9s,hn4x,hnw6,hm62,hk5g,hpcm,hk2t,hk2v,hn85,hk2w,hn8p,hnxn,hk5p,hk52,hmbf,hkqk,hk2j,hpbc,hn4w,hk9r,hpdm,hn84,hpby,hpbz,hkyj,hkx7,hn6x,hkrv,hn2d,hkx9,hnxb,hn7q,hnzd,hny7,hk7v,hkyh,hnw5,hk6k,hkzg,hk9d,hm6y,hkzj,hkyv,hk6m,hky5,hk9m,hk7w,hky2,hk84,hk5b,hk49,hmck,hkys,hkyt,hk4k,hk4m,hk4r,hky4,hk6t,hkyz,hkyg,hn4h,hk9k,hk6w,hk6v,hkyw,hkzf,hkyf,hk48,hkrs,hn9n,hn98,hkyc,hm7c,hn7k,hpcf,hnx4,hkz2,hk4g,hk9w,hk9v,hm54,hky9,hn4d,hk2r,hn6v,hn6r,hkz5,hk8h,hk8j,hkz7,hk7z,hk99,hkxj,hk9t,hnyz,hkry,hm5c,hm6t,hn7c,hk2q,hn8z,hny4,hky8,hkzz,hkrx,hkyb,hkz6,hk2y,hk72,hk76,hnx7,hnyt,hkx6,hk6n,hk24,hkzx,hn4z,hnz7,hkxy,hkxx,hn24,hm55,hpb2,hkxw,hn46,hn4r,hnw4,hn45,hk78,hn5h,hn4b,hk28,hn88,hmcb,hnx9,hnxg,hkzb,hnxy,hnzx,hnzc,hny9,hnzf,hkqs,hkq2,hkrg,hkrf,hkq4,hkrd,hkqy,hkqx,hnwz,hkq8,hnwx,hkrc,hkrb,hnwy,hkrm,hkrn,hkrj,hkq6,hkq9,hkqt,hmbn,hmbn,hkth,hktk,hktm,hktn,hktp,hmcx,hmcn,hmcy,hmc5,hmxb,hmc6,hmvy,hmcm,hmrp,hktv,hktw,hkt4,hktz,hm56,hktr,hmsy,hmvz,hmpy,hkt9,hktj,hkty,hkt8,hktq,hkrz,hkt7,hmyk,hmqf,hmyj,hmyn,hmcv,hmv9,hmqt,hmvc,hmcs,hmwz',5691,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
-            addDir('India','http://tv.burrp.com/channels.html',4111,'')
-            addDir('POLAND','http://www.teleman.pl',4113,'')
-            addDir('POLAND2','http://tv.wp.pl/?ticaid=115939',4113,'')
-            addDir('Portugal','http://cabovisao.pt/tv_guiatv.php?y=2015&m=9&d=13&h=9&c=1000&f=Todos&o=iziepg_schedule&epg_face=yes',4114,'')
-            addDir('Portugal2','http://meogo.meo.pt/tv/guiatv/Pages/default.aspx',4114,'')
-            addDir('Romania','http://programetv.program24.ro/acum-la-tv.html',4115,'')
-            addDir('Canadian','http://tvmds.tvpassport.com/snippet/white_label/php/grid.php?subid=tvpassport&lu=3895D&wd=940&ht=445&mode=json&&items=180',4113,'')
-            addDir('UK','http://en.timefor.tv/ajax/channel_list.php?language=uk',4117,'')
-            addDir('Denmark','http://en.timefor.tv/ajax/channel_list.php?language=dk',4117,'')
-            addDir('Finland','http://en.timefor.tv/ajax/channel_list.php?language=fi',4117,'')
-            addDir('France','http://en.timefor.tv/ajax/channel_list.php?language=fr',4117,'')
-            addDir('Germany','http://en.timefor.tv/ajax/channel_list.php?language=de',4117,'')
-            addDir('Italy','http://en.timefor.tv/ajax/channel_list.php?language=it',4117,'')
-            addDir('Netherlands','http://en.timefor.tv/ajax/channel_list.php?language=nl',4117,'')
-            addDir('Norway','http://en.timefor.tv/ajax/channel_list.php?language=no',4117,'')
-            addDir('Poland','http://en.timefor.tv/ajax/channel_list.php?language=po',4117,'')
-            addDir('Russia','http://en.timefor.tv/ajax/channel_list.php?language=ru',4117,'')
-            addDir('Spain','http://en.timefor.tv/ajax/channel_list.php?language=es',4117,'')
-            addDir('Swedan','http://en.timefor.tv/ajax/channel_list.php?language=se',4117,'')
-            addDir('Swetzaland','http://en.timefor.tv/ajax/channel_list.php?language=sw',4117,'')
-            addDir('Turkey','http://en.timefor.tv/ajax/channel_list.php?language=tr',4117,'')
-            addDir('Austria','http://en.timefor.tv/ajax/channel_list.php?language=at',4117,'')
-            addDir('Benelux','http://en.timefor.tv/ajax/channel_list.php?language=be',4117,'')
-            addDir('Bailtikum','http://en.timefor.tv/ajax/channel_list.php?language=ee,lv,lt',4117,'')
-            addDir('Ireland','http://entertainment.ie/tv/whats-on-now.asp?utm_source=entertainment.ie&utm_medium=navmenu&utm_campaign=fullmenu',191,'')
-            addDir('Ireland','https://web-api-salt.horizon.tv/oesp/api/IE/eng/web/channels?includeInvisible=true&byLocationId=6651943228&personalised=false',192,'')
-            addDir('Germany','https://web-api-salt.horizon.tv/oesp/api/DE/deu/web/channels?includeInvisible=true&byLocationId=97245734974&personalised=false',192,'')
-            addDir('Netherlands','https://web-api-salt.horizon.tv/oesp/api/NL/nld/web/channels?includeInvisible=true&byLocationId=24443942973&personalised=false',192,'')
-            addDir('Switzaland','https://web-api-salt.horizon.tv/oesp/api/CH/deu/web/channels?includeInvisible=true&byLocationId=21656615412&personalised=false',192,'')
-            addDir('Czech','https://web-api-salt.horizon.tv/oesp/api/CZ/ces/web/channels?includeInvisible=true&byLocationId=546677286980&personalised=false',192,'')
-            addDir('Poland','https://web-api-salt.horizon.tv/oesp/api/PL/pol/web/channels?includeInvisible=true&byLocationId=239100967286&personalised=false',192,'')
-            addDir('Romainia','https://web-api-salt.horizon.tv/oesp/api/RO/ron/web/channels?includeInvisible=true&byLocationId=552441895089&personalised=false',192,'')
-            addDir('Austria','https://web-api-salt.horizon.tv/oesp/api/AT/deu/web/channels?includeInvisible=true&byLocationId=554823207312&personalised=false',192,'')
-            addDir('Hugary','https://web-api-salt.horizon.tv/oesp/api/HU/hun/web/channels?includeInvisible=true&byLocationId=552442407296&personalised=false',192,'')
+            addDir('UK','https://voila.metabroadcast.com/1.0/schedules/?annotations=broadcasts,locations,description&apiKey=public:64a03c33f9a64c2b80b6f58cd218e5c8&from=now&count=2&id=hkq7,hkq7,hn2v,hkvp,hkvp,hkvb,hkvb,hkvk,hk7x,hkyp,hmbs,hm77,hky6,hm4r,hk5v,hkzp,hkzt,hn6s,hn6t,hn7d,hkwj,hkwm,hkwp,hk7y,hkyn,hn8c,hk8t,hn4f,hmhb,hkzw,hk5s,hk4s,hnz2,hkwb,hn2c,hm6d,hkwz,hkwx,hkwx,hkxc,hkxb,hnzn,hkxf,hm2w,hkqz,hkrh,hkrh,hmb4,hk9n,hkxz,hk9x,hm6w,hk92,hk9z,hkzq,hny5,hk56,hk57,hn29,hk5q,hn6h,hm27,hn4m,hk5t,hpbt,hkx2,hmb2,hky7,hk8k,hnyj,hkvh,hmb5,hk5n,hkvn,hn68,hkvm,hkvj,hkv7,hn86,hkw9,hm6z,hn97,hn4k,hmbc,hnxq,hnz6,hmcj,hk47,hk9b,hkxk,hnz5,hpdr,hkxd,hkzs,hk9p,hkx4,hn6k,hn8t,hn9m,hn6b,hkzr,hkvf,hnw7,hkzn,hkzv,hkxh,hpbg,hn8b,hkrq,hkrr,hn9k,hk87,hk45,hk2f,hn9t,hmb7,hkxr,hmbx,hmbr,hk2z,hkwh,hkzm,hkwy,hn6y,hkvc,hk9f,hk8m,hn28,hn9g,hn6g,hn9h,hpcj,hk4t,hk2g,hk2h,hk54,hk4d,hkx5,hk86,hk44,hkzk,hk95,hkxt,hk96,hkxv,hn9f,hk8p,hmbg,hk4c,hn9c,hn9p,hkwk,hn8g,hn9y,hk89,hkwn,hn7t,hkxs,hn9b,hpdp,hk68,hk67,hmbv,hk7r,hn2y,hk7g,hk7d,hk7b,hk65,hk7j,hk7m,hk7t,hk66,hk2c,hk2d,hnyf,hn5q,hk5d,hk5f,hk55,hk8y,hm7h,hm22,hk8w,hk8x,hmcf,hmcg,hn7y,hmbt,hk7q,hn2x,hk7f,hk7c,hk69,hk64,hk7h,hk7k,hk7s,hkzy,hkvd,hpb8,hmb8,hkxq,hkxp,hk27,hkyk,hkzd,hkzc,hk94,hny2,hkx8,hkvg,hk2p,hk4p,hk4n,hnbd,hk4j,hn87,hk4w,hk4q,hm6h,hpdw,hn9w,hk4v,hk8s,hk4x,hn96,hn95,hn94,hk9c,hn92,hn9z,hm4h,hk6q,hk6r,hk8r,hmbq,hn8n,hnxp,hk2k,hk2s,hk2n,hnz8,hk2m,hn4y,hpck,hk4f,hn4v,hn8y,hk26,hpb5,hk5h,hk9s,hn4x,hnw6,hm62,hk5g,hpcm,hk2t,hk2v,hn85,hk2w,hn8p,hnxn,hk5p,hk52,hmbf,hkqk,hk2j,hpbc,hn4w,hk9r,hpdm,hn84,hpby,hpbz,hkyj,hkx7,hn6x,hkrv,hn2d,hkx9,hnxb,hn7q,hnzd,hny7,hk7v,hkyh,hnw5,hk6k,hkzg,hk9d,hm6y,hkzj,hkyv,hk6m,hky5,hk9m,hk7w,hky2,hk84,hk5b,hk49,hmck,hkys,hkyt,hk4k,hk4m,hk4r,hky4,hk6t,hkyz,hkyg,hn4h,hk9k,hk6w,hk6v,hkyw,hkzf,hkyf,hk48,hkrs,hn9n,hn98,hkyc,hm7c,hn7k,hpcf,hnx4,hkz2,hk4g,hk9w,hk9v,hm54,hky9,hn4d,hk2r,hn6v,hn6r,hkz5,hk8h,hk8j,hkz7,hk7z,hk99,hkxj,hk9t,hnyz,hkry,hm5c,hm6t,hn7c,hk2q,hn8z,hny4,hky8,hkzz,hkrx,hkyb,hkz6,hk2y,hk72,hk76,hnx7,hnyt,hkx6,hk6n,hk24,hkzx,hn4z,hnz7,hkxy,hkxx,hn24,hm55,hpb2,hkxw,hn46,hn4r,hnw4,hn45,hk78,hn5h,hn4b,hk28,hn88,hmcb,hnx9,hnxg,hkzb,hnxy,hnzx,hnzc,hny9,hnzf,hkqs,hkq2,hkrg,hkrf,hkq4,hkrd,hkqy,hkqx,hnwz,hkq8,hnwx,hkrc,hkrb,hnwy,hkrm,hkrn,hkrj,hkq6,hkq9,hkqt,hmbn,hmbn,hkth,hktk,hktm,hktn,hktp,hmcx,hmcn,hmcy,hmc5,hmxb,hmc6,hmvy,hmcm,hmrp,hktv,hktw,hkt4,hktz,hm56,hktr,hmsy,hmvz,hmpy,hkt9,hktj,hkty,hkt8,hktq,hkrz,hkt7,hmyk,hmqf,hmyj,hmyn,hmcv,hmv9,hmqt,hmvc,hmcs,hmwz',5691,'%s/resources/flags/Akrotiri.png'%addonDir)
+            addDir('India','http://tv.burrp.com/channels.html',4111,'%s/resources/flags/India.png'%addonDir)
+            addDir('POLAND','http://www.teleman.pl',4113,'%s/resources/flags/Akrotiri.png'%addonDir)
+            addDir('Poland','http://tv.wp.pl/?ticaid=115939',4113,'%s/resources/flags/Poland.png'%addonDir)
+            addDir('Portugal','http://cabovisao.pt/tv_guiatv.php?y=2015&m=9&d=13&h=9&c=1000&f=Todos&o=iziepg_schedule&epg_face=yes',4114,'%s/resources/flags/Akrotiri.png'%addonDir)
+            addDir('Portugal2','http://meogo.meo.pt/tv/guiatv/Pages/default.aspx',4114,'%s/resources/flags/Akrotiri.png'%addonDir)
+            addDir('Romania','http://programetv.program24.ro/acum-la-tv.html',4115,'%s/resources/flags/Romania.png'%addonDir)
+            addDir('Canadian','http://tvmds.tvpassport.com/snippet/white_label/php/grid.php?subid=tvpassport&lu=3895D&wd=940&ht=445&mode=json&&items=180',4113,'%s/resources/flags/Canada.png'%addonDir)
+            addDir('UK','http://en.timefor.tv/ajax/channel_list.php?language=uk',4117,'%s/resources/flags/Akrotiri.png'%addonDir)
+            addDir('Denmark','http://en.timefor.tv/ajax/channel_list.php?language=dk',4117,'%s/resources/flags/Denmark.png'%addonDir)
+            addDir('Finland','http://en.timefor.tv/ajax/channel_list.php?language=fi',4117,'%s/resources/flags/Finland.png'%addonDir)
+            addDir('France','http://en.timefor.tv/ajax/channel_list.php?language=fr',4117,'%s/resources/flags/France.png'%addonDir)
+            addDir('Germany','http://en.timefor.tv/ajax/channel_list.php?language=de',4117,'%s/resources/flags/Germany.png'%addonDir)
+            addDir('Italy','http://en.timefor.tv/ajax/channel_list.php?language=it',4117,'%s/resources/flags/Italy.png'%addonDir)
+            addDir('Netherlands','http://en.timefor.tv/ajax/channel_list.php?language=nl',4117,'%s/resources/flags/Netherlands.png'%addonDir)
+            addDir('Norway','http://en.timefor.tv/ajax/channel_list.php?language=no',4117,'%s/resources/flags/Norway.png'%addonDir)
+            addDir('Poland','http://en.timefor.tv/ajax/channel_list.php?language=po',4117,'%s/resources/flags/Poland.png'%addonDir)
+            addDir('Russia','http://en.timefor.tv/ajax/channel_list.php?language=ru',4117,'%s/resources/flags/Russia.png'%addonDir)
+            addDir('Spain','http://en.timefor.tv/ajax/channel_list.php?language=es',4117,'%s/resources/flags/Spain.png'%addonDir)
+            addDir('Sweden','http://en.timefor.tv/ajax/channel_list.php?language=se',4117,'%s/resources/flags/Sweden.png'%addonDir)
+            addDir('Switzaland','http://en.timefor.tv/ajax/channel_list.php?language=sw',4117,'%s/resources/flags/Switzerland.png'%addonDir)
+            addDir('Turkey','http://en.timefor.tv/ajax/channel_list.php?language=tr',4117,'%s/resources/flags/Turkey.png'%addonDir)
+            addDir('Austria','http://en.timefor.tv/ajax/channel_list.php?language=at',4117,'%s/resources/flags/Austria.png'%addonDir)
+            addDir('Benelux','http://en.timefor.tv/ajax/channel_list.php?language=be',4117,'%s/resources/flags/Akrotiri.png'%addonDir)
+            addDir('Bailtikum','http://en.timefor.tv/ajax/channel_list.php?language=ee,lv,lt',4117,'%s/resources/flags/Akrotiri.png'%addonDir)
+            addDir('Ireland','http://entertainment.ie/tv/whats-on-now.asp?utm_source=entertainment.ie&utm_medium=navmenu&utm_campaign=fullmenu',191,'%s/resources/flags/Ireland.png'%addonDir)
+            addDir('Ireland','https://web-api-salt.horizon.tv/oesp/api/IE/eng/web/channels?includeInvisible=true&byLocationId=6651943228&personalised=false',192,'%s/resources/flags/Ireland.png'%addonDir)
+            addDir('Germany','https://web-api-salt.horizon.tv/oesp/api/DE/deu/web/channels?includeInvisible=true&byLocationId=97245734974&personalised=false',192,'%s/resources/flags/Germany.png'%addonDir)
+            addDir('Netherlands','https://web-api-salt.horizon.tv/oesp/api/NL/nld/web/channels?includeInvisible=true&byLocationId=24443942973&personalised=false',192,'%s/resources/flags/Netherlands.png'%addonDir)
+            addDir('Switzaland','https://web-api-salt.horizon.tv/oesp/api/CH/deu/web/channels?includeInvisible=true&byLocationId=21656615412&personalised=false',192,'%s/resources/flags/Switzerland.png'%addonDir)
+            addDir('Czech','https://web-api-salt.horizon.tv/oesp/api/CZ/ces/web/channels?includeInvisible=true&byLocationId=546677286980&personalised=false',192,'%s/resources/flags/Czech Republic.png'%addonDir)
+            addDir('Poland','https://web-api-salt.horizon.tv/oesp/api/PL/pol/web/channels?includeInvisible=true&byLocationId=239100967286&personalised=false',192,'%s/resources/flags/Poland.png'%addonDir)
+            addDir('Romania','https://web-api-salt.horizon.tv/oesp/api/RO/ron/web/channels?includeInvisible=true&byLocationId=552441895089&personalised=false',192,'%s/resources/flags/Romania.png'%addonDir)
+            addDir('Austria','https://web-api-salt.horizon.tv/oesp/api/AT/deu/web/channels?includeInvisible=true&byLocationId=554823207312&personalised=false',192,'%s/resources/flags/Austria.png'%addonDir)
+            addDir('Hungary','https://web-api-salt.horizon.tv/oesp/api/HU/hun/web/channels?includeInvisible=true&byLocationId=552442407296&personalised=false',192,'%s/resources/flags/Hungary.png'%addonDir)
+            addDir('Kosovo','http://tvim.tv/script/webepg/nowontv/',198,'%s/resources/flags/Hungary.png'%addonDir)
+            addDir('Kosovo2','http://ipko.com/epg/admin/channels.php',199,'%s/resources/flags/Hungary.png'%addonDir)
+            addDir('Eygpt','http://elcinema.com/en/tvguide/',120,'%s/resources/flags/Hungary.png'%addonDir)
+            addDir('Hong Kong','http://tvbnetworkvision.com/en/epg/',205,'%s/resources/flags/Hungary.png'%addonDir)
+            addDir('New Zeland','http://www.freeviewnz.tv/tvguide/whats-on/?nowAndNext=true',206,'%s/resources/flags/Hungary.png'%addonDir)
+def newz(url):
+    r = requests.get(url)
+    test = [url for url in re.findall(r'/nonumbracoimages/ChannelsOpg/(.+?)\?w=140&amp;h=90&amp;mode=crop" alt="(.+?)"', r.text)]
+    for img,name in test:
+        addDir(name,'',206,'http://www.freeviewnz.tv/nonumbracoimages/ChannelsOpg/%s?w=140&amp;h=90&amp;mode=crop'%img)
+def EROTIC(url):
+    url = url
+    r = requests.get(url)
+    match=re.compile('href="(.+?)/">(.+?)<').findall(r.content)
+    match2=re.compile('href="(.+?)txt">(.+?)<').findall(r.content)
+    for url2,name in match:
+        addDir('[COLOR yellow]FOLDER[/COLOR] - %s'%name,'%s%s/'%(url,url2),9788,'')
+    for url2,name in match2:
+        addDir2('[COLOR green]READ[/COLOR] - %s'%name,'%s%stxt'%(url,url2),9789,'')
+def EROTIC2(url):
+    r = requests.get(url)
+    showText('READ',r.content)
+def hongkong(url):
+    r = requests.get(url)
+    test = [url for url in re.findall(r'<li><a href="/en/epg/(.+?)">(.+?)<', r.text)]
+    for url,name in test:
+        addDir(name,'http://tvbnetworkvision.com/en/epg/%s'%url,205,'')
+def elcinema(url):
+    r = requests.get(url)
+    test = [url for url in re.findall(r'title=".+?" src="(.+?)" />', r.text)]
+    for img in test:
+        addDir('','',120,img)
+def trimtv(url):
+    r = requests.get(url)
+    test = [url for url in re.findall(r'<a href=\\"/epg/(.+?)\\".+?img src=\\"(.+?)\\', r.text)]
+    for url,img in test:
+        addDir(url,'http://tvim.tv/script/webepg/%s'%url,198,img)
+def ipko(name,url):
+    r = requests.get(url)
+    test = [url for url in re.findall(r'channel_id":.+?,"name_short":"(.+?)","channel_name":".+?","receiver_id":.+?,"icon":"(.+?)"', r.text)]
+    for name,img in test:
+        addDir(name,'http://ipko.com/epg/admin/programs.php?date=2015-09-19',199,'http://ipko.com/epg/logo/%s'%img)
+    test2 = [url for url in re.findall(r'channel_id":.+?,"program_name":"(.+?)","name_short":".+?".+?duration":(.+?),', r.text)]
+    for name,runtime in test2:
+        addDir('%s - [%smins]'%(name,runtime),'',199,'')
 def torrent(url):
         xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
         link = OPEN_URL(url)
@@ -113,6 +160,17 @@ def showText(heading, text, image):
             return
         except:
             pass
+def erase():
+    dialog = xbmcgui.Dialog()
+    if dialog.yesno("WARNING", 'You Are About To Erase Your List','', "",'NO','YES'):
+        LF = open('%s/Links.txt'%addonDir, 'w')
+        LF.write('#EXTM3U\n')
+        LF.close()
+        xbmc.executebuiltin("Container.Refresh")
+    else:
+        return	
+
+
 def TESTLINKS(url):
     list = []
     count = 0
@@ -127,11 +185,13 @@ def TESTLINKS(url):
     LF = open('%s/Links.txt'%addonDir, 'a')
     for name,url in match:
             if dp.iscanceled(): 
+                dp.close()
                 return
+                dp.close()
             try:
                 url = "http"+url
                 count = count - 1
-                r = requests.get(url, timeout=0.500, allow_redirects=True)
+                r = requests.get(url, timeout=(0.5), allow_redirects=True)
                 stat = r.reason
                 stat2 = stat+' '+name
                 if r.reason == 'OK':
@@ -140,22 +200,26 @@ def TESTLINKS(url):
                     dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
                 list.append(stat)
                 if dp.iscanceled(): 
+                    dp.close()
                     return
+                    dp.close()
                 if r.reason == 'OK':
-                   addDir2(stat2.replace('<br />',''),url.replace('>','').replace('"','').replace('<','').replace('?','').replace('%0D',''),10,'')
-                   LF.write('#EXTINF:' +name + '\n' + url + '\n')
-            except :
-                 pass
+                   addDir2(stat2,url,10,'')
+                   LF.write('#EXTINF:-1' +name + '\n' + url + '\n')
+            except:
+                pass
     for name,url in match2:
         count = count + 1
         dp.create('Testing %s Of'%(count),'%s'%url)
     for name,url in match2:
             if dp.iscanceled(): 
+                dp.close()
                 return
+                dp.close()
             try:
                 url = "http"+url
                 count = count - 1
-                r = requests.get(url, timeout=0.500, allow_redirects=True)
+                r = requests.get(url, timeout=(0.5, 5), allow_redirects=True)
                 stat = r.reason
                 stat2 = stat+' '+name
                 if r.reason == 'OK':
@@ -164,7 +228,9 @@ def TESTLINKS(url):
                     dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
                 list.append(stat)
                 if dp.iscanceled():
+                    dp.close()
                     return
+                    dp.close()
                 if r.reason == 'OK':
                    addDir2(stat2.replace('<br />',''),url.replace('>','').replace('"','').replace('<','').replace('?','').replace('%0D',''),10,'')
                    LF.write('#EXTINF:' +name + '\n' + url + '\n')
@@ -191,7 +257,7 @@ def TESTLINKS2(url):
             try:
                 url = "http"+url
                 count = count - 1
-                r = requests.get(url, timeout=0.500, allow_redirects=True)
+                r = requests.get(url, timeout=0.5, allow_redirects=True)
                 stat = r.reason
                 stat2 = stat+' '+name
                 if r.reason == 'OK':
@@ -303,8 +369,6 @@ def TVGUIDEUS2(url):
 def SEARCHCAT(url):
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             addDir2('[COLOR green]Still Work In Progrss Some Dont Work Fully[/COLOR]','',1000,'')
-            addDir('[COLOR green]100% [/COLOR]Search kodi.altervista','http://kodi.altervista.org/category/iptv-playlist/',8008,'http://media.navi-x.org/images/logos/search.png')
-            addDir('[COLOR brown]100% [/COLOR]Torrent TV','http://torrent-tv.gr/sport.php',5678,'http://media.navi-x.org/images/logos/search.png')
             addDir('[COLOR green]100% [/COLOR]Search Navix','http://www.navixtreme.com/playlist/search/video/',735,'http://media.navi-x.org/images/logos/search.png')
             addDir('[COLOR green]100% [/COLOR]Search letwatch.us','http://letwatch.us/?op=search&k=',3,'http://letwatch.us/images/logo.png')
             addDir('[COLOR green]100% [/COLOR]Search Vodlocker','http://vodlocker.com/?op=search&k=',5,'http://vodlocker.com/images/logo.png')
@@ -335,6 +399,9 @@ def SEARCHCAT(url):
             addDir('[COLOR red]Search Only [/COLOR]Search vimeo',' https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:4399489457&googlehost=www.google.com&gs_l=partner.3...1340.1963.0.2100.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.616j96704j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary17326&nocache=1441488697093&q=',5055,'')
             addDir('[COLOR red]Search Only [/COLOR]Search vk','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:7352955859&googlehost=www.google.com&gs_l=partner.12...0.0.1.46617.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.0jj1..1ac..25.partner..0.0.0.&callback=google.search.Search.apiary87&nocache=1441488557076&q=',5055,'')
             addDir('[COLOR green]100% [/COLOR]Search youwatch','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:8416818254&googlehost=www.google.com&gs_l=partner.3...1197.2570.0.2749.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.1367j752721j5..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary15167&nocache=1441488504168&q=',5055,'')
+def torrentcat():
+            addDir('[COLOR brown]100% [/COLOR]Torrent TV','http://torrent-tv.gr/sport.php',5678,'http://media.navi-x.org/images/logos/search.png')
+
 def GSEARCH(name,url):
         if name == 'NEXT >>>':
             link = OPEN_URL(url)
@@ -586,6 +653,7 @@ def CATIPTV():
             addDir('Search PASTEBIN','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&sort=date&q=',503,'http://pastebin.com/i/fb2.jpg')
             addDir('[COLOR red][BROKEN] [/COLOR]http://80.80.160.168/live/','http://80.80.160.168/live',8,'ww')
             addDir('TV Online Streams','http://tvonlinestreams.com',100,'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTdHvBF68jexfm7JTjh692IRi4xC5EbtIy5fDsMcE3ItOqMhXpN')
+            addDir('kodi.altervista','http://kodi.altervista.org/category/iptv-playlist/',8008,'http://media.navi-x.org/images/logos/search.png')
             addDir('IPTV Filmover','http://iptv.filmover.com',200,'http://website.informer.com/thumbnails/280x202/i/iptv.filmover.com.png')
             addDir('FreeTux TV','http://database.freetuxtv.net',300,'http://lh5.googleusercontent.com/-3BqBJNvGN-E/TqQWikkIrfI/AAAAAAAAAnk/nGx_J8pK1mU/s1600/freetuxtv.png')
             addDir('Hack-Sat','http://hack-sat.com/iptv.php',4285,'http://lh5.googleusercontent.com/-3BqBJNvGN-E/TqQWikkIrfI/AAAAAAAAAnk/nGx_J8pK1mU/s1600/freetuxtv.png')
@@ -628,6 +696,7 @@ def PEERSTV(url):
         for name,url in match:
             addDir2(name,'http%s'%url,9,'')
 def tew(url):
+        addDir2('[COLOR red]ERASE ENTIRE LIST[/COLOR]',url,1459,'')
         addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile('EXTINF:.+?,(.+?)[<\n].+?http(.+?)[<\n]', re.DOTALL).findall(link)
@@ -2232,5 +2301,23 @@ elif mode==195:
           FILMON2()
 elif mode==4289:
           CCAM(url)
+elif mode==8899:
+          torrentcat()
+elif mode==198:
+          trimtv(url)
+elif mode==199:
+          ipko(name,url)
+elif mode==120:
+          elcinema(url)
+elif mode==205:
+          hongkong(url)
+elif mode==206:
+          newz(url)
+elif mode==1459:
+          erase()
+elif mode==9788:
+          EROTIC(url)
+elif mode==9789:
+          EROTIC2(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
