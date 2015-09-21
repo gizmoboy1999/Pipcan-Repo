@@ -12,6 +12,7 @@ bingurl = 'http://prod.video.msn.com/tenant/amp/entityid/'
 bingimage='http://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAbGK17.img'
 def CATEGORIES():
             addDir('[B]SELECT A CATAGORY[/B]','m',8800,'http://icons.iconseeker.com/png/fullsize/toolbar-icons-6/favorites-7.png')
+            addDir('[COLOR green] BETA: SEARCH[/COLOR] [I]Click here For By Host[/I]','search',4291,'http://icons.iconseeker.com/png/fullsize/pastel/search-10.png')
             addDir('[COLOR green]SEARCH[/COLOR] [I]Click here For Searches[/I]','search',345,'http://icons.iconseeker.com/png/fullsize/pastel/search-10.png')
 #            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct Movie List[/COLOR]','file:///%s\movies.m3u'%addonDir,555,'')
 #            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct French TV List[/COLOR]','file:///%s\TV2.m3u'%addonDir,555,'')
@@ -44,7 +45,42 @@ def MISC(url):
             addDir('[COLOR gold]LOGOPIDA[/COLOR]','http://logos.wikia.com/wiki/Special:Search?fulltext=Search&search=',9777,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]VIPERGIRLS[/COLOR]','http://vipergirls.to/forum.php',9778,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]EROTIC STORYS[/COLOR]','http://www.asstr.org/files/Collections/',9788,'http://www.lyngsat-logo.com/images/ls_logo.gif')
-
+def hostselect(url):
+        if url == 'search':
+            xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
+            page = 1
+            searchStr = ''
+            keyboard = xbmc.Keyboard(searchStr, 'Search')
+            keyboard.doModal()
+            searchStr=keyboard.getText()
+            list = ['docs.google.com','play.google.com','nowvideo.sx','youtube.com','novamov.com','videoweed.es','vodlocker.com','movshare.net','divxstage.to','vk.com','youwatch.org','vimeo.com','filenuke.com','nowvideo.ch','streamcloud.eu','ishared.eu','cloudtime.to','nowvideo.co','vidbull.com','bloomberg.com','sharesix.com','vidto.me','thevideo.me','comcast.net','freakshare.com','gorillavid.in','abcnews.go.com','movpod.in','videopremium.tv','dailymotion.com','mooshare.biz','powvideo.net','ted.com','thefile.me','edition.cnn.com','itunes.apple.com','myvideo.de','stagevu.com','amazon.com','hulu.com','filehoot.com','flashx.tv','allmyvideos.net','vidzi.tv','vidspot.net','firedrive.com','veehd.com','vid.me','movdivx.com','grifthost.com']
+            dialog = xbmcgui.Dialog()
+            ret = dialog.select('Select A Host',list)
+            url = "https://www.alluc.com/stream/"+searchStr+"+host:"+list[ret]
+        r = requests.get(url)
+        match=re.compile('<div class="title"> <a href="(.+?)" target="_blank">(.+?)</a> </div>.+?<div style="max-height:68px;overflow:hidden;float:left;display:inline-block;margin-right:8px;">.+?<img alt=".+?" src=".+?"', re.DOTALL).findall(r.content)
+        for url2,name in match:
+            addDir(name,'https://www.alluc.com%s'%url2,4292,'https://www.alluc.com/thumbnail/SS4/29e1d121178a4ae99eb83afd2b3fd111')
+        page = page + 1
+        pagecount = page
+        addDir('NEXT >>>','%s?page=%s'%(url,pagecount),4291,'')
+def hostselect2(url):
+    r = requests.get(url)
+    match=re.compile('<textarea onClick="this\.select\(\);">(.+?)\n').findall(r.content)
+    for url in match:
+        addDir2('PLAY VIDEO',url,4,'')
+    
+def megasearch(url):
+    dialog = xbmcgui.Dialog()
+    ret = dialog.select('Select A Host',['Mega', 'Uptobox', 'Uplea', '1fichier', 'Uploaded', 'Rapidgator', 'Turbobit', 'Keep2share', 'Bitshare', 'Filefactory', 'Free', 'Oboom', 'Filepost', 'Depfile', 'Firedrive', 'Mediafire', 'Uploadable', 'Hugefiles', 'ClicknUpload', 'ZippyShare', 'Ryushare', '2shared', 'Depositfiles', 'Purevid', 'Exashare', 'Youwatch'])  
+    searchStr = ''
+    keyboard = xbmc.Keyboard(searchStr, 'Search')
+    keyboard.doModal()
+    searchStr=keyboard.getText()
+    r = requests.get(url+searchStr)
+    match=re.compile('<a class="link_result" target="_blank" href="(.+?)">.+?<span class="img"><img src="(.+?)"', re.DOTALL).findall(r.content)
+    for url,img in match:
+        addDir(url.replace('http://megasearch.co/link/',''),url,9711,img)
 def Guidecat():
             xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
             addDir('...Search','http://en.timefor.tv/search/?channels=all&title=on&period=1209600&q=',4118,'https://img01.bt.co.uk/s/assets/170815/tve/img/BT-Logo.png')
@@ -176,18 +212,21 @@ def TESTLINKS(url):
     count = 0
     r = requests.get(url)
     dp = xbmcgui.DialogProgress()
-    match=re.compile('#EXTINF:(.+?)\n.+?http(.+?)[\n<>"]', re.DOTALL).findall(r.text)
+    dp.create('STARTING','COUNTING LINKS')
+    match=re.compile('#EXTINF:[-01234567890\s,](.+?)[<\n"?].+?http(.+?)[\n<>"]', re.DOTALL).findall(r.text)
     match2=re.compile('#EXTINF:.+?,(.+?)http(.+?)[#<"\s\n]').findall(r.text)
+    xbmc.sleep(5000)
+    dp.close()
     for name,url in match:
         count = count + 1
         count2 = count
-        dp.create('FOUND %s'%(count),'%s'%url)
+    dp.create('FOUND %s'%(count),'DONE COUNTING')
+    xbmc.sleep(2000)
     LF = open('%s/Links.txt'%addonDir, 'a')
+    dp.update(count,'FOUND %s'%(count2))
+    xbmc.sleep(3000)
     for name,url in match:
-            if dp.iscanceled(): 
-                dp.close()
-                return
-                dp.close()
+            if dp.iscanceled(): return
             try:
                 url = "http"+url
                 count = count - 1
@@ -195,27 +234,22 @@ def TESTLINKS(url):
                 stat = r.reason
                 stat2 = stat+' '+name
                 if r.reason == 'OK':
-                    dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR green]%s[/COLOR]'%(count,stat))
+                    dp.update(count,'[B]Testing Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR green]%s[/COLOR]'%(count,stat))
                 else:
-                    dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
+                    dp.update(count,'[B]Testing Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
                 list.append(stat)
-                if dp.iscanceled(): 
-                    dp.close()
-                    return
-                    dp.close()
+                if dp.iscanceled(): return
                 if r.reason == 'OK':
-                   addDir2(stat2,url,10,'')
+                   addDir2('[COLOR green]Working[/COLOR] - %s'%(name),url,10,'')
                    LF.write('#EXTINF:-1' +name + '\n' + url + '\n')
             except:
                 pass
+    if dp.iscanceled(): return
     for name,url in match2:
         count = count + 1
         dp.create('Testing %s Of'%(count),'%s'%url)
     for name,url in match2:
-            if dp.iscanceled(): 
-                dp.close()
-                return
-                dp.close()
+            if dp.iscanceled(): return
             try:
                 url = "http"+url
                 count = count - 1
@@ -227,15 +261,12 @@ def TESTLINKS(url):
                 else:
                     dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
                 list.append(stat)
-                if dp.iscanceled():
-                    dp.close()
-                    return
-                    dp.close()
                 if r.reason == 'OK':
                    addDir2(stat2.replace('<br />',''),url.replace('>','').replace('"','').replace('<','').replace('?','').replace('%0D',''),10,'')
                    LF.write('#EXTINF:' +name + '\n' + url + '\n')
             except :
-                 pass
+                 dp.iscanceled()
+    if dp.iscanceled(): return
     dp.close()
     LF.close()
     dialog = xbmcgui.Dialog()
@@ -466,9 +497,14 @@ def contact():
     if ret == 3:
         dialog.input('Enter secret code', type=xbmcgui.INPUT_ALPHANUM)
 def addons(url):
+    xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
     addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
+    addDir('solved.no-issue.ca','http://solved.no-issue.ca/',1656,'')
+    addDir('xbmc.digiwizard.net','http://www.xbmc.digiwizard.net/repo/',1656,'')
     addDir('wtyczki.iptvlive.org','http://wtyczki.iptvlive.org',1656,'')
-    addDir('Full Super Repo','http://ftp.acc.umu.se/mirror/addons.superrepo.org/v7/addons/',1656,'')
+    addDir('Full Super Repo','http://ftp.acc.umu.se/mirror/addons.superrepo.org/',1656,'')
+    addDir('Full Super Repo BACK UP','http://mirror.cinosure.com/superrepo/',1656,'')
+    addDir('XBMC.ORG','http://ftp.acc.umu.se/mirror/xbmc.org/',1656,'')
     addDir('computertechs.org','http://computertechs.org/xbmc/',1656,'')
     addDir('The Little Black Box','http://cloud.thelittleblackbox.co.uk/repo/zips/',1656,'')
     addDir('xstream-addon.square7','http://xstream-addon.square7.ch/repo',1656,'')
@@ -543,6 +579,17 @@ def addons(url):
     addDir('kodi.shivuthegreat.com/Video','http://kodi.shivuthegreat.com/Video/',1656,'')
     addDir('kodi.media-guru.com.au','http://kodi.media-guru.com.au/',1656,'')
     addDir('kodi.neptune-one.net','http://kodi.neptune-one.net/',1656,'')
+    addDir('cwal.me','http://cwal.me/xbmc/addons/',1656,'')
+    addDir('viewstationusa.org/vs/XbmcRepos/','http://viewstationusa.org/vs/XbmcRepos/',1656,'')
+    addDir('dextertv.site40.net','http://dextertv.site40.net',1656,'')
+    addDir('web-develop.ca/kodi','http://web-develop.ca/kodi',1656,'')
+    addDir('web-develop.ca/kodi/20150328-repositories','http://web-develop.ca/kodi/20150328-repositories',1656,'')
+    addDir('web-develop.ca/kodi/20150403-repositories','http://web-develop.ca/kodi/20150403-repositories',1656,'')
+    addDir('web-develop.ca/kodi/20150911-repos','http://web-develop.ca/kodi/20150911-repos',1656,'')
+    addDir('kangotek.com/repo','http://kangotek.com/repo',1656,'')
+    addDir('','',1656,'')
+    addDir('','',1656,'')
+
 def addoncats():
     addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
 def addonsdownloadpage(url):
@@ -556,9 +603,9 @@ def addonsdownloadpage(url):
         str1 = ext
         find_this = "zip"
         if find_this in str1:
-            addDir2('[COLOR yellow][DOWNLOAD][/COLOR] %s'%name.replace('../>','').replace(' ','').replace('%20',''),'%s%s'%(url2,name.replace(' ','').replace('%20','').replace('.zip.zip','.zip')),1654,'')
-        elif "m3u2" in str1:
-            addDir('[COLOR yellow][DOWNLOAD][/COLOR]%s'%name.replace('../>','').replace('%20','').replace(' ',''),'%s/%s'%(url2,url).replace(' ','').replace('%20',''),9,'')
+            addDir2('[COLOR yellow][DOWNLOAD][/COLOR] %s'%name.replace('../>','').replace(' ','').replace('%20',''),'%s/%s'%(url2,name.replace(' ','').replace('%20','').replace('.zip.zip','.zip')),1654,'')
+        elif "m3u" in str1:
+            addDir2('[COLOR green][DOWNLOAD][/COLOR] %s'%name.replace('../>','').replace(' ','').replace('%20',''),'%s/%s'%(url2,name.replace(' ','').replace('%20','').replace('.zip.zip','.zip')),1654,'')
 def DOWNLOADIMAGE(url,name):
     HOME = xbmc.translatePath('special://home/addons/%s'%AddonID)
     dialog = xbmcgui.Dialog()
@@ -680,6 +727,7 @@ def CATIPTV():
             addDir('GLAZTV','http://www.glaz.tv/online-tv/',189,'')
             addDir('FILMON','file:///%s/VLC.m3u'%addonDir,194,'')
             addDir('select-pedia','http://select-pedia.com/tutos/tag/playlist/',4289,'')
+            addDir('xbmchelper.squarespace.com','http://xbmchelper.squarespace.com/iptv/',4290,'')
 def sportiptv(url):
         addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
         r = requests.get(url)
@@ -711,7 +759,15 @@ def muscut(url):
             match=re.compile('<h2 class="search-title" >(.+?)</h2>.+?onclick="data_update\(\'(.+?)\'.+?open_download\(\'(.+?)\'', re.DOTALL).findall(r.content)
             for url,image,down in match:
                 addDir2(url,down,10,image)
-
+def xbmchelper(url):
+    addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+    r = requests.get(url)
+    match=re.compile('\n(.+?)<a href="http://m3u\.tv/(.+?)">').findall(r.content)
+    match2=re.compile('#EXTINF:.+?,(.+?)\n(.+?)\n').findall(r.content)
+    for name,url in match:
+        addDir(name,url,4290,'')
+    for name,url in match2:
+        addDir2(name,url,10,'')
 def glaztv(url):
         addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
         r = requests.get(url)
@@ -1178,7 +1234,7 @@ def LANGSAT(url):
             addDir2(name,'http://www.lyngsat-logo.com/%s'%image.replace('logo','hires').replace('/tv',''),4916,'http://www.satlogo.com/%s'%image)
 def freetuxtv(url):
         link = OPEN_URL(url)
-        match=re.compile('src="(.+?)" alt="" />Â <i>(.+?)</i>.+<a href="(.+?)">(.+?)<').findall(link)
+        match=re.compile('src="(.+?)" alt="" /> <i>(.+?)</i>.+<a href="(.+?)">(.+?)<').findall(link)
         for flag,name,url,count in match:
             addDir('%s - %s'%(name,count),'http://database.freetuxtv.net%s'%url,301,'http://database.freetuxtv.net%s'%(flag))
 def showpicture(url):
@@ -1241,10 +1297,10 @@ def COUNTRYS():
     addDir2('costa rica','http://www.satlogo.com/hires/flag/cr.png',4914,image)
     addDir2('croatia','http://www.satlogo.com/hires/flag/hr.png',4914,image)
     addDir2('cuba','http://www.satlogo.com/hires/flag/cu.png',4914,image)
-    addDir2('curaÃ£Â§ao','http://www.satlogo.com/hires/flag/cw.png',4914,image)
+    addDir2('curaã§ao','http://www.satlogo.com/hires/flag/cw.png',4914,image)
     addDir2('cyprus','http://www.satlogo.com/hires/flag/cy.png',4914,image)
     addDir2('czech republic','http://www.satlogo.com/hires/flag/cz.png',4914,image)
-    addDir2('cÂ´te d\'ivoire','http://www.satlogo.com/hires/flag/ci.png',4914,image)
+    addDir2('c´te d\'ivoire','http://www.satlogo.com/hires/flag/ci.png',4914,image)
     addDir2('denmark','http://www.satlogo.com/hires/flag/dk.png',4914,image)
     addDir2('djibouti','http://www.satlogo.com/hires/flag/dj.png',4914,image)
     addDir2('dominica','http://www.satlogo.com/hires/flag/dm.png',4914,image)
@@ -1885,7 +1941,6 @@ def PLAYVIDEO2(url,name):
     dp.update(65,'Trying To Resollver')
     try: url=urlresolver.HostedMediaFile(url).resolve()
     except: pass
-
     dp.update(100,'You Video Is Ready')
     dp.close()
 def PLAYVIDEO3(url):
@@ -1898,6 +1953,19 @@ def PLAYVIDEO3(url):
 def PLAYVIDEO4(url):
     play=xbmc.Player(GetPlayerCore())
     play.play(url)
+def PLAYVIDEO5(url):
+    r = requests.get(url)
+    match=re.compile('<iframe src="(.+?)"').findall(r.content)
+    for url in match:
+        import urlresolver
+        from urlresolver import common
+        play=xbmc.Player(GetPlayerCore())
+        dp = xbmcgui.DialogProgress()
+        dp.create('Featching Your Video','TRYING TO RESOLVE')
+        try: url=urlresolver.HostedMediaFile(url).resolve()
+        except: pass
+        dp.update(100,'You Video Is Ready')
+        dp.close()
 def DownloaderClass(url,dest):
     dp = xbmcgui.DialogProgress()
     dp.create("Iptv Manager","Downloading")
@@ -2319,5 +2387,13 @@ elif mode==9788:
           EROTIC(url)
 elif mode==9789:
           EROTIC2(url)
+elif mode==9711:
+          megasearch(url)
+elif mode==4290:
+          xbmchelper(url)
+elif mode==4292:
+          hostselect2(url)
+elif mode==4291:
+          hostselect(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
