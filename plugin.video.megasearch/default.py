@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-import urllib,urllib2,sys,re,xbmcplugin,xbmcgui,xbmcaddon,datetime,base64,os,requests,ssl,HTMLParser,httplib,stat
+import urllib,urllib2,sys,re,xbmcplugin,xbmcgui,xbmcaddon,datetime,os,requests,HTMLParser,httplib,traceback
+
 username=xbmcplugin.getSetting(int(sys.argv[1]), 'username')
 password=xbmcplugin.getSetting(int(sys.argv[1]), 'password')
 ADDON = xbmcaddon.Addon(id='plugin.video.megasearch')
@@ -193,7 +194,6 @@ def showText(heading, text, image):
             win.getControl(1).setLabel(heading)
             win.getControl(5).setText(text)
             win.getControl(6).setImage(image)
-            return
         except:
             pass
 def erase():
@@ -208,105 +208,107 @@ def erase():
 
 
 def TESTLINKS(url):
+    read_timeout = 1.0
+    counting = 0
     list = []
     count = 0
+    dialog = xbmcgui.Dialog()
     r = requests.get(url)
     dp = xbmcgui.DialogProgress()
     dp.create('STARTING','COUNTING LINKS')
-    match=re.compile('#EXTINF:[-01234567890\s,](.+?)[<\n"?].+?http(.+?)[\n<>"]', re.DOTALL).findall(r.text)
-    match2=re.compile('#EXTINF:.+?,(.+?)http(.+?)[#<"\s\n]').findall(r.text)
+    match=re.compile('#EXTINF:.+?,(.+?)[\n<"].+?http(.+?)[\n#>"\s ]', re.DOTALL).findall(r.text)
+    xbmc.sleep(5000)
+    dp.close()
+    LF = open('%s/Links.txt'%addonDir, 'a')
+    for name,url in match:
+        count = count + 1
+        count2 = count
+    dp.create('FOUND %s'%(count),'DONE COUNTING')
+    if dp.iscanceled():
+        dp.close()
+        return
+    xbmc.sleep(2000)
+    dp.update(count,'FOUND %s'%(count2))
+    for name,url in match:
+        try:
+            try:
+                name =  name
+                url = "http"+url
+                count = count - 1
+                r = requests.get(url, timeout=(10.0, read_timeout), allow_redirects=True)
+                stat = r.reason
+                stat2 = stat+' '+name
+                if r.reason == 'OK':
+                    dp.update(count,'[B]Testing Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR green]%s[/COLOR]'%(count,stat))
+                    addDir2("[COLOR green]WORKING[/COLOR]%s"%name,url,10,'')
+                    list.append(stat)
+
+                if dp.iscanceled():
+                        dp.close()
+                        return
+                else:
+                    dp.update(count,'[B]Testing Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
+
+            except requests.exceptions.ReadTimeout as e:
+                    continue
+        except:
+            pass
+    ret = dialog.select('Working',list)
+    dp.close()
+    dialog = xbmcgui.Dialog()
+    dialog.ok("SCAN COMPLETE", "TESTING IS COMPLETE")
+    return
+
+def TESTLINKS2(url):
+    read_timeout = 1.0
+    counting = 0
+    list = []
+    count = 0
+    dialog = xbmcgui.Dialog()
+    link = OPEN_URL(url)
+    dp = xbmcgui.DialogProgress()
+    dp.create('STARTING','COUNTING LINKS')
+    match=re.compile('#.+?,(.+?)[\n<"].+?http(.+?)[\n#>"\s ]', re.DOTALL).findall(link)
     xbmc.sleep(5000)
     dp.close()
     for name,url in match:
         count = count + 1
         count2 = count
     dp.create('FOUND %s'%(count),'DONE COUNTING')
+    if dp.iscanceled():
+        dp.close()
+        return
     xbmc.sleep(2000)
-    LF = open('%s/Links.txt'%addonDir, 'a')
     dp.update(count,'FOUND %s'%(count2))
-    xbmc.sleep(3000)
     for name,url in match:
-            if dp.iscanceled(): return
+        try:
             try:
+                name =  name
                 url = "http"+url
                 count = count - 1
-                r = requests.get(url, timeout=(0.5), allow_redirects=True)
+                r = requests.get(url, timeout=(10.0, read_timeout), allow_redirects=True)
                 stat = r.reason
                 stat2 = stat+' '+name
                 if r.reason == 'OK':
                     dp.update(count,'[B]Testing Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR green]%s[/COLOR]'%(count,stat))
+                    addDir2("[COLOR green]WORKING[/COLOR]%s"%name,url,10,'')
+                    list.append(stat)
+
+                if dp.iscanceled():
+                        dp.close()
+                        return
                 else:
                     dp.update(count,'[B]Testing Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
-                list.append(stat)
-                if dp.iscanceled(): return
-                if r.reason == 'OK':
-                   addDir2('[COLOR green]Working[/COLOR] - %s'%(name),url,10,'')
-                   LF.write('#EXTINF:-1' +name + '\n' + url + '\n')
-            except:
-                pass
-    if dp.iscanceled(): return
-    for name,url in match2:
-        count = count + 1
-        dp.create('Testing %s Of'%(count),'%s'%url)
-    for name,url in match2:
-            if dp.iscanceled(): return
-            try:
-                url = "http"+url
-                count = count - 1
-                r = requests.get(url, timeout=(0.5, 5), allow_redirects=True)
-                stat = r.reason
-                stat2 = stat+' '+name
-                if r.reason == 'OK':
-                    dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR green]%s[/COLOR]'%(count,stat))
-                else:
-                    dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
-                list.append(stat)
-                if r.reason == 'OK':
-                   addDir2(stat2.replace('<br />',''),url.replace('>','').replace('"','').replace('<','').replace('?','').replace('%0D',''),10,'')
-                   LF.write('#EXTINF:' +name + '\n' + url + '\n')
-            except :
-                 dp.iscanceled()
-    if dp.iscanceled(): return
+
+            except requests.exceptions.ReadTimeout as e:
+                    continue
+        except:
+            pass
+    ret = dialog.select('Working',list)
     dp.close()
-    LF.close()
     dialog = xbmcgui.Dialog()
-    ret = dialog.select('RESULTS', list)
-def TESTLINKS2(url):
-    list = []
-    count = 0
-    link = OPEN_URL(url)
-    dp = xbmcgui.DialogProgress()
-    match=re.compile('#EXTINF:(.+?)\n.+?http(.+?)[\n<>"]', re.DOTALL).findall(link)
-    for name,url in match:
-        count = count + 1
-        count2 = count
-        dp.create('FOUND %s'%(count),'%s'%url)
-    LF = open('%s/Links.txt'%addonDir, 'a')
-    for name,url in match:
-            if dp.iscanceled(): 
-                return
-            try:
-                url = "http"+url
-                count = count - 1
-                r = requests.get(url, timeout=0.5, allow_redirects=True)
-                stat = r.reason
-                stat2 = stat+' '+name
-                if r.reason == 'OK':
-                    dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR green]%s[/COLOR]'%(count,stat))
-                else:
-                    dp.update(count,'[B]Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
-                list.append(stat)
-                if dp.iscanceled(): 
-                    return
-                if r.reason == 'OK':
-                   addDir2(stat2.replace('<br />',''),url.replace('>','').replace('"','').replace('<','').replace('?','').replace('%0D',''),10,'')
-                   LF.write('#EXTINF:' +name + '\n' + url + '\n')
-            except :
-                 pass
-    dp.close()
-    LF.close()
-    dialog = xbmcgui.Dialog()
-    ret = dialog.select('RESULTS', list)
+    dialog.ok("SCAN COMPLETE", "TESTING IS COMPLETE")
+    return
 
 def INDIA(url):
         xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
@@ -605,7 +607,7 @@ def addonsdownloadpage(url):
         if find_this in str1:
             addDir2('[COLOR yellow][DOWNLOAD][/COLOR] %s'%name.replace('../>','').replace(' ','').replace('%20',''),'%s/%s'%(url2,name.replace(' ','').replace('%20','').replace('.zip.zip','.zip')),1654,'')
         elif "m3u" in str1:
-            addDir2('[COLOR green][DOWNLOAD][/COLOR] %s'%name.replace('../>','').replace(' ','').replace('%20',''),'%s/%s'%(url2,name.replace(' ','').replace('%20','').replace('.zip.zip','.zip')),1654,'')
+            addDir('[COLOR green][OPEN][/COLOR] %s'%name.replace('../>','').replace(' ','').replace('%20',''),'%s/%s'%(url2,name.replace(' ','').replace('%20','').replace('.zip.zip','.zip')),1458,'')
 def DOWNLOADIMAGE(url,name):
     HOME = xbmc.translatePath('special://home/addons/%s'%AddonID)
     dialog = xbmcgui.Dialog()
@@ -1234,7 +1236,7 @@ def LANGSAT(url):
             addDir2(name,'http://www.lyngsat-logo.com/%s'%image.replace('logo','hires').replace('/tv',''),4916,'http://www.satlogo.com/%s'%image)
 def freetuxtv(url):
         link = OPEN_URL(url)
-        match=re.compile('src="(.+?)" alt="" /> <i>(.+?)</i>.+<a href="(.+?)">(.+?)<').findall(link)
+        match=re.compile('src="(.+?)" alt="" /><i>(.+?)</i>.+<a href="(.+?)">(.+?)<').findall(link)
         for flag,name,url,count in match:
             addDir('%s - %s'%(name,count),'http://database.freetuxtv.net%s'%url,301,'http://database.freetuxtv.net%s'%(flag))
 def showpicture(url):
@@ -1297,10 +1299,10 @@ def COUNTRYS():
     addDir2('costa rica','http://www.satlogo.com/hires/flag/cr.png',4914,image)
     addDir2('croatia','http://www.satlogo.com/hires/flag/hr.png',4914,image)
     addDir2('cuba','http://www.satlogo.com/hires/flag/cu.png',4914,image)
-    addDir2('curaã§ao','http://www.satlogo.com/hires/flag/cw.png',4914,image)
+    addDir2('curaã¨¡o','http://www.satlogo.com/hires/flag/cw.png',4914,image)
     addDir2('cyprus','http://www.satlogo.com/hires/flag/cy.png',4914,image)
     addDir2('czech republic','http://www.satlogo.com/hires/flag/cz.png',4914,image)
-    addDir2('c´te d\'ivoire','http://www.satlogo.com/hires/flag/ci.png',4914,image)
+    addDir2('cÕ´e d\'ivoire','http://www.satlogo.com/hires/flag/ci.png',4914,image)
     addDir2('denmark','http://www.satlogo.com/hires/flag/dk.png',4914,image)
     addDir2('djibouti','http://www.satlogo.com/hires/flag/dj.png',4914,image)
     addDir2('dominica','http://www.satlogo.com/hires/flag/dm.png',4914,image)
