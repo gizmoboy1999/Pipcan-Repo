@@ -161,12 +161,13 @@ due to the lack of people being bothered to give me feedback. people wishing to 
 </extension>
 </addon>
 
-<addon id="plugin.video.megasearch" name="Mega Search" version="2.38.0" provider-name="Pipcan">
+<addon id="plugin.video.megasearch" name="Mega Search" version="2.39.0" provider-name="Pipcan">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.urlresolver"  version="2.1.2"/>
 	<import addon="script.module.addon.common" />
 	<import addon="script.module.requests" />
+	<import addon="script.module.mechanize" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
@@ -346,5 +347,71 @@ due to the lack of people being bothered to give me feedback. people wishing to 
 		<description>Download Addon Templates</description>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="script.module.mechanize"
+	name="Mechanize"
+	version="0.2.6"
+	provider-name="Tristan Fischer (sphere)">
+	<requires>
+	<import addon="xbmc.python"
+			version="2.1.0"/>
+	</requires>
+	<extension point="xbmc.python.module"
+			 library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Stateful programmatic web browsing in Python, after Andy Lester’s Perl module WWW::Mechanize.</summary>
+		<description lang="en">packed for xbmc from https://github.com/jjlee/mechanize</description>
+		<disclaimer lang="en">packed for xbmc from https://github.com/jjlee/mechanize</disclaimer>
+		<forum></forum>
+		<website>http://wwwsearch.sourceforge.net/mechanize/</website>
+		<license>BSD</license>
+		<platform>all</platform>
+		<source>https://github.com/jjlee/mechanize</source>
+	</extension>
+</addon>
+
+<addon id="script.module.requests"
+       name="requests"
+       version="2.4.3"
+       provider-name="kennethreitz, beenje">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.module"
+             library="lib" />
+  <extension point="xbmc.addon.metadata">
+    <summary>Python HTTP for Humans</summary>
+    <description>Packed for XBMC from https://github.com/kennethreitz/requests</description>
+    <platform>all</platform>
+    <language></language>
+    <license>Apache2</license>
+    <forum></forum>
+    <website>http://python-requests.org</website>
+    <source>https://github.com/beenje/script.module.requests</source>
+    <email>beenje AT gmail.com</email>
+  </extension>
+</addon>
+
+<addon id="script.module.requests2"
+       name="requests2"
+       version="2.2.1"
+       provider-name="kennethreitz, beenje">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.module"
+             library="lib" />
+  <extension point="xbmc.addon.metadata">
+    <summary>Python HTTP for Humans</summary>
+    <description>Requests v2.x packed for XBMC from https://github.com/kennethreitz/requests</description>
+    <platform>all</platform>
+    <language></language>
+    <license>Apache2</license>
+    <forum></forum>
+    <website>http://docs.python-requests.org/en/latest/</website>
+    <source>https://github.com/beenje/script.module.requests2</source>
+    <email>beenje AT gmail.com</email>
+  </extension>
 </addon>
 </addons>

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import urllib,urllib2,sys,re,xbmcplugin,xbmcgui,xbmcaddon,datetime,os,requests,HTMLParser,httplib,traceback
+import urllib,urllib2,sys,re,xbmcplugin,xbmcgui,xbmcaddon,datetime,os,requests,HTMLParser,httplib,traceback,mechanize
 
 username=xbmcplugin.getSetting(int(sys.argv[1]), 'username')
 password=xbmcplugin.getSetting(int(sys.argv[1]), 'password')
@@ -29,7 +29,7 @@ def CATEGORIES():
             addDir('[COLOR gold]MUSIC[/COLOR]','m',8806,'http://icons.iconseeker.com/png/fullsize/fush-folders/music.png')
             addDir('[COLOR gold]ADDONS[/COLOR]','s',1655,'http://icons.iconseeker.com/png/fullsize/fresh-addon/part.png')
             addDir('[COLOR gold]RADIO[/COLOR]','http://listenlive.eu',8890,'http://icons.iconseeker.com/png/fullsize/antique/radio.png')
-            addDir('[COLOR gold]JOKES[/COLOR]','http://laughfactory.com/jokes',731,'http://icons.iconseeker.com/png/fullsize/forum-faces/joker.png')
+            addDir('[COLOR gold]CCAMS[/COLOR]','http://laughfactory.com/jokes',731,'http://icons.iconseeker.com/png/fullsize/forum-faces/joker.png')
             addDir('[COLOR gold]MISC[/COLOR]','http://www.tv-logo.com',4913,'http://icons.iconseeker.com/png/fullsize/slate/misc.png')
             addDir('[COLOR gold]Test My M3u [I]Click Here To Test Your Ownn M3u For Broken Links[/I][/COLOR]','f',1457,'http://icons.iconseeker.com/png/fullsize/nova/test-tubes.png')
             addDir('[COLOR gold]OPEN TESTING STOREAGE M3u [I]Click Here [/I][/COLOR]','file:///%s\Links.txt'%addonDir,1458,'http://icons.iconseeker.com/png/fullsize/toolbar-icons-6/favorites-7.png')
@@ -37,15 +37,12 @@ def MISC(url):
             addDir('[COLOR gold]TV LOGOS[/COLOR]','http://www.tv-logo.com',5464,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]HQ FLAGS[/COLOR]','CONTRRYD',4912,'http://img2-1.timeinc.net/ew/i/2011/10/20/Napster-Logo_400.jpg')
             addDir('[COLOR gold]LANGSAT LOGOS[/COLOR]','http://www.lyngsat-logo.com/tvcountry/tvcountry.html',4915,'http://www.lyngsat-logo.com/images/ls_logo.gif')
-            addDir('[COLOR gold]CCAMS[/COLOR]','http://www.hack-sat.com/cccam&newcamd.html',4286,'http://www.lyngsat-logo.com/images/ls_logo.gif')
-            addDir('[COLOR gold]ocbfreeservers[/COLOR]','https://sites.google.com/site/ocbfreeservers/home/free-servers/cccam-free-servers',4286,'http://www.lyngsat-logo.com/images/ls_logo.gif')
-            addDir('[COLOR gold]CCams select-pedia [/COLOR]','http://select-pedia.com/tutos/category/cccam-servers/',4289,'http://www.lyngsat-logo.com/images/ls_logo.gif')
-            addDir('[COLOR gold]CCAMS Testious.com[/COLOR]','http://www.testious.com/free-cccam-servers',4286,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]LOTTERY RESULT[/COLOR]','http://www.testious.com/free-cccam-servers',5691,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]News From Torrent Freak[/COLOR]','https://torrentfreak.com/',977,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]LOGOPIDA[/COLOR]','http://logos.wikia.com/wiki/Special:Search?fulltext=Search&search=',9777,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]VIPERGIRLS[/COLOR]','http://vipergirls.to/forum.php',9778,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]EROTIC STORYS[/COLOR]','http://www.asstr.org/files/Collections/',9788,'http://www.lyngsat-logo.com/images/ls_logo.gif')
+            addDir('[COLOR gold]TV Player.com[/COLOR]','http://api.tvplayer.com/api/v2/epg/?service=1&platform=website&from=now&hours=0',4927,'http://api.tvplayer.com/assets/img/tvplayer-logo-full.png')
 def hostselect(url):
         if url == 'search':
             xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
@@ -70,7 +67,27 @@ def hostselect2(url):
     match=re.compile('<textarea onClick="this\.select\(\);">(.+?)\n').findall(r.content)
     for url in match:
         addDir2('PLAY VIDEO',url,4,'')
-    
+def genccam(url):
+    br = mechanize.Browser()
+    br.set_handle_robots(False)
+    br.open(url)
+    br.select_form(nr=0)
+    result = br.submit().read()
+    match=re.compile('<br>(.+?)<br>').findall(result)
+    for name in match:
+        addDir2(name,name,4287,'')
+def joke():
+            addDir('[COLOR green]Generator[/COLOR][COLOR gold] kingsat196[/COLOR]','http://kingsat196.ddns.net/index.php',4928,'http://api.tvplayer.com/assets/img/tvplayer-logo-full.png')
+            addDir('[COLOR green]Generator[/COLOR][COLOR gold] kader-sat[/COLOR]','http://kader-sat.ddns.net/',4928,'http://api.tvplayer.com/assets/img/tvplayer-logo-full.png')
+            addDir('[COLOR green]Generator[/COLOR][COLOR gold] shasha-tv[/COLOR]','http://shasha-tv.blogsyte.com/',4928,'http://api.tvplayer.com/assets/img/tvplayer-logo-full.png')
+            addDir('[COLOR green]Generator[/COLOR][COLOR gold] c-generator.blogsyte[/COLOR]','http://c-generator.blogsyte.com/c2015/',4928,'http://api.tvplayer.com/assets/img/tvplayer-logo-full.png')
+            addDir('[COLOR green]Generator[/COLOR][COLOR gold] star-cccam[/COLOR]','http://star-cccam.sytes.net/CCcam/',4928,'http://api.tvplayer.com/assets/img/tvplayer-logo-full.png')
+            addDir('[COLOR green]Generator[/COLOR][COLOR gold] star-cccam[/COLOR]','http://www.clinefree.com/',4928,'http://api.tvplayer.com/assets/img/tvplayer-logo-full.png')
+            addDir('[COLOR gold]CCAMS[/COLOR]','http://www.hack-sat.com/cccam&newcamd.html',4286,'http://www.lyngsat-logo.com/images/ls_logo.gif')
+            addDir('[COLOR gold]ocbfreeservers[/COLOR]','https://sites.google.com/site/ocbfreeservers/home/free-servers/cccam-free-servers',4286,'http://www.lyngsat-logo.com/images/ls_logo.gif')
+            addDir('[COLOR gold]CCams select-pedia [/COLOR]','http://select-pedia.com/tutos/category/cccam-servers/',4289,'http://www.lyngsat-logo.com/images/ls_logo.gif')
+            addDir('[COLOR gold]CCAMS Testious.com[/COLOR]','http://www.testious.com/free-cccam-servers',4286,'http://www.lyngsat-logo.com/images/ls_logo.gif')
+
 def megasearch(url):
     dialog = xbmcgui.Dialog()
     ret = dialog.select('Select A Host',['Mega', 'Uptobox', 'Uplea', '1fichier', 'Uploaded', 'Rapidgator', 'Turbobit', 'Keep2share', 'Bitshare', 'Filefactory', 'Free', 'Oboom', 'Filepost', 'Depfile', 'Firedrive', 'Mediafire', 'Uploadable', 'Hugefiles', 'ClicknUpload', 'ZippyShare', 'Ryushare', '2shared', 'Depositfiles', 'Purevid', 'Exashare', 'Youwatch'])  
@@ -206,7 +223,12 @@ def erase():
     else:
         return	
 
-
+def tvplayer(url):
+    r = requests.get(url)
+    match=re.compile('"name":"(.+?)".+?"channelId":".+?",".+?","end":".+?","title":"(.+?)","subtitle":.+?,"category".+?,"synopsis":"(.+?)","thumbnail":"(.+?)","blackout":.+?}').findall(r.text)
+    for name2,name,synopsis,thumbnail in match:
+        name2 = '[LOWERCASE]%s[/LOWERCASE]'%name2
+        addDir2('[COLOR yellow]%s[/COLOR] - [B]%s[/B] - [I]%s[/I]'%(name2,name,synopsis),'http://live.tvplayer.com/%s/5/prog_index.m3u8'%name2,10,thumbnail)
 def TESTLINKS(url):
     read_timeout = 1.0
     counting = 0
@@ -223,31 +245,26 @@ def TESTLINKS(url):
     for name,url in match:
         count = count + 1
         count2 = count
-    dp.create('FOUND %s'%(count),'DONE COUNTING')
-    if dp.iscanceled():
-        dp.close()
-        return
+    percent = (count2 * 100)/count
+    dp.create('FOUND %s'%(count2),'DONE COUNTING')
     xbmc.sleep(2000)
-    dp.update(count,'FOUND %s'%(count2))
+    dp.update(percent,'FOUND %s'%(count2))
     for name,url in match:
         try:
             try:
                 name =  name
                 url = "http"+url
                 count = count - 1
-                r = requests.get(url, timeout=(10.0, read_timeout), allow_redirects=True)
+                r = requests.get(url, timeout=(5.0, read_timeout), allow_redirects=True)
                 stat = r.reason
                 stat2 = stat+' '+name
                 if r.reason == 'OK':
-                    dp.update(count,'[B]Testing Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR green]%s[/COLOR]'%(count,stat))
-                    addDir2("[COLOR green]WORKING[/COLOR]%s"%name,url,10,'')
+                    dp.update(percent,'[B]Testing Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR green]%s[/COLOR]'%(count,stat))
+                    addDir2("[COLOR green]WORKING[/COLOR] - %s"%name,url,10,'')
                     list.append(stat)
-
-                if dp.iscanceled():
-                        dp.close()
-                        return
+                if dp.iscanceled(): break;
                 else:
-                    dp.update(count,'[B]Testing Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
+                    dp.update(percent,'[B]Testing Link[/B] - [COLOR yellow]%s[/COLOR] [B]Result[/B] - [COLOR red]%s[/COLOR]'%(count,stat))
 
             except requests.exceptions.ReadTimeout as e:
                     continue
@@ -268,7 +285,7 @@ def TESTLINKS2(url):
     link = OPEN_URL(url)
     dp = xbmcgui.DialogProgress()
     dp.create('STARTING','COUNTING LINKS')
-    match=re.compile('#.+?,(.+?)[\n<"].+?http(.+?)[\n#>"\s ]', re.DOTALL).findall(link)
+    match=re.compile('#.+?,(.+?)[<\n"].+?http(.+?)[<\n#"\s ]', re.DOTALL).findall(link)
     xbmc.sleep(5000)
     dp.close()
     for name,url in match:
@@ -304,10 +321,10 @@ def TESTLINKS2(url):
                     continue
         except:
             pass
+    dialog.ok("SCAN COMPLETE", "TESTING IS COMPLETE")
     ret = dialog.select('Working',list)
     dp.close()
     dialog = xbmcgui.Dialog()
-    dialog.ok("SCAN COMPLETE", "TESTING IS COMPLETE")
     return
 
 def INDIA(url):
@@ -407,7 +424,6 @@ def SEARCHCAT(url):
             addDir('[COLOR green]100% [/COLOR]Search Vodlocker','http://vodlocker.com/?op=search&k=',5,'http://vodlocker.com/images/logo.png')
             addDir('[COLOR green]100% [/COLOR]Search cloudy.ec','http://www.cloudy.ec/search?search=',6,'http://www.cloudy.ec/img/logo.png')
             addDir('[COLOR green]100% [/COLOR]Search Bing Videos','http://www.msn.com/en-us/video/searchresults?q=',37,'http://microsoft-news.com/wp-content/uploads/2014/09/Bing-logo-1.jpg')
-            addDir('[COLOR red][BROKEN] [/COLOR]Search FreeMp3.SE','http://freemp3.se/?query=',5023,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
             addDir('[COLOR green]100% [/COLOR]Search PASTEBIN','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&sort=date&q=',503,'http://pastebin.com/i/fb2.jpg')
             addDir('[COLOR red]Search Only [/COLOR]Search ALL My Videos .Net','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:3428957054&googlehost=www.google.com&gs_l=partner.12...0.0.1.20932.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.0jj1..1ac..25.partner..0.0.0.&callback=google.search.Search.apiary18154&q=',5055,'http://allmyvideos.net/images/amvlogo-200-min.png')
             addDir('[COLOR green]100% [/COLOR]Search MoviShare.NET','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=small&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=partner-pub-2526982841387487:4545021852&googlehost=www.google.com&oq=hell&gs_l=partner.3...1800.2471.0.2719.0.0.0.0.0.0.0.0..0.0.gsnos%2Cn%3D13...0.672j160640j4..1ac.1.25.partner..0.0.0.&callback=google.search.Search.apiary16046&q=',5055,'http://allmyvideos.net/images/amvlogo-200-min.png')
@@ -730,6 +746,7 @@ def CATIPTV():
             addDir('FILMON','file:///%s/VLC.m3u'%addonDir,194,'')
             addDir('select-pedia','http://select-pedia.com/tutos/tag/playlist/',4289,'')
             addDir('xbmchelper.squarespace.com','http://xbmchelper.squarespace.com/iptv/',4290,'')
+            addDir('http://iptv-xbmc.blogspot.co.uk/','http://iptv-xbmc.blogspot.co.uk/',4555,'')
 def sportiptv(url):
         addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
         r = requests.get(url)
@@ -738,7 +755,16 @@ def sportiptv(url):
         for url,name in match:
             addDir('[COLOR yellow]%s[/COLOR]'%name,url,186,'')
         for name,url in match2:
-            addDir2(name,url,9,'')
+                    addDir2('[COLOR yellow]%s[/COLOR]'%name,url,10,'')
+def xbmclog(url):
+        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        r = requests.get(url)
+        match=re.compile("<h3 class='post-title entry-title' itemprop='name'>\n<a href='(.+?)'>(.+?)</a>", re.DOTALL).findall(r.text)
+        match2=re.compile('#EXTINF:.+?,(.+?)[\n](.+?)[<\n]', re.DOTALL).findall(r.text)
+        for url,name in match:
+            addDir(name,url,4555,'')
+        for name,url in match2:
+            addDir2(name,url,10,'')
 def PEERSTV(url):
         addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
         r = requests.get(url)
@@ -917,17 +943,6 @@ def NAVISEARCH(url):
             addDir2('%s'%(name),'%s'%(url),9,thumb)
         for url in match3:
             addDir('NEXT >>>','http://www.navixtreme.com/wiilist/%s'%url,730,'')
-def joke(url):
-        link = OPEN_URL(url)
-        match=re.compile('<p id="joke_(.+?)">(.+?)</p>', re.DOTALL).findall(link)
-        match2=re.compile('<li ><a  href="http://www.laughfactory.com/jokes/(.+?)">(.+?)</a></li>', re.DOTALL).findall(link)
-        match3=re.compile('<li class="active"><span>(.+?)</span></li><li><span><a href="http://www.laughfactory.com/jokes/(.+?)/(.+?)">', re.DOTALL).findall(link)
-        for name,url in match:
-            addDir2('%s'%(name),'%s'%(url),733,'')
-        for name,url in match2:
-            addDir('%s'%(name),'http://laughfactory.com/jokes/%s'%(url),731,'')
-        for name,url,next in match3:
-            addDir('CURRENT:%s GO TO PAGE %s  >>> '%(name,next),'http://laughfactory.com/jokes/%s/%s/'%(url,next),731,'')
 def jokes2(name,url):
         showText(name,url)
 def showText(heading, text):
@@ -1242,257 +1257,6 @@ def freetuxtv(url):
 def showpicture(url):
     	xbmc.executebuiltin("ShowPicture(%s)"%url)
         return True
-def COUNTRYS():
-    image = ''+url
-    addDir2('afghanistan','http://www.satlogo.com/hires/flag/af.png',4914,image)
-    addDir2('albania','http://www.satlogo.com/hires/flag/al.png',4914,image)
-    addDir2('algeria','http://www.satlogo.com/hires/flag/dz.png',9,'http://www.satlogo.com/hires/flag/dz.png')
-    addDir2('american samoa','http://www.satlogo.com/hires/flag/as.png',9,image)
-    addDir2('andorra','http://www.satlogo.com/hires/flag/ad.png',9,image)
-    addDir2('angola','http://www.satlogo.com/hires/flag/ao.png',9,image)
-    addDir2('anguilla','http://www.satlogo.com/hires/flag/ai.png',9,image)
-    addDir2('antarctica','http://www.satlogo.com/hires/flag/aq.png',9,image)
-    addDir2('antigua and barbuda','http://www.satlogo.com/hires/flag/ag.png',9,image)
-    addDir2('argentina','http://www.satlogo.com/hires/flag/ar.png',9,image)
-    addDir2('armenia','http://www.satlogo.com/hires/flag/am.png',9,image)
-    addDir2('aruba','http://www.satlogo.com/hires/flag/aw.png',9,image)
-    addDir2('australia','http://www.satlogo.com/hires/flag/au.png',9,image)
-    addDir2('austria','http://www.satlogo.com/hires/flag/at.png',9,image)
-    addDir2('azerbaijan','http://www.satlogo.com/hires/flag/az.png',4914,image)
-    addDir2('bahamas','http://www.satlogo.com/hires/flag/bs.png',4914,image)
-    addDir2('bahrain','http://www.satlogo.com/hires/flag/bh.png',4914,image)
-    addDir2('bangladesh','http://www.satlogo.com/hires/flag/bd.png',4914,image)
-    addDir2('barbados','http://www.satlogo.com/hires/flag/bb.png',4914,image)
-    addDir2('belarus','http://www.satlogo.com/hires/flag/by.png',4914,image)
-    addDir2('belgium','http://www.satlogo.com/hires/flag/be.png',4914,image)
-    addDir2('belize','http://www.satlogo.com/hires/flag/bz.png',4914,image)
-    addDir2('benin','http://www.satlogo.com/hires/flag/bj.png',4914,image)
-    addDir2('bermuda','http://www.satlogo.com/hires/flag/bm.png',4914,image)
-    addDir2('bhutan','http://www.satlogo.com/hires/flag/bt.png',4914,image)
-    addDir2('bolivia','http://www.satlogo.com/hires/flag/bo.png',4914,image)
-    addDir2('bonaire','http://www.satlogo.com/hires/flag/bq.png',4914,image)
-    addDir2('bosnia and herzegovina','http://www.satlogo.com/hires/flag/ba.png',4914,image)
-    addDir2('botswana','http://www.satlogo.com/hires/flag/bw.png',4914,image)
-    addDir2('bouvet island','http://www.satlogo.com/hires/flag/bv.png',4914,image)
-    addDir2('brazil','http://www.satlogo.com/hires/flag/br.png',4914,image)
-    addDir2('british indian ocean territory','http://www.satlogo.com/hires/flag/io.png',4914,image)
-    addDir2('brunei darussalam','http://www.satlogo.com/hires/flag/bn.png',4914,image)
-    addDir2('bulgaria','http://www.satlogo.com/hires/flag/bg.png',4914,image)
-    addDir2('burkina faso','http://www.satlogo.com/hires/flag/bf.png',4914,image)
-    addDir2('burundi','http://www.satlogo.com/hires/flag/bi.png',4914,image)
-    addDir2('cambodia','http://www.satlogo.com/hires/flag/kh.png',4914,image)
-    addDir2('cameroon','http://www.satlogo.com/hires/flag/cm.png',4914,image)
-    addDir2('canada','http://www.satlogo.com/hires/flag/ca.png',4914,image)
-    addDir2('cape verde','http://www.satlogo.com/hires/flag/cv.png',4914,image)
-    addDir2('cayman islands','http://www.satlogo.com/hires/flag/ky.png',4914,image)
-    addDir2('central african republic','http://www.satlogo.com/hires/flag/cf.png',4914,image)
-    addDir2('chad','http://www.satlogo.com/hires/flag/td.png',4914,image)
-    addDir2('chile','http://www.satlogo.com/hires/flag/cl.png',4914,image)
-    addDir2('china','http://www.satlogo.com/hires/flag/cn.png',4914,image)
-    addDir2('christmas island','http://www.satlogo.com/hires/flag/cx.png',4914,image)
-    addDir2('cocos (keeling) islands','http://www.satlogo.com/hires/flag/cc.png',4914,image)
-    addDir2('colombia','http://www.satlogo.com/hires/flag/co.png',4914,image)
-    addDir2('comoros','http://www.satlogo.com/hires/flag/km.png',4914,image)
-    addDir2('congo','http://www.satlogo.com/hires/flag/cg.png',4914,image)
-    addDir2('democratic republic of the congo','http://www.satlogo.com/hires/flag/cd.png',4914,image)
-    addDir2('cook islands','http://www.satlogo.com/hires/flag/ck.png',4914,image)
-    addDir2('costa rica','http://www.satlogo.com/hires/flag/cr.png',4914,image)
-    addDir2('croatia','http://www.satlogo.com/hires/flag/hr.png',4914,image)
-    addDir2('cuba','http://www.satlogo.com/hires/flag/cu.png',4914,image)
-    addDir2('cura㨡o','http://www.satlogo.com/hires/flag/cw.png',4914,image)
-    addDir2('cyprus','http://www.satlogo.com/hires/flag/cy.png',4914,image)
-    addDir2('czech republic','http://www.satlogo.com/hires/flag/cz.png',4914,image)
-    addDir2('cմe d\'ivoire','http://www.satlogo.com/hires/flag/ci.png',4914,image)
-    addDir2('denmark','http://www.satlogo.com/hires/flag/dk.png',4914,image)
-    addDir2('djibouti','http://www.satlogo.com/hires/flag/dj.png',4914,image)
-    addDir2('dominica','http://www.satlogo.com/hires/flag/dm.png',4914,image)
-    addDir2('dominican republic','http://www.satlogo.com/hires/flag/do.png',4914,image)
-    addDir2('ecuador','http://www.satlogo.com/hires/flag/ec.png',4914,image)
-    addDir2('egypt','http://www.satlogo.com/hires/flag/eg.png',4914,image)
-    addDir2('el salvador','http://www.satlogo.com/hires/flag/sv.png',4914,image)
-    addDir2('equatorial guinea','http://www.satlogo.com/hires/flag/gq.png',4914,image)
-    addDir2('eritrea','http://www.satlogo.com/hires/flag/er.png',4914,image)
-    addDir2('estonia','http://www.satlogo.com/hires/flag/ee.png',4914,image)
-    addDir2('ethiopia','http://www.satlogo.com/hires/flag/et.png',4914,image)
-    addDir2('falkland islands (malvinas)','http://www.satlogo.com/hires/flag/fk.png',4914,image)
-    addDir2('faroe islands','http://www.satlogo.com/hires/flag/fo.png',4914,image)
-    addDir2('fiji','http://www.satlogo.com/hires/flag/fj.png',4914,image)
-    addDir2('finland','http://www.satlogo.com/hires/flag/fi.png',4914,image)
-    addDir2('france','http://www.satlogo.com/hires/flag/fr.png',4914,image)
-    addDir2('french guiana','http://www.satlogo.com/hires/flag/gf.png',4914,image)
-    addDir2('french polynesia','http://www.satlogo.com/hires/flag/pf.png',4914,image)
-    addDir2('french southern territories','http://www.satlogo.com/hires/flag/tf.png',4914,image)
-    addDir2('gabon','http://www.satlogo.com/hires/flag/ga.png',4914,image)
-    addDir2('gambia','http://www.satlogo.com/hires/flag/gm.png',4914,image)
-    addDir2('georgia','http://www.satlogo.com/hires/flag/ge.png',4914,image)
-    addDir2('germany','http://www.satlogo.com/hires/flag/de.png',4914,image)
-    addDir2('ghana','http://www.satlogo.com/hires/flag/gh.png',4914,image)
-    addDir2('gibraltar','http://www.satlogo.com/hires/flag/gi.png',4914,image)
-    addDir2('greece','http://www.satlogo.com/hires/flag/gr.png',4914,image)
-    addDir2('greenland','http://www.satlogo.com/hires/flag/gl.png',4914,image)
-    addDir2('grenada','http://www.satlogo.com/hires/flag/gd.png',4914,image)
-    addDir2('guadeloupe','http://www.satlogo.com/hires/flag/gp.png',4914,image)
-    addDir2('guam','http://www.satlogo.com/hires/flag/gu.png',4914,image)
-    addDir2('guatemala','http://www.satlogo.com/hires/flag/gt.png',4914,image)
-    addDir2('guernsey','http://www.satlogo.com/hires/flag/gg.png',4914,image)
-    addDir2('guinea','http://www.satlogo.com/hires/flag/gn.png',4914,image)
-    addDir2('guinea-bissau','http://www.satlogo.com/hires/flag/gw.png',4914,image)
-    addDir2('guyana','http://www.satlogo.com/hires/flag/gy.png',4914,image)
-    addDir2('haiti','http://www.satlogo.com/hires/flag/ht.png',4914,image)
-    addDir2('heard island and mcdonald mcdonald islands','http://www.satlogo.com/hires/flag/hm.png',4914,image)
-    addDir2('holy see (vatican city state)','http://www.satlogo.com/hires/flag/va.png',4914,image)
-    addDir2('honduras','http://www.satlogo.com/hires/flag/hn.png',4914,image)
-    addDir2('hong kong','http://www.satlogo.com/hires/flag/hk.png',4914,image)
-    addDir2('hungary','http://www.satlogo.com/hires/flag/hu.png',4914,image)
-    addDir2('iceland','http://www.satlogo.com/hires/flag/is.png',4914,image)
-    addDir2('india','http://www.satlogo.com/hires/flag/in.png',4914,image)
-    addDir2('indonesia','http://www.satlogo.com/hires/flag/id.png',4914,image)
-    addDir2('iran, islamic republic of','http://www.satlogo.com/hires/flag/ir.png',4914,image)
-    addDir2('iraq','http://www.satlogo.com/hires/flag/iq.png',4914,image)
-    addDir2('ireland','http://www.satlogo.com/hires/flag/ie.png',4914,image)
-    addDir2('isle of man','http://www.satlogo.com/hires/flag/im.png',4914,image)
-    addDir2('israel','http://www.satlogo.com/hires/flag/il.png',4914,image)
-    addDir2('italy','http://www.satlogo.com/hires/flag/it.png',4914,image)
-    addDir2('jamaica','http://www.satlogo.com/hires/flag/jm.png',4914,image)
-    addDir2('japan','http://www.satlogo.com/hires/flag/jp.png',4914,image)
-    addDir2('jersey','http://www.satlogo.com/hires/flag/je.png',4914,image)
-    addDir2('jordan','http://www.satlogo.com/hires/flag/jo.png',4914,image)
-    addDir2('kazakhstan','http://www.satlogo.com/hires/flag/kz.png',4914,image)
-    addDir2('kenya','http://www.satlogo.com/hires/flag/ke.png',4914,image)
-    addDir2('kiribati','http://www.satlogo.com/hires/flag/ki.png',4914,image)
-    addDir2('korea, democratic people\'s republic of','http://www.satlogo.com/hires/flag/kp.png',4914,image)
-    addDir2('korea, republic of','http://www.satlogo.com/hires/flag/kr.png',4914,image)
-    addDir2('kuwait','http://www.satlogo.com/hires/flag/kw.png',4914,image)
-    addDir2('kyrgyzstan','http://www.satlogo.com/hires/flag/kg.png',4914,image)
-    addDir2('lao people\'s democratic republic','http://www.satlogo.com/hires/flag/la.png',4914,image)
-    addDir2('latvia','http://www.satlogo.com/hires/flag/lv.png',4914,image)
-    addDir2('lebanon','http://www.satlogo.com/hires/flag/lb.png',4914,image)
-    addDir2('lesotho','http://www.satlogo.com/hires/flag/ls.png',4914,image)
-    addDir2('liberia','http://www.satlogo.com/hires/flag/lr.png',4914,image)
-    addDir2('libya','http://www.satlogo.com/hires/flag/ly.png',4914,image)
-    addDir2('liechtenstein','http://www.satlogo.com/hires/flag/li.png',4914,image)
-    addDir2('lithuania','http://www.satlogo.com/hires/flag/lt.png',4914,image)
-    addDir2('luxembourg','http://www.satlogo.com/hires/flag/lu.png',4914,image)
-    addDir2('macao','http://www.satlogo.com/hires/flag/mo.png',4914,image)
-    addDir2('macedonia, the former yugoslav republic of','http://www.satlogo.com/hires/flag/mk.png',4914,image)
-    addDir2('madagascar','http://www.satlogo.com/hires/flag/mg.png',4914,image)
-    addDir2('malawi','http://www.satlogo.com/hires/flag/mw.png',4914,image)
-    addDir2('malaysia','http://www.satlogo.com/hires/flag/my.png',4914,image)
-    addDir2('maldives','http://www.satlogo.com/hires/flag/mv.png',4914,image)
-    addDir2('mali','http://www.satlogo.com/hires/flag/ml.png',4914,image)
-    addDir2('malta','http://www.satlogo.com/hires/flag/mt.png',4914,image)
-    addDir2('marshall islands','http://www.satlogo.com/hires/flag/mh.png',4914,image)
-    addDir2('martinique','http://www.satlogo.com/hires/flag/mq.png',4914,image)
-    addDir2('mauritania','http://www.satlogo.com/hires/flag/mr.png',4914,image)
-    addDir2('mauritius','http://www.satlogo.com/hires/flag/mu.png',4914,image)
-    addDir2('mayotte','http://www.satlogo.com/hires/flag/yt.png',4914,image)
-    addDir2('mexico','http://www.satlogo.com/hires/flag/mx.png',4914,image)
-    addDir2('micronesia, federated states of','http://www.satlogo.com/hires/flag/fm.png',4914,image)
-    addDir2('moldova, republic of','http://www.satlogo.com/hires/flag/md.png',4914,image)
-    addDir2('monaco','http://www.satlogo.com/hires/flag/mc.png',4914,image)
-    addDir2('mongolia','http://www.satlogo.com/hires/flag/mn.png',4914,image)
-    addDir2('montenegro','http://www.satlogo.com/hires/flag/me.png',4914,image)
-    addDir2('montserrat','http://www.satlogo.com/hires/flag/ms.png',4914,image)
-    addDir2('morocco','http://www.satlogo.com/hires/flag/ma.png',4914,image)
-    addDir2('mozambique','http://www.satlogo.com/hires/flag/mz.png',4914,image)
-    addDir2('myanmar','http://www.satlogo.com/hires/flag/mm.png',4914,image)
-    addDir2('namibia','http://www.satlogo.com/hires/flag/na.png',4914,image)
-    addDir2('nauru','http://www.satlogo.com/hires/flag/nr.png',4914,image)
-    addDir2('nepal','http://www.satlogo.com/hires/flag/np.png',4914,image)
-    addDir2('netherlands','http://www.satlogo.com/hires/flag/nl.png',4914,image)
-    addDir2('new caledonia','http://www.satlogo.com/hires/flag/nc.png',4914,image)
-    addDir2('new zealand','http://www.satlogo.com/hires/flag/nz.png',4914,image)
-    addDir2('nicaragua','http://www.satlogo.com/hires/flag/ni.png',4914,image)
-    addDir2('niger','http://www.satlogo.com/hires/flag/ne.png',4914,image)
-    addDir2('nigeria','http://www.satlogo.com/hires/flag/ng.png',4914,image)
-    addDir2('niue','http://www.satlogo.com/hires/flag/nu.png',4914,image)
-    addDir2('norfolk island','http://www.satlogo.com/hires/flag/nf.png',4914,image)
-    addDir2('northern mariana islands','http://www.satlogo.com/hires/flag/mp.png',4914,image)
-    addDir2('norway','http://www.satlogo.com/hires/flag/no.png',4914,image)
-    addDir2('oman','http://www.satlogo.com/hires/flag/om.png',4914,image)
-    addDir2('pakistan','http://www.satlogo.com/hires/flag/pk.png',4914,image)
-    addDir2('palau','http://www.satlogo.com/hires/flag/pw.png',4914,image)
-    addDir2('palestine, state of','http://www.satlogo.com/hires/flag/ps.png',4914,image)
-    addDir2('panama','http://www.satlogo.com/hires/flag/pa.png',4914,image)
-    addDir2('papua new guinea','http://www.satlogo.com/hires/flag/pg.png',4914,image)
-    addDir2('paraguay','http://www.satlogo.com/hires/flag/py.png',4914,image)
-    addDir2('peru','http://www.satlogo.com/hires/flag/pe.png',4914,image)
-    addDir2('philippines','http://www.satlogo.com/hires/flag/ph.png',4914,image)
-    addDir2('pitcairn','http://www.satlogo.com/hires/flag/pn.png',4914,image)
-    addDir2('poland','http://www.satlogo.com/hires/flag/pl.png',4914,image)
-    addDir2('portugal','http://www.satlogo.com/hires/flag/pt.png',4914,image)
-    addDir2('puerto rico','http://www.satlogo.com/hires/flag/pr.png',4914,image)
-    addDir2('qatar','http://www.satlogo.com/hires/flag/qa.png',4914,image)
-    addDir2('romania','http://www.satlogo.com/hires/flag/ro.png',4914,image)
-    addDir2('russian federation','http://www.satlogo.com/hires/flag/ru.png',4914,image)
-    addDir2('rwanda','http://www.satlogo.com/hires/flag/rw.png',4914,image)
-    addDir2('reunion','http://www.satlogo.com/hires/flag/re.png',4914,image)
-    addDir2('saint barthalemy','http://www.satlogo.com/hires/flag/bl.png',4914,image)
-    addDir2('saint helena','http://www.satlogo.com/hires/flag/sh.png',4914,image)
-    addDir2('saint kitts and nevis','http://www.satlogo.com/hires/flag/kn.png',4914,image)
-    addDir2('saint lucia','http://www.satlogo.com/hires/flag/lc.png',4914,image)
-    addDir2('saint martin (french part)','http://www.satlogo.com/hires/flag/mf.png',4914,image)
-    addDir2('saint pierre and miquelon','http://www.satlogo.com/hires/flag/pm.png',4914,image)
-    addDir2('saint vincent and the grenadines','http://www.satlogo.com/hires/flag/vc.png',4914,image)
-    addDir2('samoa','http://www.satlogo.com/hires/flag/ws.png',4914,image)
-    addDir2('san marino','http://www.satlogo.com/hires/flag/sm.png',4914,image)
-    addDir2('sao tome and principe','http://www.satlogo.com/hires/flag/st.png',4914,image)
-    addDir2('saudi arabia','http://www.satlogo.com/hires/flag/sa.png',4914,image)
-    addDir2('senegal','http://www.satlogo.com/hires/flag/sn.png',4914,image)
-    addDir2('serbia','http://www.satlogo.com/hires/flag/rs.png',4914,image)
-    addDir2('seychelles','http://www.satlogo.com/hires/flag/sc.png',4914,image)
-    addDir2('sierra leone','http://www.satlogo.com/hires/flag/sl.png',4914,image)
-    addDir2('singapore','http://www.satlogo.com/hires/flag/sg.png',4914,image)
-    addDir2('sint maarten (dutch part)','http://www.satlogo.com/hires/flag/sx.png',4914,image)
-    addDir2('slovakia','http://www.satlogo.com/hires/flag/sk.png',4914,image)
-    addDir2('slovenia','http://www.satlogo.com/hires/flag/si.png',4914,image)
-    addDir2('solomon islands','http://www.satlogo.com/hires/flag/sb.png',4914,image)
-    addDir2('somalia','http://www.satlogo.com/hires/flag/so.png',4914,image)
-    addDir2('south africa','http://www.satlogo.com/hires/flag/za.png',4914,image)
-    addDir2('south georgia and the south sandwich islands','http://www.satlogo.com/hires/flag/gs.png',4914,image)
-    addDir2('south sudan','http://www.satlogo.com/hires/flag/ss.png',4914,image)
-    addDir2('spain','http://www.satlogo.com/hires/flag/es.png',4914,image)
-    addDir2('sri lanka','http://www.satlogo.com/hires/flag/lk.png',4914,image)
-    addDir2('sudan','http://www.satlogo.com/hires/flag/sd.png',4914,image)
-    addDir2('suriname','http://www.satlogo.com/hires/flag/sr.png',4914,image)
-    addDir2('svalbard and jan mayen','http://www.satlogo.com/hires/flag/sj.png',4914,image)
-    addDir2('swaziland','http://www.satlogo.com/hires/flag/sz.png',4914,image)
-    addDir2('sweden','http://www.satlogo.com/hires/flag/se.png',4914,image)
-    addDir2('switzerland','http://www.satlogo.com/hires/flag/ch.png',4914,image)
-    addDir2('syrian arab republic','http://www.satlogo.com/hires/flag/sy.png',4914,image)
-    addDir2('taiwan, province of china','http://www.satlogo.com/hires/flag/tw.png',4914,image)
-    addDir2('tajikistan','http://www.satlogo.com/hires/flag/tj.png',4914,image)
-    addDir2('united republic of tanzania','http://www.satlogo.com/hires/flag/tz.png',4914,image)
-    addDir2('thailand','http://www.satlogo.com/hires/flag/th.png',4914,image)
-    addDir2('timor-leste','http://www.satlogo.com/hires/flag/tl.png',4914,image)
-    addDir2('togo','http://www.satlogo.com/hires/flag/tg.png',4914,image)
-    addDir2('tokelau','http://www.satlogo.com/hires/flag/tk.png',4914,image)
-    addDir2('tonga','http://www.satlogo.com/hires/flag/to.png',4914,image)
-    addDir2('trinidad and tobago','http://www.satlogo.com/hires/flag/tt.png',4914,image)
-    addDir2('tunisia','http://www.satlogo.com/hires/flag/tn.png',4914,image)
-    addDir2('turkey','http://www.satlogo.com/hires/flag/tr.png',4914,image)
-    addDir2('turkmenistan','http://www.satlogo.com/hires/flag/tm.png',4914,image)
-    addDir2('turks and caicos islands','http://www.satlogo.com/hires/flag/tc.png',4914,image)
-    addDir2('tuvalu','http://www.satlogo.com/hires/flag/tv.png',4914,image)
-    addDir2('uganda','http://www.satlogo.com/hires/flag/ug.png',4914,image)
-    addDir2('ukraine','http://www.satlogo.com/hires/flag/ua.png',4914,image)
-    addDir2('united arab emirates','http://www.satlogo.com/hires/flag/ae.png',4914,image)
-    addDir2('united kingdom','http://www.satlogo.com/hires/flag/gb.png',4914,image)
-    addDir2('united states','http://www.satlogo.com/hires/flag/us.png',4914,image)
-    addDir2('united states minor outlying islands','http://www.satlogo.com/hires/flag/um.png',4914,image)
-    addDir2('uruguay','http://www.satlogo.com/hires/flag/uy.png',4914,image)
-    addDir2('uzbekistan','http://www.satlogo.com/hires/flag/uz.png',4914,image)
-    addDir2('vanuatu','http://www.satlogo.com/hires/flag/vu.png',4914,image)
-    addDir2('venezuela','http://www.satlogo.com/hires/flag/ve.png',4914,image)
-    addDir2('viet nam','http://www.satlogo.com/hires/flag/vn.png',4914,image)
-    addDir2('british virgin islands','http://www.satlogo.com/hires/flag/vg.png',4914,image)
-    addDir2('us virgin islands','http://www.satlogo.com/hires/flag/vi.png',4914,image)
-    addDir2('wallis and futuna','http://www.satlogo.com/hires/flag/wf.png',4914,image)
-    addDir2('western sahara','http://www.satlogo.com/hires/flag/eh.png',4914,image)
-    addDir2('yemen','http://www.satlogo.com/hires/flag/ye.png',4914,image)
-    addDir2('zambia','http://www.satlogo.com/hires/flag/zm.png',4914,image)
-    addDir2('zimbabwe','http://www.satlogo.com/hires/flag/zw.png',4914,image)
-    addDir2('aland islands','http://www.satlogo.com/hires/flag/ax',4914,image)
 def MP3(url):
         link = OPEN_URL(url)
         match=re.compile('<img src="(.+?)"/>(.+?)</a></li> <li><a href="(.+?)"').findall(link)
@@ -1851,69 +1615,15 @@ def BING2(url):
             addDir('%s'%name,url,1000,'')
 def FTP(url):
         link = OPEN_URL(url)
-        match=re.compile('<tr><td valign="top"><img src="/icons/.+?.gif" alt="\[(.+?)\]"></td><td><a href="(.+?)">(.+?)</a></td><td align="right">.+?</td><td align="right">(.+?)<').findall(link)
-        match2=re.compile('<li><a href="(.+?)\/">(.+?)</a></li>').findall(link)
-        match3=re.compile('<li><a href="(.+?)mkv">(.+?)</a></li>').findall(link)
-        match4=re.compile('<li><a href="(.+?)mp4">(.+?)</a></li>').findall(link)
-        match5=re.compile('<li><a href="(.+?)avi">(.+?)</a></li>').findall(link)
-        match6=re.compile('<li><a href="(.+?)\/">(.+?)</a></li>').findall(link)
-        match7=re.compile('<a href="(.+?)">(.+?)&gt;</a>').findall(link)
-        match8=re.compile('<a href="(.+?)mp4">(.+?)</a>').findall(link)
-        match9=re.compile('<a href="(.+?)mkv">(.+?)</a>').findall(link)
-        match10=re.compile('<a href="(.+?)\/">(.+?)</A>').findall(link)
-        match11=re.compile('<a href="(.+?)mkv">(.+?)</A>').findall(link)
-        match12=re.compile('<a href="(.+?)avi">(.+?)</A>').findall(link)
-        match13=re.compile('<a href="(.+?)mp4">(.+?)</A>').findall(link)
-        match14=re.compile('<a href="(.+?)">(.+?)</a>                                      ').findall(link)
-        match15=re.compile('#EXTINF:.+?,(.+?)\n(.+?)\n').findall(link)
-        match16=re.compile('<name>(.+?)</name>|<stream_url><!\[CDATA\[(.+?)\]\]></stream_url>').findall(link)
-        match17=re.compile('<li><a href="(.+?)/"> (.+?)/</a>').findall(link)
-        match18=re.compile('<li><a href="(.+?).xml"> (.+?).xml</a></li>').findall(link)
-        match19=re.compile('<li><a href="(.+?).m3u"> (.+?).m3u</a></li>').findall(link)
-        match20=re.compile('<a href="(.+?)">(.+?)</a>').findall(link)
-        for type,url2,name,size in match:
-            if type == 'VID':
-                addDir2('%s - [B]%s[/B]'%(name.replace('.',' ').replace('/',' '),size.replace('-','')),'%s%s'%(url,url2),9,'http://static.squarespace.com/static/5130016be4b0c701bd01cea9/t/52bd22a5e4b097881153159e/1388126886945/film-Icon.png')
+        match=re.compile('[<Alia>"] href="(.+?)">(.+?)[<>"]').findall(link)
+        for url2,name in match:
+            str1 = url2
+            find_this = "/"
+            if find_this in str1:
+                addDir('[COLOR yellow][FOLDER][/COLOR] %s'%name,url+url2,8,'')
             else:
-                addDir('[COLOR yellow][FOLDER][/COLOR] %s - %s'%(name.replace('.',' ').replace('/',' '),size),'%s%s'%(url,url2),8,'http://pngimg.com/upload/folder_PNG8772.png')
-        for url2,name in match2:
-                addDir('%s - [B][/B]'%(name),'%s%s/'%(url,url2),8,'http://pngimg.com/upload/folder_PNG8772.png')
-        for url2,name in match3:
-                addDir2('[B]%s [/B]'%(name),'%s%smkv'%(url,url2),9,'http://static.squarespace.com/static/5130016be4b0c701bd01cea9/t/52bd22a5e4b097881153159e/1388126886945/film-Icon.png')
-        for url2,name in match4:
-                addDir2('[B]%s [/B]'%(name),'%s%smp4'%(url,url2),9,'http://static.squarespace.com/static/5130016be4b0c701bd01cea9/t/52bd22a5e4b097881153159e/1388126886945/film-Icon.png')
-        for url2,name in match5:
-                addDir2('[B]%s [/B]'%(name),'%s%savi'%(url,url2),9,'http://static.squarespace.com/static/5130016be4b0c701bd01cea9/t/52bd22a5e4b097881153159e/1388126886945/film-Icon.png')
-        for url2,name in match6:
-                addDir('[B]%s [/B]'%(name),'%s%s/'%(url,url2),8,'http://pngimg.com/upload/folder_PNG8772.png')
-        for url2,name in match7:
-                addDir2('[B]%s [/B]'%(name),'%s/%s'%(url,url2),9,'http://static.squarespace.com/static/5130016be4b0c701bd01cea9/t/52bd22a5e4b097881153159e/1388126886945/film-Icon.png')
-        for url2,name in match8:
-                addDir2('[B]%s [/B]'%(name),'%s/%smp4'%(url,url2),9,'http://static.squarespace.com/static/5130016be4b0c701bd01cea9/t/52bd22a5e4b097881153159e/1388126886945/film-Icon.png')
-        for url2,name in match9:
-                addDir2('[B]%s [/B]'%(name),'%s%smvk'%(url,url2),9,'http://static.squarespace.com/static/5130016be4b0c701bd01cea9/t/52bd22a5e4b097881153159e/1388126886945/film-Icon.png')
-        for url2,name in match10:
-                addDir('[B]%s [/B]'%(name),'http://dl.nfilm.org%s'%(url2),8,'http://static.squarespace.com/static/5130016be4b0c701bd01cea9/t/52bd22a5e4b097881153159e/1388126886945/film-Icon.png')
-        for url2,name in match11:
-                addDir2('[B]%s [/B]'%(name),'http://dl.nfilm.org%smkv'%(url2),9,'http://static.squarespace.com/static/5130016be4b0c701bd01cea9/t/52bd22a5e4b097881153159e/1388126886945/film-Icon.png')
-        for url2,name in match12:
-                addDir2('[B]%s [/B]'%(name),'http://dl.nfilm.org%savi'%(url2),9,'http://static.squarespace.com/static/5130016be4b0c701bd01cea9/t/52bd22a5e4b097881153159e/1388126886945/film-Icon.png')
-        for url2,name in match13:
-                addDir2('[B]%s [/B]'%(name),'http://dl.nfilm.org%smp4'%(url2),9,'http://static.squarespace.com/static/5130016be4b0c701bd01cea9/t/52bd22a5e4b097881153159e/1388126886945/film-Icon.png')
-        for url2,name in match14:
-                addDir('[B]%s [/B]'%(name),'%s/%s/'%(url,url2),8,'http://static.squarespace.com/static/5130016be4b0c701bd01cea9/t/52bd22a5e4b097881153159e/1388126886945/film-Icon.png')
-        for name,url2 in match15:
-                addDir2('[B]%s [/B]'%(name),'%s'%(url2),9,'')
-        for name,url2 in match16:
-                addDir2('[B]%s [/B][I]PLAY[/I]'%(name),'%s'%(url2),9,'')
-        for name,url2 in match17:
-                addDir('[B]%s [/B]'%(name),'%s%s'%(url,url2),8,'')
-        for name,url2 in match18:
-                addDir('[B]%s [/B]'%(name),'%s%s.xml'%(url,url2),8,'')
-        for name,url2 in match19:
-                addDir('[B]%s [/B]'%(name),'%s%s.m3u'%(url,url2),8,'')
-        for name,url2 in match20:
-                addDir2('[B]%s [/B]'%(name),'%s/%s'%(url,url2),9,'')
+                addDir2(name,url+'/'+url2,10,'')
+
 def CLOUD(url):
         searchStr = ''
         keyboard = xbmc.Keyboard(searchStr, 'Search')
@@ -2239,7 +1949,7 @@ elif mode==555:
 elif mode==730:
         NAVIX(url)
 elif mode==731:
-        joke(url)
+        joke()
 elif mode==732:
         showtext(heading, text)
 elif mode==733:
@@ -2397,5 +2107,11 @@ elif mode==4292:
           hostselect2(url)
 elif mode==4291:
           hostselect(url)
+elif mode==4927:
+          tvplayer(url)
+elif mode==4928:
+          genccam(url)
+elif mode==4555:
+          xbmclog(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
