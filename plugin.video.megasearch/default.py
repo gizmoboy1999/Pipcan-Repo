@@ -13,12 +13,12 @@ bingurl = 'http://prod.video.msn.com/tenant/amp/entityid/'
 bingimage='http://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAbGK17.img'
 def CATEGORIES():
             addDir('[B]SELECT A CATAGORY[/B]','m',8800,'http://icons.iconseeker.com/png/fullsize/toolbar-icons-6/favorites-7.png')
-            addDir('[COLOR green] BETA: SEARCH[/COLOR] [I]Click here For By Host[/I]','search',4291,'http://icons.iconseeker.com/png/fullsize/pastel/search-10.png')
-            addDir('[COLOR green]SEARCH[/COLOR] [I]Click here For Searches[/I]','search',345,'http://icons.iconseeker.com/png/fullsize/pastel/search-10.png')
+            addDir('[COLOR green]SEARCH[/COLOR] [I]Click here For By 50 + Host[/I]','search',4291,'http://icons.iconseeker.com/png/fullsize/pastel/search-10.png')
+            addDir('[COLOR green]SEARCH[/COLOR] [I]Click here For Normal Searches[/I]','search',345,'http://icons.iconseeker.com/png/fullsize/pastel/search-10.png')
 #            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct Movie List[/COLOR]','file:///%s\movies.m3u'%addonDir,555,'')
 #            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct French TV List[/COLOR]','file:///%s\TV2.m3u'%addonDir,555,'')
-#            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct TV List[/COLOR]','file:///%s\TV.m3u'%addonDir,555,'')
-#            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]TRAILERS[/COLOR]','file:///%s\l.m3u'%addonDir,555,'')
+#            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]Direct TV List[/COLOR]','file:///%s\TV.m3u'%addonDir,4558,'')
+#            addDir('[COLOR red][DOWN][/COLOR] [COLOR gold]TRAILERS[/COLOR]','file:///%s\l.m3u'%addonDir,4559,'')
             addDir('[COLOR gold]MOVIES[/COLOR]','m',8801,'http://icons.iconseeker.com/png/fullsize/smoothicons-5/movies-46.png')
             addDir('[COLOR gold]VIDEOS[/COLOR]','m',8802,'http://icons.iconseeker.com/png/fullsize/on-stage/video-11.png')
             addDir('[COLOR gold]TORRENTS[/COLOR]','m',8899,'http://icons.iconseeker.com/png/fullsize/soft-dimension/utorrent.png')
@@ -43,6 +43,11 @@ def MISC(url):
             addDir('[COLOR gold]VIPERGIRLS[/COLOR]','http://vipergirls.to/forum.php',9778,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]EROTIC STORYS[/COLOR]','http://www.asstr.org/files/Collections/',9788,'http://www.lyngsat-logo.com/images/ls_logo.gif')
             addDir('[COLOR gold]TV Player.com[/COLOR]','http://api.tvplayer.com/api/v2/epg/?service=1&platform=website&from=now&hours=0',4927,'http://api.tvplayer.com/assets/img/tvplayer-logo-full.png')
+def trailers(url):
+        link = OPEN_URL(url)
+        match=re.compile('(.+?)\n').findall(link)
+        for name in match:
+            addDir2(name,name,40,'')
 def hostselect(url):
         if url == 'search':
             xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
@@ -116,6 +121,13 @@ def Guidecat():
             addDir('France','http://en.timefor.tv/ajax/channel_list.php?language=fr',4117,'%s/resources/flags/France.png'%addonDir)
             addDir('Germany','http://en.timefor.tv/ajax/channel_list.php?language=de',4117,'%s/resources/flags/Germany.png'%addonDir)
             addDir('Italy','http://en.timefor.tv/ajax/channel_list.php?language=it',4117,'%s/resources/flags/Italy.png'%addonDir)
+            addDir('SPORTS','http://tecbox.tv/repo/teciptvguide/sports.xml',4560,'%s/resources/flags/Italy.png'%addonDir)
+            addDir('STALKER','http://tecbox.tv/repo/teciptvguide/stalker1.xml',4560,'%s/resources/flags/Italy.png'%addonDir)
+            addDir('SPORTS DONKY','http://tecbox.tv/repo/teciptvguide/donkey.xml',4560,'%s/resources/flags/Italy.png'%addonDir)
+            addDir('USVTV','http://tecbox.tv/repo/teciptvguide/guide3.xmltv',4560,'%s/resources/flags/Italy.png'%addonDir)
+            addDir('NTV','http://tecbox.tv/repo/teciptvguide/guide2.xml',4560,'%s/resources/flags/Italy.png'%addonDir)
+            addDir('MOBSTERS','http://tecbox.tv/repo/teciptvguide/mobsters.xml',4560,'%s/resources/flags/Italy.png'%addonDir)
+            addDir('AMYS','http://tecbox.tv/repo/teciptvguide/amylist.xml',4560,'%s/resources/flags/Italy.png'%addonDir)
             addDir('Netherlands','http://en.timefor.tv/ajax/channel_list.php?language=nl',4117,'%s/resources/flags/Netherlands.png'%addonDir)
             addDir('Norway','http://en.timefor.tv/ajax/channel_list.php?language=no',4117,'%s/resources/flags/Norway.png'%addonDir)
             addDir('Poland','http://en.timefor.tv/ajax/channel_list.php?language=po',4117,'%s/resources/flags/Poland.png'%addonDir)
@@ -229,6 +241,25 @@ def tvplayer(url):
     for name2,name,synopsis,thumbnail in match:
         name2 = '[LOWERCASE]%s[/LOWERCASE]'%name2
         addDir2('[COLOR yellow]%s[/COLOR] - [B]%s[/B] - [I]%s[/I]'%(name2,name,synopsis),'http://live.tvplayer.com/%s/5/prog_index.m3u8'%name2,10,thumbnail)
+def shadow(url):
+    link = OPEN_URL(url)
+    match=re.compile('#EXTINF:.+?,(.+?)\n(.+?)\n').findall(link)
+    for name,url in match:
+        addDir2(name,url,10,'')
+
+def worldstar(url):
+    r = requests.get(url)
+    match=re.compile('"urlVideo": "(.+?)",.+?"imageSrc": "(.+?)",.+?"width": "300",.+?"height": "200",.+?"altImage": "(.+?)"', re.DOTALL).findall(r.text)
+    match2=re.compile('<img src="(.+?)" width="222" height="125" alt="(.+?)">', re.DOTALL).findall(r.text)
+    match3=re.compile('<a href="(.+?)" class="next" rel="next">next<').findall(r.text)
+    addDir('[COLOR green]SEARCH[/COLOR]','http://worldstarhiphop.com/videos/search.php?s=s',4557,'')
+    addDir2('[COLOR yellow]----- TRENDING ----[/COLOR]','',10,'')
+    for url,image,name in match:
+        addDir(name,url,10,image)
+    for image,name in match2:
+        addDir2(name,'',10,image)
+    for url in match3:
+        addDir('NEXT >>>>>','http://worldstarhiphop.com%s'%url,4557,'')
 def TESTLINKS(url):
     read_timeout = 1.0
     counting = 0
@@ -238,7 +269,7 @@ def TESTLINKS(url):
     r = requests.get(url)
     dp = xbmcgui.DialogProgress()
     dp.create('STARTING','COUNTING LINKS')
-    match=re.compile('#EXTINF:.+?,(.+?)[\n<"].+?http(.+?)[\n#>"\s ]', re.DOTALL).findall(r.text)
+    match=re.compile('#EXTINF:.+?,(.+?)[\n<"].+?http(.+?)[\n#>" ]', re.DOTALL).findall(r.text.replace('\n\n','\n'))
     xbmc.sleep(5000)
     dp.close()
     LF = open('%s/Links.txt'%addonDir, 'a')
@@ -497,7 +528,7 @@ def CRAVING(url):
             for name,url in match3:
                 addDir2(name,url,4,'')
 def skysate(url):
-            addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+            addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
             link = OPEN_URL(url)
             match=re.compile('<div class=\'item-title\'><a href=\'(.+?)\'>(.+?)<', re.DOTALL).findall(link)
             match2=re.compile('#EXTINF:.+?,(.+?)<.+?http(.+?)<', re.DOTALL).findall(link)
@@ -607,6 +638,17 @@ def addons(url):
     addDir('kangotek.com/repo','http://kangotek.com/repo',1656,'')
     addDir('','',1656,'')
     addDir('','',1656,'')
+def SPORTS(url):
+        xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_TITLE)
+        link = OPEN_URL(url)
+        match=re.compile('display-name lang="en">(.+?)</display-name>').findall(link)
+        for name in match:
+            addDir('%s'%(name),url,4561,'http://www.astro.com.my/whats-on/logoimages/ChannelLogo/Pos/%s_100.png')
+def SPORTS2(url,name):
+        link = OPEN_URL(url)
+        match=re.compile('<programme start="\d\d\d\d\d\d\d\d(\d\d)(\d\d)\d\d \+\d\d\d\d" stop="\d\d\d\d\d\d\d\d\d\d\d\d\d\d \+\d\d\d\d" channel="%s">.+?<title lang="en">(.+?)<'%(name), re.DOTALL).findall(link)
+        for start,finish,title in match:
+            addDir('[%s:%s] - %s'%(start,finish,title),'http://tecbox.tv/repo/teciptvguide/sports.xml',4561,'http://www.astro.com.my/whats-on/logoimages/ChannelLogo/Pos/%s_100.png')
 
 def addoncats():
     addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
@@ -708,6 +750,7 @@ def CATVIDEOS():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             addDir('Search Bing Videos','http://www.msn.com/en-us/video/searchresults?q=',37,'http://microsoft-news.com/wp-content/uploads/2014/09/Bing-logo-1.jpg')
             addDir('Failarmy','http://www.failarmy.com',4444,'http://www.failarmy.com/2.0.39/media/img/site-logo-sm.png')
+            addDir('Worldstar','http://www.worldstarhiphop.com/videos/trending.php?v=now',4557,'http://www.failarmy.com/2.0.39/media/img/site-logo-sm.png')
 def CATDOCS():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             addDir('Top Documentary Films','http://www.topdocumentaryfilms.com/watch-online/',4448,'')
@@ -747,8 +790,9 @@ def CATIPTV():
             addDir('select-pedia','http://select-pedia.com/tutos/tag/playlist/',4289,'')
             addDir('xbmchelper.squarespace.com','http://xbmchelper.squarespace.com/iptv/',4290,'')
             addDir('http://iptv-xbmc.blogspot.co.uk/','http://iptv-xbmc.blogspot.co.uk/',4555,'')
+            addDir('http://shadowcrew.info/adryan/stalker001.m3u','http://shadowcrew.info/adryan/stalker001.m3u',4556,'')
 def sportiptv(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         r = requests.get(url)
         match=re.compile("<h2 class='post-home-title post-main-home-title'>\n<a href='(.+?)' title='(.+?)'>").findall(r.text)
         match2=re.compile("#EXTINF:.+?,(.+?)<br />\n(.+?)<br />").findall(r.text)
@@ -757,7 +801,7 @@ def sportiptv(url):
         for name,url in match2:
                     addDir2('[COLOR yellow]%s[/COLOR]'%name,url,10,'')
 def xbmclog(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         r = requests.get(url)
         match=re.compile("<h3 class='post-title entry-title' itemprop='name'>\n<a href='(.+?)'>(.+?)</a>", re.DOTALL).findall(r.text)
         match2=re.compile('#EXTINF:.+?,(.+?)[\n](.+?)[<\n]', re.DOTALL).findall(r.text)
@@ -766,14 +810,14 @@ def xbmclog(url):
         for name,url in match2:
             addDir2(name,url,10,'')
 def PEERSTV(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         r = requests.get(url)
         match=re.compile('EXTINF:.+?,(.+?)\nhttp(.+?)\n', re.DOTALL).findall(r.content)
         for name,url in match:
             addDir2(name,'http%s'%url,9,'')
 def tew(url):
         addDir2('[COLOR red]ERASE ENTIRE LIST[/COLOR]',url,1459,'')
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile('EXTINF:.+?,(.+?)[<\n].+?http(.+?)[<\n]', re.DOTALL).findall(link)
         for name,url in match:
@@ -788,7 +832,7 @@ def muscut(url):
             for url,image,down in match:
                 addDir2(url,down,10,image)
 def xbmchelper(url):
-    addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+    addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
     r = requests.get(url)
     match=re.compile('\n(.+?)<a href="http://m3u\.tv/(.+?)">').findall(r.content)
     match2=re.compile('#EXTINF:.+?,(.+?)\n(.+?)\n').findall(r.content)
@@ -797,7 +841,7 @@ def xbmchelper(url):
     for name,url in match2:
         addDir2(name,url,10,'')
 def glaztv(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         r = requests.get(url)
         match=re.compile('<a href="(.+?)"><img width="60" height="60" src="(.+?)" alt="(.+?)"').findall(r.content)
         match2=re.compile('file=(.+?)&').findall(r.content)
@@ -809,7 +853,7 @@ def glaztv(url):
         for name,url in match3:
             addDir('Currrnt Page %s Go To Next >>>>'%name,'http://www.glaz.tv%s'%url,189,'http://www.glaz.tv%s'%url)
 def iptvonline(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         r = requests.get(url)
         match=re.compile('<span class="thumbnail"><a href="(.+?)"><img width="100" height="100" src="(.+?)"').findall(r.text)
         match2=re.compile("#EXTINF:.+?,(.+?)<br/>\n(.+?)<br/>").findall(r.text)
@@ -829,7 +873,7 @@ def TVLOGOS(url):
         for image,name in match2:
             addDir3('%s'%(name),'http://www.tv-logo.com%s'%image,4916,'http://www.tv-logo.com%s'%image)
 def NAVIX(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         addDir('[COLOR yellow]SEARCH[/COLOR]','http://www.navixtreme.com/playlist/search/video/',735,'http://media.navi-x.org/images/logos/search.png')
         link = OPEN_URL(url)
         match=re.compile('type=playlist\nname=(.+?)\nthumb=(.+?)\nURL=(.+?)\n').findall(link)
@@ -856,7 +900,7 @@ def FULLHDTV(url):
         for image,server,quality,url in match3:
             addDir2('%s [COLOR yellow]%s[/COLOR]'%(url,quality),url,4,image)
 def HACKSAT(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         addDir('[COLOR yellow]Go To Page 2[/COLOR]','http://hack-sat.com/iptv-1.html',4285,'')
         link = OPEN_URL(url)
         match=re.compile('#EXTINF:.+?,(.+?)\n(.+?)\n').findall(link)
@@ -928,7 +972,7 @@ def RADIO(url):
         for name,url,qu in match2:
             addDir2('%s - %s'%(name,qu),url,9,'')
 def NAVISEARCH(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         searchStr = ''
         keyboard = xbmc.Keyboard(searchStr, 'Search')
         keyboard.doModal()
@@ -1090,7 +1134,7 @@ def canflix(url):
         for name,type,url,size in match:
             addDir2('%s - %s'%(name,size),'%s'%url,4,'%s'%(type))
 def HDFULLHD(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile('(.+?),(.+?)txt').findall(link)
         match2=re.compile('(.+?),(.+?)m3u8').findall(link)
@@ -1149,7 +1193,7 @@ def ALLUC(url):
             for url,name in match:
                 addDir('%s'%(name),'http://mvsnap.com/%s'%url,299,'')
 def altervista(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile('<a href="(.+?)" title="Permalink to (.+?)" rel="bookmark">').findall(link)
         match2=re.compile('#EXTINF:.+?,(.+?)<br />\n(.+?)<br />').findall(link)
@@ -1170,7 +1214,7 @@ def altervista(url):
         for url,name in match6 	:
             addDir('%s'%(name),'%s'%url,8005,'')
 def kodialtervista(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match7=re.compile('<h2 class="post-title entry-title"><a href="(.+?)" rel="bookmark">(.+?)</a></h2>').findall(link)
         match=re.compile('<a href="(.+?)" title="(.+?)" rel="bookmark"><time class="(.+?)" datetime=".+?">(.+?)</time></a>').findall(link)
@@ -1271,7 +1315,7 @@ def MP3(url):
         for url,name in match3:
             addDir(name,'%s'%url,5000,'')
 def VLC(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile('<h5><span style=" color:#06C">(.+?)</span>').findall(link)
         match2=re.compile('<a href="http://www.vlchistory.eu.pn/index.php/vlchistory/show/\d\d\d\d/\d\d/(.+?)">').findall(link)
@@ -1281,7 +1325,7 @@ def VLC(url):
         for url in match2:
             addDir('%s'%(url),'http://www.vlchistory.eu.pn/index.php/vlchistory/show/2015/09/%s'%url,701,'')
 def iptvm3u(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile('#EXTINF:.+?,(.+?)<.+?\n.+?">(.+?)<').findall(link)
         for name,url in match:
@@ -1343,7 +1387,7 @@ def MYMOVIES(url):
             play.play(url2)
             dp.close
 def iptvm3u2(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile("<h2 class='post-title entry-title' itemprop='name'>\n<a href='(.+?)'>(.+?)</a>").findall(link)
         for url,name in match:
@@ -1359,7 +1403,7 @@ def freetuxtv2(url):
             addDir('NEXT','http://database.freetuxtv.net/webStream/index?WebStreamSearchForm[Type]=1&WebStreamSearchForm[Language]=%s&WebStreamSearchForm[Status]=2&WebStream_page=%s'%(lang,url),301,'')
         urllib2.quote(url.encode("utf8"))
 def BLOGSPOT(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile('#EXTINF:.+?,(.+?)\n(.+?)\n').findall(link)
         match2=re.compile('<a href="https://sites.google.com/site/iptvblogspot/config/pagetemplates/m3u/(.+?)"> Download (.+?)</a>').findall(link)
@@ -1368,13 +1412,13 @@ def BLOGSPOT(url):
         for name,url in match:
             addDir2(name,url,9,'')
 def IPTVLINKS(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile('{"rel":"alternate","type":"text/html","href":"(.+?)","title":"(.+?)"}].+?".+?"url":"(.+?)"').findall(link)
         for url,name,image in match:
             addDir(name,'%s'%(url.replace('\/', '/')),2001,image.replace('\/','/'))
 def IPTVLINKS2(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         id = 0
         link = OPEN_URL(url)
         match2=re.compile('#EXTINF:.+?,(.+?)<br />(.+?)<').findall(link)
@@ -1388,13 +1432,13 @@ def IPTVLINKS2(url):
             else:
                 addDir2('%s) - %s'%(id,name.replace('<span style="color: red;">','').replace('</span>','')),'%s'%(url),9,'')
 def FILMON(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile('<title>(.+?)</title>.+?\n<link>(.+?)</link>').findall(link)
         for name,url in match:
             addDir2(name,'%s'%(url),10,'')
 def CCS(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile('#EXTINF:(.+?)<.+?http(.+?)<', re.DOTALL).findall(link)
         match2=re.compile('<a class="next page-numbers" href="http://select-pedia.com/tutos/tag/playlist/page/(.+?)/">Next').findall(link)
@@ -1462,7 +1506,7 @@ def PASTEBIN(url):
         for name,url in match:
             addDir('%s'%(name),url.replace('pastebin.com/','pastebin.com/raw.php?i='),502,'')
 def PASTEBIN2(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match2=re.compile('#EXTINF:.+?[,?|\s?](.+?)\n(.+?)\n').findall(link)
         match1=re.compile('#EXTINF:.+?[,?|\s?|\.?](.+?)\n(.+?)\B[ ?|\s?]').findall(link)
@@ -1476,7 +1520,7 @@ def LANG(url):
         for name,url in match2:
             addDir2(name,url,9,'')
 def tvonlinestreams(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         addDir('SEARCH','http://www.tvonlinestreams.com/?s=',102,'')
         link = OPEN_URL(url)
         match=re.compile('<h2 class="entry-title"><a href="(.+?)" title=".+?" rel="bookmark">(.+?)</a></h2>').findall(link)
@@ -1486,7 +1530,7 @@ def tvonlinestreams(url):
         for url,name in match2:
             addDir('GO TO PAGE %s '%name,url,100,'')
 def tvonlinestreams2(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile('#EXTINF:.+?,(.+?)<br />\n(.+?)<br />').findall(link)
         for name,url in match:
@@ -1501,7 +1545,7 @@ def filmover(url):
         for name in match2:
             addDir('[COLOR yellow]GO TO PAGE[/COLOR] %s'%(name),'http://iptv.filmover.com/page/%s'%(name),200,'')
 def filmover2(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile('#EXTINF:.+?,(.+?)<br />\n(.+?)<').findall(link)
         match3=re.compile('<br />#EXTINF:.+?,(.+?)<br />(.+?)<br />').findall(link)
@@ -1510,8 +1554,8 @@ def filmover2(url):
         for name,url in match3:
             addDir2('%s'%(name.replace(':','[COLOR yellow] - [/COLOR]')),url.replace(' ',''),9,'')
 def tvonlinestreams3(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         searchStr = ''
         keyboard = xbmc.Keyboard(searchStr, 'Search')
         keyboard.doModal()
@@ -1524,7 +1568,7 @@ def tvonlinestreams3(url):
         for url,name in match2:
             addDir('GO TO PAGE %s '%name,url,100,'')
 def filmover3(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         searchStr = ''
         keyboard = xbmc.Keyboard(searchStr, 'Search')
         keyboard.doModal()
@@ -1545,7 +1589,7 @@ def animakai3(url):
         for url in match1:
             addDir2('PlaY Google Video','http://videohd1.mais.uol.com.br/%s.mp4?r=http://www.animakai.tv/episodio/'%(url),9,'')
 def Husham(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match2=re.compile('<a href="(.+?)" title="(.+?)"').findall(link)
         match=re.compile('#EXTINF:.+?,(.+?)http(.+?)[#<"\s\n]', re.DOTALL).findall(link)
@@ -1571,7 +1615,7 @@ def iptvm3u8blogspot(url):
         for url in match2:
                 addDir('NEXTT >>>>',url,184,'')
 def iptvm3u8blogspot2(url):
-        addDir('[COLOR gold]TEST LINKS BETA[/COLOR]',url,1456,'')
+        addDir('[COLOR gold]CLICK HERE TO SORT OUT DEAD LINKS[/COLOR]',url,1456,'')
         link = OPEN_URL(url)
         match=re.compile('#EXTINF:.+?,(.+?)\n(.+?)\n').findall(link)
         for name,url in match:
@@ -2113,5 +2157,15 @@ elif mode==4928:
           genccam(url)
 elif mode==4555:
           xbmclog(url)
+elif mode==4556:
+          shadow(url)
+elif mode==4557:
+          worldstar(url)
+elif mode==4559:
+          trailers(url)
+elif mode==4560:
+          SPORTS(url)
+elif mode==4561:
+          SPORTS2(url,name)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
