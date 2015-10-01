@@ -714,27 +714,36 @@ def CATMOVIES():
             addDir('Dedibox','http://sd-41445.dedibox.fr/',8,'ww')
             addDir('Craving TV','http://series-cravings.me/tv-show-1',5679,'ww')
             addDir('Craving Movie','http://series-cravings.me/tv-show-1',5679,'ww')
+            addDir('MVSnap','http://mvsnap.com',299,'ww')
+            addDir('Kino Kong','http://kinokong.net',18,'http://smarttvnews.ru/wp-content/uploads/2015/05/32731097.png')
+            addDir('HDFullTV','http://hdfull.tv',656,'')
+            addDir('MOVIE25','http://movie25.ag',9780,'')
+            addDir('[COLOR gold]DIRECT PLAY MOVIES BELLOW[/COLOR]','http://movie25.ag',9780,'')
+            addDir('Yukinoshita','http://yukinoshita.eu/ddl/',12,'ww')
+            addDir('Hastidownload','http://dl.hastidownload.net/ali/film/',8,'ww')
             addDir('Filmgozar','http://dl.filmgozar.com/',8,'ww')
-            addDir('Filmgozar','http://dl.tehmovies.com/94',8,'ww')
+            addDir('210.1.249.2','http://210.1.249.2/Media/',8,'ww')
+            addDir('Hecklingfext.themis.feralhosting.com','http://hecklingfext.themis.feralhosting.com/public/',8,'ww')
+            addDir('http://dl2.download.ir/Download/','http://dl2.download.ir/Download/',8,'ww')
+            addDir('http://dl3.download.ir/Download/','http://dl3.download.ir/Download/',8,'ww')
             addDir('LOADS OF FILMS','http://46.105.122.150/',8,'ww')
+            addDir('http://archiv.hellp.kiev.ua/','http://archiv.hellp.kiev.ua/',8,'ww')
             addDir('Moviefarsi','http://dl5.moviefarsi.org/',8,'ww')
             addDir('Free Upload .IR ','http://dl8.freeupload.ir/',8,'ww')
             addDir('NFilm','http://dl.nfilm.org/DL/',8,'ww')
             addDir('Canflix','http://cdn.alpha.canflix.net',8,'ww')
             addDir('Tehmovies','http://dl.tehmovies.com/',8,'ww')
-            addDir('MVSnap','http://mvsnap.com',299,'ww')
-            addDir('Yukinoshita','http://yukinoshita.eu/ddl/',12,'ww')
-            addDir('Seed Cows','http://seed.cows.io/',8,'ww')
-            addDir('Hastidownload','http://dl.hastidownload.net/ali/film/',8,'ww')
-            addDir('Kino Kong','http://kinokong.net',18,'http://smarttvnews.ru/wp-content/uploads/2015/05/32731097.png')
-            addDir('HDFullTV','http://hdfull.tv',656,'')
-            addDir('MOVIE25','http://movie25.ag',9780,'')
+            addDir('http://chanel3.homeip.net:89/','http://chanel3.homeip.net:89/',8,'ww')
+            addDir('http://chanel3.homeip.net:88/','http://chanel3.homeip.net:88/',8,'ww')
+            addDir('http://chanel2.homeip.net/4K/','http://chanel2.homeip.net/4K/',8,'ww')
 def CATMUSIC():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             addDir('ARTISTS','http://e-mp3bul.com/albumler/2/yabanci-mp3-indir.html',5000,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
             addDir('ALBUMS','http://e-mp3bul.com/album/142/2015.html',5000,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
             addDir('[COLOR red][BROKEN] Search FreeMp3.SE[/COLOR]','http://freemp3.se/?query=',5023,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
             addDir('http://muscut.ru/','http://muscut.ru/search/',190,'https://lh5.ggpht.com/is1Mt-5l5uoysOrEZ9MhCn8JAe5_QokIcLdxI_6k-105AB9WTeycHDHbLiX37EYcXg=w300')
+            addDir('http://archiv.hellp.kiev.ua/','http://archiv.hellp.kiev.ua/Audio/',8,'ww')
+
 def CATANIME():
             addDir2('[COLOR yellow]MEGA SEARCH BY PIPCAN[/COLOR]','',1000,'')
             addDir('Toonova Cartoon','http://www.toonova.com/cartoon',8000,'http://www.toonova.com/images/site/front/logo.png')
@@ -759,7 +768,6 @@ def CATIPTV():
             searchStr = ''
             addDir('Search Navix','http://www.navixtreme.com/playlist/search/video/',735,'http://media.navi-x.org/images/logos/search.png')
             addDir('Search PASTEBIN','https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=56f70d816baa48bdfe9284ebc883ad41&cx=013305635491195529773:0ufpuq-fpt0&sort=date&q=',503,'http://pastebin.com/i/fb2.jpg')
-            addDir('[COLOR red][BROKEN] [/COLOR]http://80.80.160.168/live/','http://80.80.160.168/live',8,'ww')
             addDir('TV Online Streams','http://tvonlinestreams.com',100,'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTdHvBF68jexfm7JTjh692IRi4xC5EbtIy5fDsMcE3ItOqMhXpN')
             addDir('kodi.altervista','http://kodi.altervista.org/category/iptv-playlist/',8008,'http://media.navi-x.org/images/logos/search.png')
             addDir('IPTV Filmover','http://iptv.filmover.com',200,'http://website.informer.com/thumbnails/280x202/i/iptv.filmover.com.png')
@@ -1663,10 +1671,24 @@ def FTP(url):
         for url2,name in match:
             str1 = url2
             find_this = "/"
+            find_this2 = "rar"
+            find_this3 = "mp4"
+            find_this4 = "mvk"
+            find_this5 = "mp3"
+            find_this6 = "avi"
             if find_this in str1:
                 addDir('[COLOR yellow][FOLDER][/COLOR] %s'%name,url+url2,8,'')
-            else:
-                addDir2(name,url+'/'+url2,10,'')
+            if find_this2 in str1:
+                addDir2('[COLOR brown][DOOWNLOAD][/COLOR] %s'%name,url+url2,4562,'')
+            if find_this3 in str1:
+                addDir2('[COLOR green][PLAY][/COLOR] %s'%name,url+url2,10,'')
+            if find_this4 in str1:
+                addDir2('[COLOR green][PLAY][/COLOR] %s'%name,url+url2,10,'')
+            if find_this5 in str1:
+                addDir2('[COLOR green][PLAY][/COLOR] %s'%name,url+url2,10,'')
+            if find_this6 in str1:
+                addDir2('[COLOR green][PLAY][/COLOR] %s'%name,url+url2,10,'')
+
 
 def CLOUD(url):
         searchStr = ''
@@ -1722,23 +1744,7 @@ def PLAYVIDEO5(url):
         except: pass
         dp.update(100,'You Video Is Ready')
         dp.close()
-def DownloaderClass(url,dest):
-    dp = xbmcgui.DialogProgress()
-    dp.create("Iptv Manager","Downloading")
-    urllib.urlretrieve(url,dest,lambda nb, bs, fs, url=url: _pbhook(nb,bs,fs,url,dp))
-def _pbhook(numblocks, blocksize, filesize, url=None,dp=None):
-    try:
-        percent = min((numblocks*blocksize*100)/filesize, 100)
-        print percent
-        dp.update(percent)
-    except:
-        percent = 100
-        dp.update(percent)
-    if dp.iscanceled(): 
-        percent = 100
-        dp.update(percent)
-        return
-        dp.close()	
+	
 def GetPlayerCore(): 
     try: 
         PlayerMethod=getSet("core-player") 
@@ -1761,7 +1767,8 @@ def _pbhook(numblocks, blocksize, filesize, url=None,dp=None):
     except:
         percent = 100
         dp.update(percent)
-    if dp.iscanceled(): 
+    if dp.iscanceled():
+        dp.close()
         return
     dp.close()
 def DOWNLOAD(url):
@@ -1793,6 +1800,20 @@ def DOWNLOAD(url):
         dialog.ok("Finished Installing", "Installation Is Complete")
         xbmc.executebuiltin("UpdateLocalAddons")
         xbmc.executebuiltin("UpdateAddonRepos")
+    else:
+        return            
+def DOWNLOADrar(url):
+    url = '%s'%url 
+    HOME = xbmc.translatePath('special://home/addons/')
+    dialog = xbmcgui.Dialog()
+    if dialog.yesno("DOWNLOADING", 'Do you Wish To Download This','', "",'Close','Yes'):
+        dp = xbmcgui.DialogProgress()
+        dialog = xbmcgui.Dialog()
+        dp.create('Downloading Zip')
+        localfile = os.path.join(addonDir,"resources/addons.zip")
+        urllib.urlretrieve(url,localfile,lambda nb, bs, fs, url=url: _pbhook(nb,bs,fs,url,dp))
+        dp.close()
+        dialog.ok("Finished Downloading", "Download Is Complete")
     else:
         return            
 def get_params():
@@ -2167,5 +2188,7 @@ elif mode==4560:
           SPORTS(url)
 elif mode==4561:
           SPORTS2(url,name)
+elif mode==4562:
+          DOWNLOADrar(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
